@@ -34,10 +34,14 @@ namespace TKBOXEDMEAL
         public frmSET()
         {
             InitializeComponent();
+            
         }
 
         #region FUNCTION       
-
+        private void frmSET_Load(object sender, EventArgs e)
+        {
+            Search();
+        }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             var curRow = dataGridView1.CurrentRow;
@@ -86,7 +90,7 @@ namespace TKBOXEDMEAL
                     {
                         dataGridView1.DataSource = ds.Tables["TEMPds"];
                         dataGridView1.AutoResizeColumns();
-                        rownum = ds.Tables["TEMPds"].Rows.Count - 1;
+                        //rownum = ds.Tables["TEMPds"].Rows.Count - 1;
                         dataGridView1.CurrentCell = dataGridView1.Rows[rownum].Cells[0];
                         textBox1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
                         //dataGridView1.CurrentCell = dataGridView1[0, 2];
@@ -127,9 +131,8 @@ namespace TKBOXEDMEAL
                 tran = sqlConn.BeginTransaction();
 
                 sbSql.Clear();
-                //sbSql.Append("UPDATE Member SET Cname='009999',Mobile1='009999',Telphone='',Email='',Address='',Sex='',Birthday='' WHERE ID='009999'");
-
-                //sbSql.AppendFormat(" INSERT INTO  [{0}].[dbo].[CALLRECORD] ([CallDate],[CallTime],[TypeID],[CallName],[CallPhone],[OrderID],[ShipID],[InvoiceNo],[CallText],[CallTextRe])  VALUES ('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}') ", sqlConn.Database.ToString(), list_CallsRecord[0].CallDate.ToString(), list_CallsRecord[0].CallTime.ToString(), list_CallsRecord[0].TypeID.ToString(), list_CallsRecord[0].CallName.ToString(), list_CallsRecord[0].CallPhone.ToString(), list_CallsRecord[0].OrderID.ToString(), list_CallsRecord[0].ShipID.ToString(), list_CallsRecord[0].InvoiceNo.ToString(), list_CallsRecord[0].CallText.ToString(), list_CallsRecord[0].CallTextRe.ToString());
+                
+                sbSql.AppendFormat(" INSERT INTO  [{0}].[dbo].[BOXEDMEALSET] ([NAME],[STARTORDERTIME],[ENDORDERTIME],[STARTEATTIME],[ENDEATTIME])  VALUES ('{1}','{2}','{3}','{4}','{5}') ", sqlConn.Database.ToString(), comboBox1.Text.ToString(),dateTimePicker1.Value.ToString("HH:mm"), dateTimePicker2.Value.ToString("HH:mm"), dateTimePicker3.Value.ToString("HH:mm"), dateTimePicker4.Value.ToString("HH:mm"));
                 //sbSql.AppendFormat("  UPDATE Member SET Cname='{1}',Mobile1='{2}' WHERE ID='{0}' ", list_Member[0].ID.ToString(), list_Member[0].Cname.ToString(), list_Member[0].Mobile1.ToString());
 
                 cmd.Connection = sqlConn;
@@ -185,7 +188,7 @@ namespace TKBOXEDMEAL
                     sbSql.Clear();
                     //sbSql.Append("UPDATE Member SET Cname='009999',Mobile1='009999',Telphone='',Email='',Address='',Sex='',Birthday='' WHERE ID='009999'");
 
-                    //sbSql.AppendFormat("UPDATE [{0}].dbo.[CALLRECORD]   SET [TypeID]='{2}',[CallName]='{3}',[CallPhone]='{4}',[CallText]='{5}',[CallTextRe]='{6}',[OrderID]='{7}',[ShipID]='{8}',[InvoiceNo]='{9}' WHERE [ID]='{1}' ", sqlConn.Database.ToString(), textBox5.Text.ToString(), comboBox1.SelectedValue.ToString(), textBox1.Text.ToString(), textBox2.Text.ToString(), textBox3.Text.ToString(), textBox4.Text.ToString(), textBox6.Text.ToString(), textBox7.Text.ToString(), textBox8.Text.ToString());
+                    sbSql.AppendFormat("UPDATE [{0}].dbo.[BOXEDMEALSET]   SET [NAME]='{2}',[STARTORDERTIME]='{3}',[ENDORDERTIME]='{4}',[STARTEATTIME]='{5}',[ENDEATTIME]='{6}' WHERE [ID]='{1}' ", sqlConn.Database.ToString(), textBox1.Text.ToString(), comboBox1.Text.ToString(), dateTimePicker1.Value.ToString("HH:mm"), dateTimePicker2.Value.ToString("HH:mm"), dateTimePicker3.Value.ToString("HH:mm"), dateTimePicker4.Value.ToString("HH:mm"));
                     //sbSql.AppendFormat("  UPDATE Member SET Cname='{1}',Mobile1='{2}' WHERE ID='{0}' ", list_Member[0].ID.ToString(), list_Member[0].Cname.ToString(), list_Member[0].Mobile1.ToString());
 
                     cmd.Connection = sqlConn;
@@ -222,7 +225,10 @@ namespace TKBOXEDMEAL
 
         public void ClearText()
         {
-
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            dateTimePicker3.Value = DateTime.Now;
+            dateTimePicker4.Value = DateTime.Now;
         }
         public void DelDB()
         {
@@ -242,7 +248,7 @@ namespace TKBOXEDMEAL
                     sbSql.Clear();
                     //sbSql.Append("UPDATE Member SET Cname='009999',Mobile1='009999',Telphone='',Email='',Address='',Sex='',Birthday='' WHERE ID='009999'");
 
-                    sbSql.AppendFormat("DELETE [{0}].dbo.[CALLRECORD] WHERE ID='{1}' ", sqlConn.Database.ToString(), textBox1.Text.ToString());
+                    sbSql.AppendFormat("DELETE [{0}].dbo.[BOXEDMEALSET] WHERE ID='{1}' ", sqlConn.Database.ToString(), textBox1.Text.ToString());
                     //sbSql.AppendFormat("  UPDATE Member SET Cname='{1}',Mobile1='{2}' WHERE ID='{0}' ", list_Member[0].ID.ToString(), list_Member[0].Cname.ToString(), list_Member[0].Mobile1.ToString());
 
                     cmd.Connection = sqlConn;
@@ -307,5 +313,6 @@ namespace TKBOXEDMEAL
 
         #endregion
 
+       
     }
 }

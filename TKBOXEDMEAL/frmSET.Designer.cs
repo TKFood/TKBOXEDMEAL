@@ -328,6 +328,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmSET";
             this.Text = "frmSET";
+            this.Load += new System.EventHandler(this.frmSET_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
