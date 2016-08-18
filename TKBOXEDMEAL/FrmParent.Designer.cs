@@ -47,6 +47,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label5 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -74,8 +77,6 @@
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 10, 7);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 9, 7);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 6, 4);
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 6, 5);
             this.tableLayoutPanel1.Controls.Add(this.label3, 3, 5);
@@ -83,8 +84,13 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 8, 4);
             this.tableLayoutPanel1.Controls.Add(this.label11, 3, 13);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 9, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 10, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.textBox4, 9, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 10, 12);
+            this.tableLayoutPanel1.Controls.Add(this.textBox3, 9, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 10, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -161,10 +167,9 @@
             this.label7.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label7.Location = new System.Drawing.Point(3, 280);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(714, 40);
+            this.label7.Size = new System.Drawing.Size(714, 24);
             this.label7.TabIndex = 9;
-            this.label7.Text = "請選擇要訂(1) 午餐-葷 (2) 晚餐-葷  (3) 午餐-葷/晚餐-葷一起訂 (4) 午餐-素 (5) 晚餐-素 (6) 午餐-素/晚餐-素一起訂 (0) 放" +
-    "棄";
+            this.label7.Text = "請選擇要訂";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label9
@@ -178,7 +183,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(714, 24);
             this.label9.TabIndex = 12;
-            this.label9.Text = "請選擇要取消的餐點 (1) 午餐 (2) 晚餐 (3) 年/晚餐一起取消  (0) 取消";
+            this.label9.Text = "請選擇要取消的餐點";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
@@ -188,7 +193,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.label8, 3);
             this.label8.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label8.ForeColor = System.Drawing.Color.DarkRed;
-            this.label8.Location = new System.Drawing.Point(803, 288);
+            this.label8.Location = new System.Drawing.Point(803, 368);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(234, 24);
             this.label8.TabIndex = 11;
@@ -202,7 +207,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.label10, 3);
             this.label10.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label10.ForeColor = System.Drawing.Color.DarkRed;
-            this.label10.Location = new System.Drawing.Point(803, 448);
+            this.label10.Location = new System.Drawing.Point(803, 488);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(234, 24);
             this.label10.TabIndex = 14;
@@ -213,7 +218,7 @@
             // 
             this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox4.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox4.Location = new System.Drawing.Point(723, 443);
+            this.textBox4.Location = new System.Drawing.Point(723, 483);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(74, 40);
             this.textBox4.TabIndex = 13;
@@ -223,7 +228,7 @@
             // 
             this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox3.Location = new System.Drawing.Point(723, 283);
+            this.textBox3.Location = new System.Drawing.Point(723, 363);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(74, 40);
             this.textBox3.TabIndex = 10;
@@ -318,6 +323,39 @@
             this.label5.Text = "請選擇要取消的餐點 (1) 午餐 (2) 晚餐 (3) 年/晚餐一起取消  (0) 取消";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.label12, 8);
+            this.label12.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label12.Location = new System.Drawing.Point(3, 320);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(531, 24);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "(1) 午餐-葷 (2) 晚餐-葷  (3) 午餐-葷/晚餐-葷一起訂 ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.label13, 8);
+            this.label13.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label13.Location = new System.Drawing.Point(3, 360);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(606, 24);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "(4) 午餐-素 (5) 晚餐-素 (6) 午餐-素/晚餐-素一起訂 (0) 放棄";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.label14, 8);
+            this.label14.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label14.Location = new System.Drawing.Point(3, 480);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(490, 24);
+            this.label14.TabIndex = 19;
+            this.label14.Text = " (1) 午餐 (2) 晚餐 (3) 年/晚餐一起取消  (0) 取消";
+            // 
             // FrmParent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -355,5 +393,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
     }
 }
