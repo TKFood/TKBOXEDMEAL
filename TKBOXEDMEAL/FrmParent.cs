@@ -109,21 +109,30 @@ namespace TKBOXEDMEAL
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.NumPad1)
+            if(e.KeyCode == Keys.Enter)
             {
-                label4.Text = "1";
-                textBox2.Select();
+                if (textBox1.Text.Equals("1"))
+                {
+                    label4.Text = "1";
+                    textBox2.Select();
+                }
+                else if (textBox1.Text.Equals("2"))
+                {
+                    label4.Text = "2";
+                    textBox2.Select();
+                }
+                else if (textBox1.Text.Equals("3"))
+                {
+                    label4.Text = "3";
+                    textBox2.Select();
+                }
+                else
+                {
+                    textBox1.Text = "";
+                }
+                
             }
-            else if (e.KeyCode == Keys.NumPad2)
-            {
-                label4.Text = "2";
-                textBox2.Select();
-            }
-            else if (e.KeyCode == Keys.NumPad3)
-            {
-                label4.Text = "3";
-                textBox2.Select();
-            }
+            
         }
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
