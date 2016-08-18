@@ -34,7 +34,7 @@ namespace TKBOXEDMEAL
         {
             if (txt_UserName.Text == "" || txt_Password.Text == "")
             {
-                MessageBox.Show("請輸入帳號、密碼");
+                //MessageBox.Show("請輸入帳號、密碼");
                 return;
             }
             try
@@ -73,6 +73,19 @@ namespace TKBOXEDMEAL
             }
         }
 
+        private void txt_UserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_Password.Focus();
+            }
+        }
+
+        private void txt_Password_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            button1.PerformClick();
+        }
+
         #endregion
 
         #region FUNCTION
@@ -85,5 +98,7 @@ namespace TKBOXEDMEAL
         }
 
         #endregion
+
+       
     }
 }

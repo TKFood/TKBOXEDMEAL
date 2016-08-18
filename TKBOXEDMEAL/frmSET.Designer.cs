@@ -68,9 +68,9 @@
             // 
             this.button5.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button5.ForeColor = System.Drawing.Color.Blue;
-            this.button5.Location = new System.Drawing.Point(339, 363);
+            this.button5.Location = new System.Drawing.Point(348, 363);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(73, 34);
+            this.button5.Size = new System.Drawing.Size(64, 34);
             this.button5.TabIndex = 30;
             this.button5.Text = "新增";
             this.button5.UseVisualStyleBackColor = true;
@@ -80,9 +80,9 @@
             // 
             this.button4.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button4.ForeColor = System.Drawing.Color.Blue;
-            this.button4.Location = new System.Drawing.Point(339, 483);
+            this.button4.Location = new System.Drawing.Point(348, 483);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(73, 34);
+            this.button4.Size = new System.Drawing.Size(64, 34);
             this.button4.TabIndex = 12;
             this.button4.Text = "刪除";
             this.button4.UseVisualStyleBackColor = true;
@@ -92,9 +92,9 @@
             // 
             this.button3.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button3.ForeColor = System.Drawing.Color.Blue;
-            this.button3.Location = new System.Drawing.Point(339, 443);
+            this.button3.Location = new System.Drawing.Point(348, 443);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(73, 34);
+            this.button3.Size = new System.Drawing.Size(64, 34);
             this.button3.TabIndex = 11;
             this.button3.Text = "修改";
             this.button3.UseVisualStyleBackColor = true;
@@ -104,9 +104,9 @@
             // 
             this.button2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button2.ForeColor = System.Drawing.Color.Blue;
-            this.button2.Location = new System.Drawing.Point(339, 403);
+            this.button2.Location = new System.Drawing.Point(348, 403);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(73, 34);
+            this.button2.Size = new System.Drawing.Size(64, 34);
             this.button2.TabIndex = 10;
             this.button2.Text = "存檔";
             this.button2.UseVisualStyleBackColor = true;
@@ -118,9 +118,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(177, 494);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 12);
+            this.label8.Size = new System.Drawing.Size(79, 12);
             this.label8.TabIndex = 24;
-            this.label8.Text = "出貨單";
+            this.label8.Text = "用餐結束時間";
             // 
             // label7
             // 
@@ -128,9 +128,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(3, 494);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 12);
+            this.label7.Size = new System.Drawing.Size(80, 12);
             this.label7.TabIndex = 23;
-            this.label7.Text = "訂單";
+            this.label7.Text = "用餐開始時間";
             // 
             // label6
             // 
@@ -138,9 +138,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(177, 454);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 12);
+            this.label6.Size = new System.Drawing.Size(79, 12);
             this.label6.TabIndex = 22;
-            this.label6.Text = "手機";
+            this.label6.Text = "訂餐結束時間";
             // 
             // label5
             // 
@@ -148,9 +148,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 454);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 12);
+            this.label5.Size = new System.Drawing.Size(80, 12);
             this.label5.TabIndex = 21;
-            this.label5.Text = "來電名稱";
+            this.label5.Text = "訂餐開始時間";
             // 
             // comboBox1
             // 
@@ -159,9 +159,9 @@
             this.comboBox1.Items.AddRange(new object[] {
             "午餐",
             "晚餐"});
-            this.comboBox1.Location = new System.Drawing.Point(83, 410);
+            this.comboBox1.Location = new System.Drawing.Point(89, 410);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(88, 20);
+            this.comboBox1.Size = new System.Drawing.Size(82, 20);
             this.comboBox1.TabIndex = 7;
             // 
             // label4
@@ -170,17 +170,17 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(3, 414);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 12);
+            this.label4.Size = new System.Drawing.Size(80, 12);
             this.label4.TabIndex = 20;
-            this.label4.Text = "分類";
+            this.label4.Text = "名稱";
             // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(83, 369);
+            this.textBox1.Location = new System.Drawing.Point(89, 369);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(88, 22);
+            this.textBox1.Size = new System.Drawing.Size(82, 22);
             this.textBox1.TabIndex = 13;
             // 
             // label3
@@ -189,7 +189,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(3, 374);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 12);
+            this.label3.Size = new System.Drawing.Size(80, 12);
             this.label3.TabIndex = 19;
             this.label3.Text = "編號";
             // 
@@ -206,11 +206,11 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.LightGreen;
             this.tableLayoutPanel1.ColumnCount = 11;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
@@ -288,36 +288,36 @@
             // 
             this.dateTimePicker1.CustomFormat = "HH:mm";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(83, 443);
+            this.dateTimePicker1.Location = new System.Drawing.Point(89, 443);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(88, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(82, 22);
             this.dateTimePicker1.TabIndex = 31;
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.CustomFormat = "HH:mm";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(243, 443);
+            this.dateTimePicker2.Location = new System.Drawing.Point(262, 443);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(88, 22);
+            this.dateTimePicker2.Size = new System.Drawing.Size(80, 22);
             this.dateTimePicker2.TabIndex = 32;
             // 
             // dateTimePicker3
             // 
             this.dateTimePicker3.CustomFormat = "HH:mm";
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(83, 483);
+            this.dateTimePicker3.Location = new System.Drawing.Point(89, 483);
             this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(88, 22);
+            this.dateTimePicker3.Size = new System.Drawing.Size(82, 22);
             this.dateTimePicker3.TabIndex = 33;
             // 
             // dateTimePicker4
             // 
             this.dateTimePicker4.CustomFormat = "HH:mm";
             this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(243, 483);
+            this.dateTimePicker4.Location = new System.Drawing.Point(262, 483);
             this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(88, 22);
+            this.dateTimePicker4.Size = new System.Drawing.Size(80, 22);
             this.dateTimePicker4.TabIndex = 34;
             // 
             // frmSET
