@@ -109,7 +109,7 @@ namespace TKBOXEDMEAL
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if(e.KeyCode == Keys.Enter)
             {
                 if (textBox1.Text.Equals("1"))
                 {
@@ -130,9 +130,9 @@ namespace TKBOXEDMEAL
                 {
                     textBox1.Text = "";
                 }
-
+                
             }
-
+            
         }
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
