@@ -63,7 +63,7 @@ namespace TKBOXEDMEAL
                 adapter.Fill(ds, "TEMPds");
                 sqlConn.Close();
 
-                label1.Text = "資料筆數:" + ds.Tables["TEMPds"].Rows.Count.ToString();
+                
 
                 if (ds.Tables["TEMPds"].Rows.Count == 0)
                 {
@@ -131,9 +131,6 @@ namespace TKBOXEDMEAL
             }
            
         }
-
-        #endregion
-
         private void button2_Click(object sender, EventArgs e)
         {
             SetString();
@@ -157,6 +154,102 @@ namespace TKBOXEDMEAL
             }
         }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            SetString();
+            comdt = Convert.ToDateTime("09:10");
+            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
+            {
+                button3.Visible = true;
+                button4.Visible = true;
+                button5.Visible = true;
         
+
+                label5.Text = "取消訂餐成功!";
+                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+            }
+            else
+            {
+                label5.Text = "超過可取消點餐時間!";
+                //label4.Text = "";
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
+
+
+
+
+        #endregion
+
+
     }
 }
