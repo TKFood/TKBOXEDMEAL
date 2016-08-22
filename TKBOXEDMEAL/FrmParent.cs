@@ -66,7 +66,7 @@ namespace TKBOXEDMEAL
             timer1.Interval = 1000;
             timer1.Start();
 
-            textBox1.Select();
+            
         }
 
 
@@ -88,7 +88,36 @@ namespace TKBOXEDMEAL
 
         private void ChildClick(object sender, EventArgs e)
         {
+            // MessageBox.Show(string.Concat("You have Clicked ", sender.ToString(), " Menu"), "Menu Items Event",MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            String Seqtx = "SELECT FRM_CODE FROM MNU_SUBMENU WHERE FRM_NAME='" + sender.ToString() + "'";
+            SqlDataAdapter datransaction = new SqlDataAdapter(Seqtx, conn);
+            DataTable dtransaction = new DataTable();
+            datransaction.Fill(dtransaction);
+
+            Assembly frmAssembly = Assembly.LoadFile(Application.ExecutablePath);
+            foreach (Type type in frmAssembly.GetTypes())
+            {
+                //MessageBox.Show(type.Name);
+                if (type.BaseType == typeof(Form))
+                {
+                    if (type.Name == dtransaction.Rows[0][0].ToString())
+                    {
+                        Form frmShow = (Form)frmAssembly.CreateInstance(type.ToString());
+                        // then when you want to close all of them simple call the below code
+
+                        foreach (Form form in this.MdiChildren)
+                        {
+                            form.Close();
+                        }
+
+                        frmShow.MdiParent = this;
+                        frmShow.WindowState = FormWindowState.Maximized;
+                        //frmShow.ControlBox = false;
+                        frmShow.Show();
+                    }
+                }
+            }
         }
 
         private void FrmParent_FormClosed(object sender, FormClosedEventArgs e)
@@ -104,146 +133,10 @@ namespace TKBOXEDMEAL
         #region FUNCTION
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = DateTime.Now.ToString();
-        }
-
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                if (textBox1.Text.Equals("1"))
-                {
-                    label4.Text = "1";
-                    textBox2.Select();
-                }
-                else if (textBox1.Text.Equals("2"))
-                {
-                    label4.Text = "2";
-                    textBox2.Select();
-                }
-                else if (textBox1.Text.Equals("3"))
-                {
-                    label4.Text = "3";
-                    textBox2.Select();
-                }
-                else
-                {
-                    textBox1.Text = "";
-                }
-                
-            }
-            
-        }
-
-        private void textBox2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter&&!string.IsNullOrEmpty(textBox2.Text.ToString()))
-            {
-                if (textBox1.Text.Equals("1"))
-                {
-                    label11.Text = "~用餐愉快~";
-                    SETLABEL();
-                    label4.Text = "";
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                    textBox1.Select();
-
-                }
-                else if (textBox1.Text.Equals("2"))
-                {
-                    textBox3.Select();
-                }
-                else if (textBox1.Text.Equals("3"))
-                {
-                    textBox4.Select();
-                }
-            }
-
-        }
-
-        private void textBox3_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (textBox3.Text.Equals("1"))
-                {
-                    label11.Text = "~訂餐 午餐-葷 完成~";                    
-                }
-                else if (textBox3.Text.Equals("2"))
-                {
-                    label11.Text = "~訂餐 晚餐-葷 完成~";
-                }
-                else if (textBox3.Text.Equals("3"))
-                {
-                    label11.Text = "~訂餐 午餐-葷/晚餐-葷 完成~";
-                }
-                else if (textBox3.Text.Equals("4"))
-                {
-                    label11.Text = "~訂餐 午餐-素 完成~";
-                }
-                else if (textBox3.Text.Equals("5"))
-                {
-                    label11.Text = "~訂餐 晚餐-素 完成~";
-                }
-                else if (textBox3.Text.Equals("6"))
-                {
-                    label11.Text = "~訂餐 午餐-素/晚餐-素 完成~";
-                }
-                else 
-                {
-                    label11.Text = "~取消~";
-                }
-
-                SETLABEL();
-                label4.Text = "";
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                textBox1.Select();
-            }
-        }
-
-        private void textBox4_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (textBox4.Text.Equals("1"))
-                    {
-                        label11.Text = "~取消 午餐 完成~";
-                    }
-                    else if (textBox4.Text.Equals("2"))
-                    {
-                        label11.Text = "~取消 晚餐 完成~";
-                    }
-                    else if (textBox4.Text.Equals("3"))
-                    {
-                        label11.Text = "~取消 午餐/晚餐 完成~";
-                    }
-                    else
-                    {
-                        label11.Text = "~取消~";
-                    }
+            //label1.Text = DateTime.Now.ToString();
+        }      
 
 
-                    SETLABEL();
-                    label4.Text = "";
-                    textBox1.Text = "";
-                    textBox2.Text = "";
-                    textBox3.Text = "";
-                    textBox4.Text = "";
-                    textBox1.Select();
-                }
-            }
-        }
-
-        public void SETLABEL()
-        {
-            label11.Font = new Font("Arial", 24, FontStyle.Bold);
-            label11.ForeColor = Color.Blue;
-        }
         #endregion
 
 
