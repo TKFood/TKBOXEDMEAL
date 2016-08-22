@@ -31,9 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,13 +41,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -70,9 +68,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 22);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 21);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 20);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 18);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 6);
@@ -134,23 +131,12 @@
             this.label3.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.label3, 3);
             this.label3.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(835, 840);
+            this.label3.Location = new System.Drawing.Point(35, 840);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(202, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "請輸入卡號或工號";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 10);
-            this.dataGridView1.Location = new System.Drawing.Point(3, 803);
-            this.dataGridView1.Name = "dataGridView1";
-            this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 2);
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(794, 54);
-            this.dataGridView1.TabIndex = 2;
             // 
             // label1
             // 
@@ -165,16 +151,16 @@
             this.label1.Text = "NOW";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dataGridView2
+            // dataGridView1
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView2, 10);
-            this.dataGridView2.Location = new System.Drawing.Point(3, 43);
-            this.dataGridView2.Name = "dataGridView2";
-            this.tableLayoutPanel1.SetRowSpan(this.dataGridView2, 3);
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(794, 114);
-            this.dataGridView2.TabIndex = 10;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 10);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 43);
+            this.dataGridView1.Name = "dataGridView1";
+            this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 3);
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(794, 114);
+            this.dataGridView1.TabIndex = 10;
             // 
             // label4
             // 
@@ -280,19 +266,6 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Visible = false;
             // 
-            // button6
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.button6, 3);
-            this.button6.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button6.Location = new System.Drawing.Point(3, 563);
-            this.button6.Name = "button6";
-            this.tableLayoutPanel1.SetRowSpan(this.button6, 3);
-            this.button6.Size = new System.Drawing.Size(234, 114);
-            this.button6.TabIndex = 17;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Visible = false;
-            // 
             // button7
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.button7, 3);
@@ -319,6 +292,19 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Visible = false;
             // 
+            // button6
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.button6, 3);
+            this.button6.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button6.Location = new System.Drawing.Point(3, 563);
+            this.button6.Name = "button6";
+            this.tableLayoutPanel1.SetRowSpan(this.button6, 3);
+            this.button6.Size = new System.Drawing.Size(234, 114);
+            this.button6.TabIndex = 17;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
+            // 
             // button9
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.button9, 3);
@@ -340,10 +326,10 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmORDER";
             this.Text = "frmORDER";
+            this.Load += new System.EventHandler(this.frmORDER_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -353,9 +339,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+      
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
