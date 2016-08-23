@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +65,7 @@
             this.tableLayoutPanel1.Controls.Add(this.button1, 4, 7);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 4, 5);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 2, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -187,6 +189,19 @@
             this.textBox1.Size = new System.Drawing.Size(314, 46);
             this.textBox1.TabIndex = 12;
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.label5, 2);
+            this.label5.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label5.Location = new System.Drawing.Point(163, 206);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(154, 27);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "請刷卡";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frmRUN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -214,5 +229,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
     }
 }

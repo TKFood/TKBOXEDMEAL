@@ -46,6 +46,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button10 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -82,8 +83,9 @@
             this.tableLayoutPanel1.Controls.Add(this.button8, 8, 14);
             this.tableLayoutPanel1.Controls.Add(this.button6, 0, 14);
             this.tableLayoutPanel1.Controls.Add(this.button9, 8, 6);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.button10, 7, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -324,7 +326,7 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 3);
             this.textBox1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox1.Location = new System.Drawing.Point(83, 177);
+            this.textBox1.Location = new System.Drawing.Point(163, 177);
             this.textBox1.Name = "textBox1";
             this.tableLayoutPanel1.SetRowSpan(this.textBox1, 2);
             this.textBox1.Size = new System.Drawing.Size(234, 46);
@@ -343,6 +345,20 @@
             this.button10.Text = "取消本次操作";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.label6, 2);
+            this.label6.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label6.Location = new System.Drawing.Point(3, 186);
+            this.label6.Name = "label6";
+            this.tableLayoutPanel1.SetRowSpan(this.label6, 2);
+            this.label6.Size = new System.Drawing.Size(154, 27);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "請刷卡";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmORDER
             // 
@@ -381,5 +397,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label6;
     }
 }

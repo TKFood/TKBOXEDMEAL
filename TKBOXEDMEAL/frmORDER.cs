@@ -24,16 +24,21 @@ namespace TKBOXEDMEAL
         SqlTransaction tran;
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
+        DataSet ds1 = new DataSet();
         DataTable dt = new DataTable();
         string strFilePath;
         OpenFileDialog file = new OpenFileDialog();
         int result;
-        string Name;
         string OrderBoxed;
         int rownum = 0;
         DateTime startdt;
         DateTime enddt;
         DateTime comdt;
+        string InputID;
+        string CardID;
+        string ID;
+        string Name;
+        string Meal;
 
         public frmORDER()
         {
@@ -105,31 +110,38 @@ namespace TKBOXEDMEAL
         {
             Search();
         }
-
-        public void SetString()
-        {
-            Name = "aa";
-            OrderBoxed = "ok";
-        }
+       
 
         public void SetOrderButton()
         {
-            SetString();
+            //comdt = DateTime.Now;
             comdt = Convert.ToDateTime("09:10");
             if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
             {
-                button3.Visible = true;
-                button4.Visible = true;
-                button5.Visible = true;
-                button6.Visible = true;
-                button7.Visible = true;
-                button8.Visible = true;
+                if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
+                {
+                    InputID = textBox1.Text.ToString();
+                    SearchEmplyee();
+                    
+                    if (!string.IsNullOrEmpty(Name))
+                    {
+                        button3.Visible = true;
+                        button4.Visible = true;
+                        button5.Visible = true;
+                        button6.Visible = true;
+                        button7.Visible = true;
+                        button8.Visible = true;
 
-                button1.Visible = false;
-                button9.Visible = false;
+                        button1.Visible = false;
+                        button9.Visible = false;
+                    }
+                    else
+                    {
+                        
+                    }
 
-                label5.Text = "訂餐成功!";
-                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                }
+                
             }
             else
             {
@@ -141,7 +153,7 @@ namespace TKBOXEDMEAL
 
         public void SetCancelButton()
         {
-            SetString();
+          
             comdt = Convert.ToDateTime("09:10");
             if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
             {
@@ -155,8 +167,7 @@ namespace TKBOXEDMEAL
                 button1.Visible = false;
                 button2.Visible = false;
 
-                label5.Text = "取消訂餐成功!";
-                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                
             }
             else
             {
@@ -178,6 +189,106 @@ namespace TKBOXEDMEAL
             button7.Visible = false;
             button8.Visible = false;
         }
+
+        public void SearchEmplyee()
+        {
+            try
+            {
+
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sbSql.Clear();
+                sbSqlQuery.Clear();
+
+                sbSql.AppendFormat(@"SELECT TOP 1 [ID],[NAME],[CARDID] FROM [{0}].[dbo].[EMPLOYEE] WHERE [CARDID]='{1}' OR [ID]='{1}'", sqlConn.Database.ToString(), InputID);
+
+                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                sqlConn.Open();
+                ds1.Clear();
+                adapter.Fill(ds1, "TEMPds1");
+                sqlConn.Close();
+
+                if (ds1.Tables["TEMPds1"].Rows.Count == 0)
+                {
+                    label5.Text = "沒有此員工!";
+                    label4.Text = "";
+
+                    textBox1.Text = "";
+                    ID = null;
+                    Name = null;
+                    CardID = null;
+                    Meal = null;
+                }
+                else
+                {
+                    ID = ds1.Tables["TEMPds1"].Rows[0][0].ToString();
+                    Name= ds1.Tables["TEMPds1"].Rows[0][1].ToString();
+                    CardID= ds1.Tables["TEMPds1"].Rows[0][2].ToString();
+
+                }
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+
+        }
+        public void ORDERAdd(string Meal, string OrderBoxed)
+        {
+            try
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+                //ADD COPTC
+                sbSql.Append(" ");
+                sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND [MEAL]='{1}'",ID,Meal);
+                sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}',1) ",ID,Name,CardID,Meal);
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                    label5.Text = "訂餐失敗!";
+                    label4.Text = "";
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+                    label5.Text = "訂餐成功!";
+                    label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                }
+
+                sqlConn.Close();
+                Search();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
         #endregion
 
 
@@ -185,7 +296,7 @@ namespace TKBOXEDMEAL
         private void button1_Click(object sender, EventArgs e)
         {
             //comdt = DateTime.Now;
-            SetString();
+
 
             comdt = Convert.ToDateTime("09:10");
             if (DateTime.Compare(startdt, comdt) <0&& DateTime.Compare(enddt, comdt) > 0)
@@ -218,6 +329,15 @@ namespace TKBOXEDMEAL
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Meal = "10";
+            OrderBoxed = "中餐-葷";
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                ORDERAdd(Meal, OrderBoxed);
+                
+            }
+
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
@@ -228,6 +348,12 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+
+            textBox1.Text = "";
+            ID = null;
+            Name = null;
+            CardID = null;
+            Meal = null;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -242,6 +368,12 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+
+            textBox1.Text = "";
+            ID = null;
+            Name = null;
+            CardID = null;
+            Meal = null;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -256,6 +388,12 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+
+            textBox1.Text = "";
+            ID = null;
+            Name = null;
+            CardID = null;
+            Meal = null;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -270,6 +408,13 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+
+
+            textBox1.Text = "";
+            ID = null;
+            Name = null;
+            CardID = null;
+            Meal = null;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -284,6 +429,12 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+
+            textBox1.Text = "";
+            ID = null;
+            Name = null;
+            CardID = null;
+            Meal = null;
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -298,6 +449,12 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+
+            textBox1.Text = "";
+            ID = null;
+            Name = null;
+            CardID = null;
+            Meal = null;
         }
 
 
