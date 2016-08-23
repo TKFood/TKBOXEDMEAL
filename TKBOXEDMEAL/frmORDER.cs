@@ -39,6 +39,7 @@ namespace TKBOXEDMEAL
         string ID;
         string Name;
         string Meal;
+        string Dish;
 
         public frmORDER()
         {
@@ -241,7 +242,7 @@ namespace TKBOXEDMEAL
             }
 
         }
-        public void ORDERAdd(string Meal, string OrderBoxed)
+        public void ORDERAdd(string Meal,string Dish, string OrderBoxed)
         {
             try
             {
@@ -254,9 +255,25 @@ namespace TKBOXEDMEAL
 
                 sbSql.Clear();
                 //ADD COPTC
-                sbSql.Append(" ");
-                sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND [MEAL]='{1}'",ID,Meal);
-                sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}',1) ",ID,Name,CardID,Meal);
+                
+                if (Meal.Equals("10+20"))
+                {
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') ", ID, Meal);
+                    Meal = "10";
+                    sbSql.Append(" ");                    
+                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", ID, Name, CardID, Meal,Dish);
+
+                    Meal = "20";
+                    sbSql.Append(" ");                 
+                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", ID, Name, CardID, Meal, Dish);
+
+                }              
+                else
+                {
+                    sbSql.Append(" ");
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' ", ID, Meal);
+                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", ID, Name, CardID, Meal, Dish);
+                }
 
                 cmd.Connection = sqlConn;
                 cmd.CommandTimeout = 60;
@@ -330,11 +347,12 @@ namespace TKBOXEDMEAL
         private void button3_Click(object sender, EventArgs e)
         {
             Meal = "10";
+            Dish = "1";
             OrderBoxed = "中餐-葷";
 
             if (!string.IsNullOrEmpty(Name))
             {
-                ORDERAdd(Meal, OrderBoxed);
+                ORDERAdd(Meal, Dish, OrderBoxed);
                 
             }
 
@@ -358,6 +376,15 @@ namespace TKBOXEDMEAL
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Meal = "20";
+            Dish = "1";
+            OrderBoxed = "晚餐-葷";
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                ORDERAdd(Meal, Dish, OrderBoxed);
+            }
+
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
@@ -378,6 +405,15 @@ namespace TKBOXEDMEAL
 
         private void button5_Click(object sender, EventArgs e)
         {
+            Meal = "10+20";
+            Dish = "1";
+            OrderBoxed = "中/晚餐-葷";
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                ORDERAdd(Meal, Dish, OrderBoxed);
+            }
+
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
@@ -398,6 +434,15 @@ namespace TKBOXEDMEAL
 
         private void button6_Click(object sender, EventArgs e)
         {
+            Meal = "10";
+            Dish = "2";
+            OrderBoxed = "中餐-素";
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                ORDERAdd(Meal, Dish, OrderBoxed);
+            }
+
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
@@ -419,6 +464,14 @@ namespace TKBOXEDMEAL
 
         private void button7_Click(object sender, EventArgs e)
         {
+            Meal = "20";
+            Dish = "2";
+            OrderBoxed = "晚餐-素";
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                ORDERAdd(Meal, Dish, OrderBoxed);
+            }
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
@@ -439,6 +492,14 @@ namespace TKBOXEDMEAL
 
         private void button8_Click(object sender, EventArgs e)
         {
+            Meal = "10+20";
+            Dish = "2";
+            OrderBoxed = "中/晚餐-素";
+
+            if (!string.IsNullOrEmpty(Name))
+            {
+                ORDERAdd(Meal, Dish, OrderBoxed);
+            }
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
