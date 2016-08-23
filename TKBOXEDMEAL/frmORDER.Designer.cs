@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button10 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -82,8 +82,8 @@
             this.tableLayoutPanel1.Controls.Add(this.button8, 8, 14);
             this.tableLayoutPanel1.Controls.Add(this.button6, 0, 14);
             this.tableLayoutPanel1.Controls.Add(this.button9, 8, 6);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button10, 7, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button10, 7, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -162,9 +162,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 43);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 2);
+            this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 3);
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(794, 74);
+            this.dataGridView1.Size = new System.Drawing.Size(794, 114);
             this.dataGridView1.TabIndex = 10;
             // 
             // label4
@@ -179,17 +179,6 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "HI";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 3);
-            this.textBox1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox1.Location = new System.Drawing.Point(83, 137);
-            this.textBox1.Name = "textBox1";
-            this.tableLayoutPanel1.SetRowSpan(this.textBox1, 2);
-            this.textBox1.Size = new System.Drawing.Size(234, 46);
-            this.textBox1.TabIndex = 12;
             // 
             // button1
             // 
@@ -241,7 +230,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.button3, 3);
             this.button3.Size = new System.Drawing.Size(234, 114);
             this.button3.TabIndex = 14;
-            this.button3.Text = "button3";
+            this.button3.Text = "中餐-葷";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -255,7 +244,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.button4, 3);
             this.button4.Size = new System.Drawing.Size(234, 114);
             this.button4.TabIndex = 15;
-            this.button4.Text = "button4";
+            this.button4.Text = "晚餐-葷";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -269,7 +258,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.button5, 3);
             this.button5.Size = new System.Drawing.Size(234, 114);
             this.button5.TabIndex = 16;
-            this.button5.Text = "button5";
+            this.button5.Text = "中/晚餐-葷";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -283,7 +272,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.button7, 3);
             this.button7.Size = new System.Drawing.Size(234, 114);
             this.button7.TabIndex = 18;
-            this.button7.Text = "button7";
+            this.button7.Text = "晚餐-素";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
@@ -297,7 +286,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.button8, 3);
             this.button8.Size = new System.Drawing.Size(234, 114);
             this.button8.TabIndex = 19;
-            this.button8.Text = "button8";
+            this.button8.Text = "中/晚餐-素";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Visible = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
@@ -311,7 +300,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.button6, 3);
             this.button6.Size = new System.Drawing.Size(234, 114);
             this.button6.TabIndex = 17;
-            this.button6.Text = "button6";
+            this.button6.Text = "中餐-素";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -330,12 +319,23 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 3);
+            this.textBox1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox1.Location = new System.Drawing.Point(83, 177);
+            this.textBox1.Name = "textBox1";
+            this.tableLayoutPanel1.SetRowSpan(this.textBox1, 2);
+            this.textBox1.Size = new System.Drawing.Size(234, 46);
+            this.textBox1.TabIndex = 12;
+            // 
             // button10
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.button10, 3);
             this.button10.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button10.ForeColor = System.Drawing.Color.Red;
-            this.button10.Location = new System.Drawing.Point(563, 123);
+            this.button10.Location = new System.Drawing.Point(563, 163);
             this.button10.Name = "button10";
             this.tableLayoutPanel1.SetRowSpan(this.button10, 2);
             this.button10.Size = new System.Drawing.Size(184, 74);

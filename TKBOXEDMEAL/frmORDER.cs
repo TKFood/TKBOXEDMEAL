@@ -72,7 +72,9 @@ namespace TKBOXEDMEAL
                 else
                 {
                     dataGridView1.DataSource = ds.Tables["TEMPds"];
+                    dataGridView1.DefaultCellStyle.Font = new Font("新細明體", 20);
                     dataGridView1.AutoResizeColumns();
+                    dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     //rownum = ds.Tables["TEMPds"].Rows.Count - 1;
                     dataGridView1.CurrentCell = dataGridView1.Rows[rownum].Cells[0];
                     //dataGridView1.CurrentCell = dataGridView1[0, 2];
@@ -109,6 +111,73 @@ namespace TKBOXEDMEAL
             Name = "aa";
             OrderBoxed = "ok";
         }
+
+        public void SetOrderButton()
+        {
+            SetString();
+            comdt = Convert.ToDateTime("09:10");
+            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
+            {
+                button3.Visible = true;
+                button4.Visible = true;
+                button5.Visible = true;
+                button6.Visible = true;
+                button7.Visible = true;
+                button8.Visible = true;
+
+                button1.Visible = false;
+                button9.Visible = false;
+
+                label5.Text = "訂餐成功!";
+                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+            }
+            else
+            {
+                label5.Text = "超過可點餐時間!";
+                //label4.Text = "";
+            }
+
+        }
+
+        public void SetCancelButton()
+        {
+            SetString();
+            comdt = Convert.ToDateTime("09:10");
+            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
+            {
+                button3.Visible = true;
+                button4.Visible = true;
+                button5.Visible = true;
+                button6.Visible = true;
+                button7.Visible = true;
+                button8.Visible = true;
+
+                button1.Visible = false;
+                button2.Visible = false;
+
+                label5.Text = "取消訂餐成功!";
+                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+            }
+            else
+            {
+                label5.Text = "超過可取消點餐時間!";
+                //label4.Text = "";
+            }
+        }
+
+        public void SetCancel()
+        {
+            button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+        }
         #endregion
 
 
@@ -133,60 +202,26 @@ namespace TKBOXEDMEAL
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            SetString();
-            comdt = Convert.ToDateTime("09:10");
-            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
-            {
-                button3.Visible = true;
-                button4.Visible = true;
-                button5.Visible = true;
-                button6.Visible = true;
-                button7.Visible = true;
-                button8.Visible = true;
-
-                label5.Text = "訂餐成功!";
-                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
-            }
-            else
-            {
-                label5.Text = "超過可點餐時間!";
-                //label4.Text = "";
-            }
+            SetOrderButton();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            SetString();
-            comdt = Convert.ToDateTime("09:10");
-            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
-            {
-                button3.Visible = true;
-                button4.Visible = true;
-                button5.Visible = true;
-        
-
-                label5.Text = "取消訂餐成功!";
-                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
-            }
-            else
-            {
-                label5.Text = "超過可取消點餐時間!";
-                //label4.Text = "";
-            }
+            SetCancelButton();
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            button3.Visible = false;
-            button4.Visible = false;
-            button5.Visible = false;
-            button6.Visible = false;
-            button7.Visible = false;
-            button8.Visible = false;
+
+            SetCancel();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
@@ -197,6 +232,10 @@ namespace TKBOXEDMEAL
 
         private void button4_Click(object sender, EventArgs e)
         {
+            button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
@@ -207,6 +246,10 @@ namespace TKBOXEDMEAL
 
         private void button5_Click(object sender, EventArgs e)
         {
+            button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
@@ -217,6 +260,10 @@ namespace TKBOXEDMEAL
 
         private void button6_Click(object sender, EventArgs e)
         {
+            button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
@@ -227,6 +274,10 @@ namespace TKBOXEDMEAL
 
         private void button7_Click(object sender, EventArgs e)
         {
+            button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
@@ -237,6 +288,10 @@ namespace TKBOXEDMEAL
 
         private void button8_Click(object sender, EventArgs e)
         {
+            button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
             button3.Visible = false;
             button4.Visible = false;
             button5.Visible = false;
