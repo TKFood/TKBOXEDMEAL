@@ -23,6 +23,7 @@ namespace TKBOXEDMEAL
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlCommandBuilder sqlCmdBuilder = new SqlCommandBuilder();
         SqlTransaction tran;
+        SqlTransaction tran2;
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
@@ -211,19 +212,22 @@ namespace TKBOXEDMEAL
         public void UPDATEEAT(string ID,string MEAL)
         {
             try
-            {
+            {               
                 connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
-                sqlConn2 = new SqlConnection(connectionString);
+                sqlConn = new SqlConnection(connectionString);
 
-                sqlConn2.Close();
-                sqlConn2.Open();
-                tran = sqlConn2.BeginTransaction();
+                if (sqlConn.State != ConnectionState.Open)
+                {
+                    sqlConn.Open();
+                }
+                tran = sqlConn.BeginTransaction();
 
                 sbSql.Clear();
-                //ADD COPTC
+         
                 sbSql.AppendFormat(" UPDATE [TKBOXEDMEAL].[dbo].[EMPORDER] SET [EATNUM]=1 WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' AND [MEAL]='{1}' AND [EATNUM]=0 ", ID, MEAL);
+                
 
-                cmd.Connection = sqlConn2;
+                cmd.Connection = sqlConn;
                 cmd.CommandTimeout = 60;
                 cmd.CommandText = sbSql.ToString();
                 cmd.Transaction = tran;
@@ -235,9 +239,11 @@ namespace TKBOXEDMEAL
                 else
                 {
                     label4.Text = "用餐愉快!";
+                    tran.Commit();      
+                    
                 }
 
-                sqlConn2.Close();
+                sqlConn.Close();
                 Search();
             }
             catch
