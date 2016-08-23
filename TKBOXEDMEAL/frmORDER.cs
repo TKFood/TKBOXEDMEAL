@@ -25,6 +25,7 @@ namespace TKBOXEDMEAL
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
+        DataSet ds2 = new DataSet();
         DataTable dt = new DataTable();
         string strFilePath;
         OpenFileDialog file = new OpenFileDialog();
@@ -41,13 +42,25 @@ namespace TKBOXEDMEAL
         string Meal;
         string Dish;
         string OrderCancel;
+        string QueryMeal;
+
+
 
         public frmORDER()
         {
             InitializeComponent();
+
         }
 
         #region FUNCTION
+        private void frmORDER_Load(object sender, EventArgs e)
+        {
+            Search();
+            textBox1.Select();
+            //comdt = DateTime.Now;
+            comdt = Convert.ToDateTime("09:10");
+        }
+
         public void Search()
         {
             try
@@ -69,8 +82,6 @@ namespace TKBOXEDMEAL
                 ds.Clear();
                 adapter.Fill(ds, "TEMPds");
                 sqlConn.Close();
-
-                
 
                 if (ds.Tables["TEMPds"].Rows.Count == 0)
                 {
@@ -108,16 +119,12 @@ namespace TKBOXEDMEAL
 
         }
 
-        private void frmORDER_Load(object sender, EventArgs e)
-        {
-            Search();
-        }
+
        
 
         public void SetOrderButton()
         {
-            //comdt = DateTime.Now;
-            comdt = Convert.ToDateTime("09:10");
+
             if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
             {
                 if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
@@ -154,9 +161,7 @@ namespace TKBOXEDMEAL
         }
 
         public void SetCancelButton()
-        {
-          
-            comdt = Convert.ToDateTime("09:10");
+        {     
             if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
             {
                 if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
@@ -197,6 +202,9 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+
+            textBox1.Text = null;
+            textBox1.Select();
         }
 
         public void SearchEmplyee()
@@ -312,6 +320,7 @@ namespace TKBOXEDMEAL
             {
 
             }
+            textBox1.Select();
         }
 
         public void OrderCanel(string Meal, string Dish, string OrderBoxed)
@@ -367,28 +376,157 @@ namespace TKBOXEDMEAL
             {
 
             }
+            textBox1.Select();
         }
 
+        public void OrderLast()
+        {
+
+            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
+            {
+                try
+                {
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    sqlConn = new SqlConnection(connectionString);
+
+                    sqlConn.Close();
+                    sqlConn.Open();
+                    tran = sqlConn.BeginTransaction();
+
+                    sbSql.Clear();
+                    //ADD COPTC
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", ID);
+                    sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] SELECT [ID],[NAME],[CARDID],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+                    sbSql.AppendFormat(" WHERE CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}' ORDER BY SERNO DESC) ", ID);
+
+
+                    cmd.Connection = sqlConn;
+                    cmd.CommandTimeout = 60;
+                    cmd.CommandText = sbSql.ToString();
+                    cmd.Transaction = tran;
+                    result = cmd.ExecuteNonQuery();
+                    if (result == 0)
+                    {
+                        tran.Rollback();    //交易取消
+                        label5.Text = "訂餐失敗!";
+                        label4.Text = "";
+                    }
+                    else
+                    {
+                        tran.Commit();      //訂餐成功  
+                        OrderBoxed=SearchMeal();
+                        if(!string.IsNullOrEmpty(OrderBoxed))
+                        {
+                            label5.Text = "訂餐成功!";
+                            label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                        }
+                        
+                    }
+
+                    sqlConn.Close();
+                    Search();
+
+                    textBox1.Text = null;
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+
+                }
+
+            }
+            else
+            {
+                label5.Text = "超過可點餐時間!";
+                label4.Text = "";
+            }
+            textBox1.Select();
+        }
+
+        public string SearchMeal()
+        {
+            QueryMeal = null;
+            try
+            {
+
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sbSql.Clear();
+                sbSqlQuery.Clear();
+
+                sbSql.AppendFormat(@"SELECT [MEAL],[DISH] FROM [{0}].[dbo].[EMPORDER] WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}'", sqlConn.Database.ToString(), ID);
+
+                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                sqlConn.Open();
+                ds2.Clear();
+                adapter.Fill(ds2, "TEMPds2");
+                sqlConn.Close();
+
+                if (ds2.Tables["TEMPds2"].Rows.Count == 0)
+                {
+                   
+                }
+                else
+                {
+                    for(int i=0; i< ds2.Tables["TEMPds2"].Rows.Count; i++)
+                    {
+                        if(ds2.Tables["TEMPds2"].Rows[i][0].ToString().Equals("10"))
+                        {
+                            QueryMeal = QueryMeal + "中餐-";
+                        }
+                        if (ds2.Tables["TEMPds2"].Rows[i][0].ToString().Equals("20"))
+                        {
+                            QueryMeal = QueryMeal + "晚餐-";
+                        }
+                        if (ds2.Tables["TEMPds2"].Rows[i][1].ToString().Equals("1"))
+                        {
+                            QueryMeal = QueryMeal + "葷 ";
+                        }
+                        if (ds2.Tables["TEMPds2"].Rows[i][1].ToString().Equals("2"))
+                        {
+                            QueryMeal = QueryMeal + "素 ";
+                        }
+                    }
+
+                }
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+
+            return QueryMeal;
+        }
         #endregion
 
 
         #region BUTTON
         private void button1_Click(object sender, EventArgs e)
         {
-            //comdt = DateTime.Now;
-            comdt = Convert.ToDateTime("09:10");
-            if (DateTime.Compare(startdt, comdt) <0&& DateTime.Compare(enddt, comdt) > 0)
+            if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
             {
-                label5.Text = "訂餐成功!";
-                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                InputID = textBox1.Text.ToString();
+                SearchEmplyee();
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    OrderLast();
+                }
             }
-            else
-            {
-                label5.Text = "超過可點餐時間!";
-                //label4.Text = "";
-            }
-           
         }
+                                   
+           
+        
         private void button2_Click(object sender, EventArgs e)
         {
             OrderCancel = "Order";
