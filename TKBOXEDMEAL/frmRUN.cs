@@ -15,6 +15,7 @@ namespace TKBOXEDMEAL
     public partial class frmRUN : Form
     {
         SqlConnection sqlConn = new SqlConnection();
+        SqlConnection sqlConn2 = new SqlConnection();
         SqlCommand sqlComm = new SqlCommand();
         string connectionString;
         StringBuilder sbSql = new StringBuilder();
@@ -24,15 +25,22 @@ namespace TKBOXEDMEAL
         SqlTransaction tran;
         SqlCommand cmd = new SqlCommand();
         DataSet ds = new DataSet();
+        DataSet ds1 = new DataSet();
+        DataSet ds2 = new DataSet();
         DataTable dt = new DataTable();
         string strFilePath;
         OpenFileDialog file = new OpenFileDialog();
         int result;
         string NowDay;
         int rownum = 0;
-        DateTime startdt;
-        DateTime enddt;
+        DateTime StartLunchdt;
+        DateTime EndLunchdt;
+        DateTime StartDinnerdt;
+        DateTime EndDinnerdt;
+        DateTime comdt;
         TimeSpan ts;
+        string ID;
+        string orderMeal;
 
         public frmRUN()
         {
@@ -45,22 +53,29 @@ namespace TKBOXEDMEAL
             timer1.Enabled = true;
             timer1.Interval = 1000;
             timer1.Start();
-            startdt = DateTime.Now;
+            StartLunchdt = DateTime.Now;
+            StartDinnerdt = DateTime.Now;
 
             Search();
+            textBox1.Select();
+
+            //comdt = DateTime.Now;
+            comdt = Convert.ToDateTime("11:10");
 
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            enddt = DateTime.Now;
-            ts = enddt.Subtract(startdt);
-
             label1.Text = DateTime.Now.ToString();
-            if(ts.TotalMilliseconds>=2000 && label4.Text.ToString().Equals("用餐愉快!"))
-            {
-                label4.Text = "請刷卡!";
-                startdt = DateTime.Now;
-            }
+
+            //enddt = DateTime.Now;
+            //ts = enddt.Subtract(startdt);
+
+            
+            //if(ts.TotalMilliseconds>=2000 && label4.Text.ToString().Equals("用餐愉快!"))
+            //{
+            //    label4.Text = "請刷卡!";
+            //    startdt = DateTime.Now;
+            //}
         }
 
         public void Search()
@@ -74,7 +89,6 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-
                 sbSql.AppendFormat(@"SELECT [ID] AS '編號',[NAME]  AS '名稱',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS '訂餐開始時間',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS '訂餐結束時間', CONVERT(VARCHAR(5),[STARTEATTIME] ,108)  AS '用餐開始時間',CONVERT(VARCHAR(5),[ENDEATTIME] ,108)   AS '用餐結束時間' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
@@ -84,8 +98,6 @@ namespace TKBOXEDMEAL
                 ds.Clear();
                 adapter.Fill(ds, "TEMPds");
                 sqlConn.Close();
-
-
 
                 if (ds.Tables["TEMPds"].Rows.Count == 0)
                 {
@@ -104,10 +116,15 @@ namespace TKBOXEDMEAL
                     DataRow[] result = ds.Tables["TEMPds"].Select("名稱='午餐'");
                     foreach (DataRow row in result)
                     {
-                        startdt = Convert.ToDateTime(row[2].ToString());
-                        enddt = Convert.ToDateTime(row[3].ToString());
+                        StartLunchdt = Convert.ToDateTime(row[4].ToString());
+                        EndLunchdt = Convert.ToDateTime(row[5].ToString());
                     }
-
+                    DataRow[] result2 = ds.Tables["TEMPds"].Select("名稱='晚餐'");
+                    foreach (DataRow row in result2)
+                    {
+                        StartDinnerdt = Convert.ToDateTime(row[4].ToString());
+                        EndDinnerdt = Convert.ToDateTime(row[5].ToString());
+                    }
 
                 }
 
@@ -122,12 +139,137 @@ namespace TKBOXEDMEAL
             }
 
         }
+
+        public void GetMeal(string ID,string MEAL)
+        {
+            try
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sbSql.Clear();
+                sbSqlQuery.Clear();
+
+                sbSql.AppendFormat(@"SELECT  [SERNO],[ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [{0}].[dbo].[EMPORDER] WITH (NOLOCK) WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}' AND [MEAL]='{2}' AND [EATNUM]=0   ", sqlConn.Database.ToString(),ID,MEAL);
+
+                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                sqlConn.Open();
+                ds1.Clear();
+                adapter.Fill(ds1, "TEMPds1");
+                sqlConn.Close();
+
+                if (ds1.Tables["TEMPds1"].Rows.Count == 0)
+                {
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    sqlConn = new SqlConnection(connectionString);
+
+                    sbSql.Clear();
+                    sbSqlQuery.Clear();
+
+                    sbSql.AppendFormat(@"SELECT  [SERNO],[ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [{0}].[dbo].[EMPORDER] WITH (NOLOCK) WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}' AND [MEAL]='{2}'   ", sqlConn.Database.ToString(), ID, MEAL);
+
+                    adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                    sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                    sqlConn.Open();
+                    ds2.Clear();
+                    adapter.Fill(ds2, "TEMPds2");
+                    sqlConn.Close();
+
+                    if (ds2.Tables["TEMPds2"].Rows.Count == 0)
+                    {
+                        label4.Text = "沒有訂餐記錄!";
+                    }
+                    else
+                    {
+                        if(ds2.Tables["TEMPds2"].Rows[0][8].ToString().Equals("1"))
+                        {
+                            label4.Text = "已經用過餐了!";
+                        }
+                    }
+
+                }
+                else
+                {
+                    UPDATEEAT(ID,MEAL);
+                }
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+
+            
+        }
+        public void UPDATEEAT(string ID,string MEAL)
+        {
+            try
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn2 = new SqlConnection(connectionString);
+
+                sqlConn2.Close();
+                sqlConn2.Open();
+                tran = sqlConn2.BeginTransaction();
+
+                sbSql.Clear();
+                //ADD COPTC
+                sbSql.AppendFormat(" UPDATE [TKBOXEDMEAL].[dbo].[EMPORDER] SET [EATNUM]=1 WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' AND [MEAL]='{1}' AND [EATNUM]=0 ", ID, MEAL);
+
+                cmd.Connection = sqlConn2;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+                if (result == 0)
+                {
+                    label4.Text = "無法用餐!";
+                }
+                else
+                {
+                    label4.Text = "用餐愉快!";
+                }
+
+                sqlConn2.Close();
+                Search();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
         #endregion
 
         #region BUTTON
         private void button1_Click(object sender, EventArgs e)
         {
-            label4.Text = "用餐愉快!";
+            ID = textBox1.Text.ToString();
+            if (DateTime.Compare(StartLunchdt, comdt) < 0 && DateTime.Compare(EndLunchdt, comdt) > 0)
+            {
+                GetMeal(ID,"10");
+            }
+            else if (DateTime.Compare(StartDinnerdt, comdt) < 0 && DateTime.Compare(EndDinnerdt, comdt) > 0)
+            {
+                GetMeal(ID, "20");
+            }
+            else
+            {
+                label4.Text = "非用餐時間";
+            }
+
+            textBox1.Text = null;
+            textBox1.Select();
         }
         #endregion
 
