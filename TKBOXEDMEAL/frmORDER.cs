@@ -40,6 +40,7 @@ namespace TKBOXEDMEAL
         string Name;
         string Meal;
         string Dish;
+        string OrderCancel;
 
         public frmORDER()
         {
@@ -158,17 +159,24 @@ namespace TKBOXEDMEAL
             comdt = Convert.ToDateTime("09:10");
             if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
             {
-                button3.Visible = true;
-                button4.Visible = true;
-                button5.Visible = true;
-                button6.Visible = true;
-                button7.Visible = true;
-                button8.Visible = true;
+                if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
+                {
+                    InputID = textBox1.Text.ToString();
+                    SearchEmplyee();
 
-                button1.Visible = false;
-                button2.Visible = false;
+                    if (!string.IsNullOrEmpty(Name))
+                    {
+                        button3.Visible = true;
+                        button4.Visible = true;
+                        button5.Visible = true;
+                        button6.Visible = true;
+                        button7.Visible = true;
+                        button8.Visible = true;
 
-                
+                        button1.Visible = false;
+                        button2.Visible = false;
+                    }
+                }                
             }
             else
             {
@@ -306,6 +314,61 @@ namespace TKBOXEDMEAL
             }
         }
 
+        public void OrderCanel(string Meal, string Dish, string OrderBoxed)
+        {
+            try
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+                //ADD COPTC
+
+                if (Meal.Equals("10+20"))
+                {
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [DISH]='{1}' ", ID, Dish);   
+                }
+                else
+                {
+                    sbSql.Append(" ");
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [DISH]='{2}' ", ID, Meal,Dish);                   
+                }
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                    label5.Text = "取消訂餐失敗!";
+                    label4.Text = "";
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+                    label5.Text = "取消訂餐成功!";
+                    label4.Text = Name.ToString() + " 您取消了: " + OrderBoxed.ToString();
+                }
+
+                sqlConn.Close();
+                Search();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
         #endregion
 
 
@@ -313,8 +376,6 @@ namespace TKBOXEDMEAL
         private void button1_Click(object sender, EventArgs e)
         {
             //comdt = DateTime.Now;
-
-
             comdt = Convert.ToDateTime("09:10");
             if (DateTime.Compare(startdt, comdt) <0&& DateTime.Compare(enddt, comdt) > 0)
             {
@@ -330,17 +391,18 @@ namespace TKBOXEDMEAL
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            OrderCancel = "Order";
             SetOrderButton();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
+            OrderCancel = "Cancel";
             SetCancelButton();
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-
             SetCancel();
         }
 
@@ -350,11 +412,19 @@ namespace TKBOXEDMEAL
             Dish = "1";
             OrderBoxed = "中餐-葷";
 
-            if (!string.IsNullOrEmpty(Name))
-            {
-                ORDERAdd(Meal, Dish, OrderBoxed);
-                
+            if (OrderCancel.Equals("Order"))
+            {   
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
             }
+            else if(OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
+            }
+
+
 
             button1.Visible = true;
             button2.Visible = true;
@@ -380,10 +450,18 @@ namespace TKBOXEDMEAL
             Dish = "1";
             OrderBoxed = "晚餐-葷";
 
-            if (!string.IsNullOrEmpty(Name))
-            {
-                ORDERAdd(Meal, Dish, OrderBoxed);
+            if (OrderCancel.Equals("Order"))
+            {   
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
             }
+            else if (OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
+            }
+
 
             button1.Visible = true;
             button2.Visible = true;
@@ -409,9 +487,17 @@ namespace TKBOXEDMEAL
             Dish = "1";
             OrderBoxed = "中/晚餐-葷";
 
-            if (!string.IsNullOrEmpty(Name))
+            if (OrderCancel.Equals("Order"))
             {
-                ORDERAdd(Meal, Dish, OrderBoxed);
+                
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
+            }
+            else if (OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
             }
 
             button1.Visible = true;
@@ -438,9 +524,16 @@ namespace TKBOXEDMEAL
             Dish = "2";
             OrderBoxed = "中餐-素";
 
-            if (!string.IsNullOrEmpty(Name))
+            if (OrderCancel.Equals("Order"))
             {
-                ORDERAdd(Meal, Dish, OrderBoxed);
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
+            }
+            else if (OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
             }
 
             button1.Visible = true;
@@ -468,10 +561,19 @@ namespace TKBOXEDMEAL
             Dish = "2";
             OrderBoxed = "晚餐-素";
 
-            if (!string.IsNullOrEmpty(Name))
+            if (OrderCancel.Equals("Order"))
             {
-                ORDERAdd(Meal, Dish, OrderBoxed);
+               
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
             }
+            else if (OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
+            }
+
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
@@ -496,10 +598,19 @@ namespace TKBOXEDMEAL
             Dish = "2";
             OrderBoxed = "中/晚餐-素";
 
-            if (!string.IsNullOrEmpty(Name))
+            if (OrderCancel.Equals("Order"))
             {
-                ORDERAdd(Meal, Dish, OrderBoxed);
+               
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
             }
+            else if (OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
+            }
+
             button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
