@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Media;
 
 namespace TKBOXEDMEAL
 {
@@ -182,12 +179,14 @@ namespace TKBOXEDMEAL
                     if (ds2.Tables["TEMPds2"].Rows.Count == 0)
                     {
                         label4.Text = "沒有訂餐記錄!";
+                        System.Media.SystemSounds.Beep.Play();
                     }
                     else
                     {
                         if(ds2.Tables["TEMPds2"].Rows[0][8].ToString().Equals("1"))
                         {
                             label4.Text = "已經用過餐了!";
+                            System.Media.SystemSounds.Beep.Play();
                         }
                     }
 
@@ -236,6 +235,7 @@ namespace TKBOXEDMEAL
                 {
                     tran.Rollback();    //交易取消
                     label4.Text = "無法用餐!";
+                    System.Media.SystemSounds.Beep.Play();
                 }
                 else
                 {
@@ -261,6 +261,12 @@ namespace TKBOXEDMEAL
         #region BUTTON
         private void button1_Click(object sender, EventArgs e)
         {
+            //System.Media.SystemSounds.Exclamation.Play();
+            //System.Media.SystemSounds.Hand.Play();
+            
+
+
+
             ID = textBox1.Text.ToString();
             if (DateTime.Compare(StartLunchdt, comdt) < 0 && DateTime.Compare(EndLunchdt, comdt) > 0)
             {
