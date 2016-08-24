@@ -36,8 +36,8 @@ namespace TKBOXEDMEAL
         DateTime enddt;
         DateTime comdt;
         string InputID;
-        string CardID;
-        string ID;
+        string CardNo;
+        string EmployeeID;
         string Name;
         string Meal;
         string Dish;
@@ -218,7 +218,7 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@"SELECT TOP 1 [ID],[NAME],[CARDID] FROM [{0}].[dbo].[EMPLOYEE] WHERE [CARDID]='{1}' OR [ID]='{1}'", sqlConn.Database.ToString(), InputID);
+                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name]FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), InputID);
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -234,16 +234,16 @@ namespace TKBOXEDMEAL
                     label4.Text = "";
 
                     textBox1.Text = "";
-                    ID = null;
+                    EmployeeID = null;
                     Name = null;
-                    CardID = null;
+                    CardNo = null;
                     Meal = null;
                 }
                 else
                 {
-                    ID = ds1.Tables["TEMPds1"].Rows[0][0].ToString();
-                    Name= ds1.Tables["TEMPds1"].Rows[0][1].ToString();
-                    CardID= ds1.Tables["TEMPds1"].Rows[0][2].ToString();
+                    EmployeeID = ds1.Tables["TEMPds1"].Rows[0][0].ToString();
+                    CardNo = ds1.Tables["TEMPds1"].Rows[0][1].ToString();
+                    Name = ds1.Tables["TEMPds1"].Rows[0][2].ToString();
 
                 }
 
@@ -274,21 +274,21 @@ namespace TKBOXEDMEAL
                 
                 if (Meal.Equals("10+20"))
                 {
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') ", ID, Meal);
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') ", EmployeeID, Meal);
                     Meal = "10";
                     sbSql.Append(" ");                    
-                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", ID, Name, CardID, Meal,Dish);
+                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal,Dish);
 
                     Meal = "20";
                     sbSql.Append(" ");                 
-                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", ID, Name, CardID, Meal, Dish);
+                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
 
                 }              
                 else
                 {
                     sbSql.Append(" ");
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' ", ID, Meal);
-                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", ID, Name, CardID, Meal, Dish);
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' ", EmployeeID, Meal);
+                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
                 }
 
                 cmd.Connection = sqlConn;
@@ -339,12 +339,12 @@ namespace TKBOXEDMEAL
 
                 if (Meal.Equals("10+20"))
                 {
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [DISH]='{1}' ", ID, Dish);   
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [DISH]='{1}' ", EmployeeID, Dish);   
                 }
                 else
                 {
                     sbSql.Append(" ");
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [DISH]='{2}' ", ID, Meal,Dish);                   
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [DISH]='{2}' ", EmployeeID, Meal,Dish);                   
                 }
 
                 cmd.Connection = sqlConn;
@@ -395,9 +395,9 @@ namespace TKBOXEDMEAL
 
                     sbSql.Clear();
                     //ADD COPTC
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", ID);
-                    sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] SELECT [ID],[NAME],[CARDID],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
-                    sbSql.AppendFormat(" WHERE CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}' ORDER BY SERNO DESC) ", ID);
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", EmployeeID);
+                    sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]) SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+                    sbSql.AppendFormat(" WHERE CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}' ORDER BY SERNO DESC) ", EmployeeID);
 
 
                     cmd.Connection = sqlConn;
@@ -458,7 +458,7 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@"SELECT [MEAL],[DISH] FROM [{0}].[dbo].[EMPORDER] WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}'", sqlConn.Database.ToString(), ID);
+                sbSql.AppendFormat(@"SELECT [MEAL],[DISH] FROM [{0}].[dbo].[EMPORDER] WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}'", sqlConn.Database.ToString(), EmployeeID);
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -576,9 +576,9 @@ namespace TKBOXEDMEAL
             button8.Visible = false;
 
             textBox1.Text = "";
-            ID = null;
+            EmployeeID = null;
             Name = null;
-            CardID = null;
+            CardNo = null;
             Meal = null;
         }
 
@@ -613,9 +613,9 @@ namespace TKBOXEDMEAL
             button8.Visible = false;
 
             textBox1.Text = "";
-            ID = null;
+            EmployeeID = null;
             Name = null;
-            CardID = null;
+            CardNo = null;
             Meal = null;
         }
 
@@ -650,9 +650,9 @@ namespace TKBOXEDMEAL
             button8.Visible = false;
 
             textBox1.Text = "";
-            ID = null;
+            EmployeeID = null;
             Name = null;
-            CardID = null;
+            CardNo = null;
             Meal = null;
         }
 
@@ -687,9 +687,9 @@ namespace TKBOXEDMEAL
 
 
             textBox1.Text = "";
-            ID = null;
+            EmployeeID = null;
             Name = null;
-            CardID = null;
+            CardNo = null;
             Meal = null;
         }
 
@@ -724,9 +724,9 @@ namespace TKBOXEDMEAL
             button8.Visible = false;
 
             textBox1.Text = "";
-            ID = null;
+            EmployeeID = null;
             Name = null;
-            CardID = null;
+            CardNo = null;
             Meal = null;
         }
 
@@ -761,9 +761,9 @@ namespace TKBOXEDMEAL
             button8.Visible = false;
 
             textBox1.Text = "";
-            ID = null;
+            EmployeeID = null;
             Name = null;
-            CardID = null;
+            CardNo = null;
             Meal = null;
         }
 

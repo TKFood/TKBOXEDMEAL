@@ -61,7 +61,7 @@ namespace TKBOXEDMEAL
             textBox1.Select();
 
             //comdt = DateTime.Now;
-            comdt = Convert.ToDateTime("11:10");
+            comdt = Convert.ToDateTime("17:10");
 
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -151,7 +151,7 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@"SELECT  [SERNO],[ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [{0}].[dbo].[EMPORDER] WITH (NOLOCK) WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}' AND [MEAL]='{2}' AND [EATNUM]=0   ", sqlConn.Database.ToString(),ID,MEAL);
+                sbSql.AppendFormat(@"SELECT  [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [{0}].[dbo].[EMPORDER] WITH (NOLOCK) WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND ([ID]='{1}' OR [CARDNO]='{1}' ) AND [MEAL]='{2}' AND [EATNUM]=0   ", sqlConn.Database.ToString(),ID,MEAL);
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -169,7 +169,7 @@ namespace TKBOXEDMEAL
                     sbSql.Clear();
                     sbSqlQuery.Clear();
 
-                    sbSql.AppendFormat(@"SELECT  [SERNO],[ID],[NAME],[CARDID],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [{0}].[dbo].[EMPORDER] WITH (NOLOCK) WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}' AND [MEAL]='{2}'   ", sqlConn.Database.ToString(), ID, MEAL);
+                    sbSql.AppendFormat(@"SELECT  [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [{0}].[dbo].[EMPORDER] WITH (NOLOCK) WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND ([ID]='{1}' OR [CARDNO]='{1}' ) AND [MEAL]='{2}'   ", sqlConn.Database.ToString(), ID, MEAL);
 
                     adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                     sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -224,7 +224,7 @@ namespace TKBOXEDMEAL
 
                 sbSql.Clear();
          
-                sbSql.AppendFormat(" UPDATE [TKBOXEDMEAL].[dbo].[EMPORDER] SET [EATNUM]=1 WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' AND [MEAL]='{1}' AND [EATNUM]=0 ", ID, MEAL);
+                sbSql.AppendFormat(" UPDATE [TKBOXEDMEAL].[dbo].[EMPORDER] SET [EATNUM]=1 WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND ([ID]='{0}' OR [CARDNO]='{0}' ) AND [MEAL]='{1}' AND [EATNUM]=0 ", ID, MEAL);
                 
 
                 cmd.Connection = sqlConn;
@@ -234,6 +234,7 @@ namespace TKBOXEDMEAL
                 result = cmd.ExecuteNonQuery();
                 if (result == 0)
                 {
+                    tran.Rollback();    //交易取消
                     label4.Text = "無法用餐!";
                 }
                 else
