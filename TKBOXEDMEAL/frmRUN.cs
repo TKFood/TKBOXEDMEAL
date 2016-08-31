@@ -46,6 +46,12 @@ namespace TKBOXEDMEAL
         }
 
         #region FUNCTION
+        public void PLAYMP3()
+        {
+            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = @"\\Server2003\PROG更新\TKBOXEDMEAL\mp3\BEE.mp3";
+            wplayer.controls.play();
+        }
         private void frmRUN_Load(object sender, EventArgs e)
         {
             timer1.Enabled = true;
@@ -58,7 +64,7 @@ namespace TKBOXEDMEAL
             textBox1.Select();
 
             //comdt = DateTime.Now;
-            comdt = Convert.ToDateTime("17:10");
+            comdt = Convert.ToDateTime("12:10");
 
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -179,14 +185,16 @@ namespace TKBOXEDMEAL
                     if (ds2.Tables["TEMPds2"].Rows.Count == 0)
                     {
                         label4.Text = "沒有訂餐記錄!";
-                        System.Media.SystemSounds.Beep.Play();
+                        //System.Media.SystemSounds.Beep.Play();
+                        PLAYMP3();
                     }
                     else
                     {
                         if(ds2.Tables["TEMPds2"].Rows[0][8].ToString().Equals("1"))
                         {
                             label4.Text = "已經用過餐了!";
-                            System.Media.SystemSounds.Beep.Play();
+                            //System.Media.SystemSounds.Beep.Play();
+                            PLAYMP3();
                         }
                     }
 
@@ -235,7 +243,8 @@ namespace TKBOXEDMEAL
                 {
                     tran.Rollback();    //交易取消
                     label4.Text = "無法用餐!";
-                    System.Media.SystemSounds.Beep.Play();
+                    //System.Media.SystemSounds.Beep.Play();
+                    PLAYMP3();
                 }
                 else
                 {
@@ -263,7 +272,7 @@ namespace TKBOXEDMEAL
         {
             //System.Media.SystemSounds.Exclamation.Play();
             //System.Media.SystemSounds.Hand.Play();
-            
+
 
 
 
@@ -279,6 +288,7 @@ namespace TKBOXEDMEAL
             else
             {
                 label4.Text = "非用餐時間";
+                PLAYMP3();
             }
 
             textBox1.Text = null;

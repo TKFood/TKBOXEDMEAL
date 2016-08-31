@@ -53,12 +53,19 @@ namespace TKBOXEDMEAL
         }
 
         #region FUNCTION
+        public void PLAYMP3()
+        {
+            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = @"\\Server2003\PROG更新\TKBOXEDMEAL\mp3\BEE.mp3";
+            wplayer.controls.play();
+        }
+
         private void frmORDER_Load(object sender, EventArgs e)
         {
             Search();
             textBox1.Select();
             //comdt = DateTime.Now;
-            comdt = Convert.ToDateTime("09:10");
+            comdt = Convert.ToDateTime("10:10");
         }
 
         public void Search()
@@ -155,6 +162,7 @@ namespace TKBOXEDMEAL
             else
             {
                 label5.Text = "超過可點餐時間!";
+                PLAYMP3();
                 //label4.Text = "";
             }
 
@@ -186,6 +194,7 @@ namespace TKBOXEDMEAL
             else
             {
                 label5.Text = "超過可取消點餐時間!";
+                PLAYMP3();
                 //label4.Text = "";
             }
         }
@@ -238,6 +247,7 @@ namespace TKBOXEDMEAL
                     Name = null;
                     CardNo = null;
                     Meal = null;
+                    PLAYMP3();
                 }
                 else
                 {
@@ -301,6 +311,7 @@ namespace TKBOXEDMEAL
                     tran.Rollback();    //交易取消
                     label5.Text = "訂餐失敗!";
                     label4.Text = "";
+                    PLAYMP3();
                 }
                 else
                 {
@@ -357,6 +368,7 @@ namespace TKBOXEDMEAL
                     tran.Rollback();    //交易取消
                     label5.Text = "取消訂餐失敗!";
                     label4.Text = "";
+                    PLAYMP3();
                 }
                 else
                 {
@@ -410,6 +422,7 @@ namespace TKBOXEDMEAL
                         tran.Rollback();    //交易取消
                         label5.Text = "訂餐失敗!";
                         label4.Text = "";
+                        PLAYMP3();
                     }
                     else
                     {
@@ -442,6 +455,7 @@ namespace TKBOXEDMEAL
             {
                 label5.Text = "超過可點餐時間!";
                 label4.Text = "";
+                PLAYMP3();
             }
             textBox1.Select();
         }
