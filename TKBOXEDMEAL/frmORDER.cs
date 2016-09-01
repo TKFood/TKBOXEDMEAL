@@ -45,8 +45,7 @@ namespace TKBOXEDMEAL
         string Dish;
         string OrderCancel;
         string QueryMeal;
-
-
+        string Lang = "CH";
 
         public frmORDER()
         {
@@ -80,6 +79,7 @@ namespace TKBOXEDMEAL
 
         public void Search()
         {
+            
             try
             {
 
@@ -88,10 +88,17 @@ namespace TKBOXEDMEAL
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
+                
 
-
-                sbSql.AppendFormat(@"SELECT [ID] AS '編號',[NAME]  AS '名稱',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS '訂餐開始時間',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS '訂餐結束時間', CONVERT(VARCHAR(5),[STARTEATTIME] ,108)  AS '用餐開始時間',CONVERT(VARCHAR(5),[ENDEATTIME] ,108)   AS '用餐結束時間' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
-
+                if (Lang.Equals("CH"))
+                {
+                    sbSql.AppendFormat(@"SELECT [ID] AS '編號',[NAME]  AS '名稱',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS '訂餐開始時間',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS '訂餐結束時間', CONVERT(VARCHAR(5),[STARTEATTIME] ,108)  AS '用餐開始時間',CONVERT(VARCHAR(5),[ENDEATTIME] ,108)   AS '用餐結束時間' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
+                }
+                else if (Lang.Equals("VN"))
+                {
+                    sbSql.AppendFormat(@"SELECT [ID] AS 'số',[VNNAME]  AS 'tên',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS 'Thứ tự thời gian bắt đầu',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS 'Đặt End Time', CONVERT(VARCHAR(5),[STARTEATTIME] ,108)  AS 'Ăn Start Time',CONVERT(VARCHAR(5),[ENDEATTIME] ,108)   AS 'Kết thúc thời gian bữa ăn' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
+                  
+                }
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
 
@@ -106,7 +113,9 @@ namespace TKBOXEDMEAL
                 }
                 else
                 {
-                    dataGridView1.DataSource = ds.Tables["TEMPds"];
+                    
+                    dt = ds.Tables["TEMPds"];
+                    dataGridView1.DataSource = dt;
                     dataGridView1.DefaultCellStyle.Font = new Font("新細明體", 20);
                     dataGridView1.AutoResizeColumns();
                     dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -126,6 +135,7 @@ namespace TKBOXEDMEAL
                         startdinnerdt = Convert.ToDateTime(row2[2].ToString());
                         enddinnerdt = Convert.ToDateTime(row2[3].ToString());
                     }
+                  
 
 
                 }
@@ -177,7 +187,14 @@ namespace TKBOXEDMEAL
             }
             else
             {
-                label5.Text = "超過可點餐時間!";
+                if (Lang.Equals("CH"))
+                {
+                    label5.Text = "超過可點餐時間!!";
+                }
+                else if (Lang.Equals("VN"))
+                {
+                    label5.Text = "Vượt quá thời gian bữa ăn!";
+                }
                 PLAYMP3();
                 //label4.Text = "";
             }
@@ -209,7 +226,15 @@ namespace TKBOXEDMEAL
             }
             else
             {
-                label5.Text = "超過可取消點餐時間!";
+                
+                if (Lang.Equals("CH"))
+                {
+                    label5.Text = "超過可取消點餐時間!";
+                }
+                else if (Lang.Equals("VN"))
+                {
+                    label5.Text = "Qua thời gian để hủy bỏ các bữa ăn!";
+                }
                 PLAYMP3();
                 //label4.Text = "";
             }
@@ -255,8 +280,17 @@ namespace TKBOXEDMEAL
 
                 if (ds1.Tables["TEMPds1"].Rows.Count == 0)
                 {
-                    label5.Text = "沒有此員工!";
-                    label4.Text = "";
+                   
+                    if (Lang.Equals("CH"))
+                    {
+                        label5.Text = "沒有此員工!";
+                        label4.Text = "";
+                    }
+                    else if (Lang.Equals("VN"))
+                    {
+                        label5.Text = "Không có nhân viên!";
+                        label4.Text = "";
+                    }
 
                     textBox1.Text = "";
                     EmployeeID = null;
@@ -325,15 +359,33 @@ namespace TKBOXEDMEAL
                 if (result == 0)
                 {
                     tran.Rollback();    //交易取消
-                    label5.Text = "訂餐失敗!";
-                    label4.Text = "";
+                    if (Lang.Equals("CH"))
+                    {
+                        label5.Text = "訂餐失敗!";
+                        label4.Text = "";
+                    }
+                    else if (Lang.Equals("VN"))
+                    {
+                        label5.Text = "đặt hàng không!";
+                        label4.Text = "";
+                    }
                     PLAYMP3();
                 }
                 else
                 {
                     tran.Commit();      //執行交易  
-                    label5.Text = "訂餐成功!";
-                    label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                    if (Lang.Equals("CH"))
+                    {
+                        label5.Text = "訂餐成功!";
+                        label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+
+                    }
+                    else if (Lang.Equals("VN"))
+                    {
+                        label5.Text = "thành công đặt phòng!";
+                        label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
+
+                    }
                 }
 
                 sqlConn.Close();
@@ -382,15 +434,33 @@ namespace TKBOXEDMEAL
                 if (result == 0)
                 {
                     tran.Rollback();    //交易取消
-                    label5.Text = "取消訂餐失敗!";
-                    label4.Text = "";
+
+                    if (Lang.Equals("CH"))
+                    {
+                        label5.Text = "取消訂餐失敗!";
+                        label4.Text = "";
+                    }
+                    else if (Lang.Equals("VN"))
+                    {
+                        label5.Text = "Hủy bỏ Đặt Không!";
+                        label4.Text = "";
+                    }
                     PLAYMP3();
                 }
                 else
                 {
                     tran.Commit();      //執行交易  
-                    label5.Text = "取消訂餐成功!";
-                    label4.Text = Name.ToString() + " 您取消了: " + OrderBoxed.ToString();
+                    if (Lang.Equals("CH"))
+                    {
+                        label5.Text = "取消訂餐成功!";
+                        label4.Text = Name.ToString() + " 您取消了: " + OrderBoxed.ToString();
+                    }
+                    else if (Lang.Equals("VN"))
+                    {
+                        label5.Text = "Hủy bỏ thành công Reservation!";
+                        label4.Text = Name.ToString() + " bạn đã huỷ: " + OrderBoxed.ToString();
+                    }
+                    
                 }
 
                 sqlConn.Close();
@@ -436,8 +506,17 @@ namespace TKBOXEDMEAL
                     if (result == 0)
                     {
                         tran.Rollback();    //交易取消
-                        label5.Text = "訂餐失敗!";
-                        label4.Text = "";
+
+                        if (Lang.Equals("CH"))
+                        {
+                            label5.Text = "訂餐失敗!";
+                            label4.Text = "";
+                        }
+                        else if (Lang.Equals("VN"))
+                        {
+                            label5.Text = "đặt hàng không!";
+                            label4.Text = "";
+                        }
                         PLAYMP3();
                     }
                     else
@@ -445,9 +524,19 @@ namespace TKBOXEDMEAL
                         tran.Commit();      //訂餐成功  
                         OrderBoxed=SearchMeal();
                         if(!string.IsNullOrEmpty(OrderBoxed))
-                        {
-                            label5.Text = "訂餐成功!";
-                            label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                        {                          
+                            if (Lang.Equals("CH"))
+                            {
+                                label5.Text = "訂餐成功!";
+                                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                label5.Text = "thành công đặt phòng!";
+                                label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
+
+                            }
                         }
                         
                     }
@@ -469,8 +558,18 @@ namespace TKBOXEDMEAL
             }
             else
             {
-                label5.Text = "超過可點餐時間!";
-                label4.Text = "";
+                
+                if (Lang.Equals("CH"))
+                {
+                    label5.Text = "超過可點餐時間!";
+                    label4.Text = "";
+                }
+                else if (Lang.Equals("VN"))
+                {
+                    label5.Text = "Vượt quá thời gian bữa ăn!";
+                    label4.Text = "";
+                }
+                
                 PLAYMP3();
             }
             textBox1.Select();
@@ -507,20 +606,51 @@ namespace TKBOXEDMEAL
                     for(int i=0; i< ds2.Tables["TEMPds2"].Rows.Count; i++)
                     {
                         if(ds2.Tables["TEMPds2"].Rows[i][0].ToString().Equals("10"))
-                        {
-                            QueryMeal = QueryMeal + "中餐-";
+                        {                            
+                            if (Lang.Equals("CH"))
+                            {
+                                QueryMeal = QueryMeal + "中餐-";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                QueryMeal = QueryMeal + "Trung Quốc-";
+                            }
                         }
                         if (ds2.Tables["TEMPds2"].Rows[i][0].ToString().Equals("20"))
                         {
-                            QueryMeal = QueryMeal + "晚餐-";
+
+                            if (Lang.Equals("CH"))
+                            {
+                                QueryMeal = QueryMeal + "晚餐-";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                QueryMeal = QueryMeal + "bữa tối-";
+                            }
                         }
                         if (ds2.Tables["TEMPds2"].Rows[i][1].ToString().Equals("1"))
                         {
-                            QueryMeal = QueryMeal + "葷 ";
+                           
+                            if (Lang.Equals("CH"))
+                            {
+                                QueryMeal = QueryMeal + "葷 ";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                QueryMeal = QueryMeal + "món thịt";
+                            }
                         }
                         if (ds2.Tables["TEMPds2"].Rows[i][1].ToString().Equals("2"))
                         {
-                            QueryMeal = QueryMeal + "素 ";
+                            
+                            if (Lang.Equals("CH"))
+                            {
+                                QueryMeal = QueryMeal + "素";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                QueryMeal = QueryMeal + "chay";
+                            }
                         }
                     }
 
@@ -538,6 +668,38 @@ namespace TKBOXEDMEAL
 
             return QueryMeal;
         }
+        public void SetLang()
+        {
+            if (Lang.Equals("CH"))
+            {
+                label6.Text = "請刷卡";
+                button1.Text = "複製上次訂餐";
+                button2.Text = "重新訂餐";
+                button3.Text = "中餐-葷";
+                button4.Text = "晚餐-葷";
+                button5.Text = "中/晚餐-葷";
+                button6.Text = "中餐-素";
+                button7.Text = "晚餐-素";
+                button8.Text = "中/晚餐-素";
+                button9.Text = "取消訂餐";
+                button10.Text = "取消本次操作";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                label6.Text = "Hãy swipe";
+                button1.Text = "Sao chép các đặt hàng cuối cùng";
+                button2.Text = "Sắp xếp lại";
+                button3.Text = "Ăn trưa - thịt";
+                button4.Text = "Ăn tối - C";
+                button5.Text = "Ăn trưa / Ăn tối - C";
+                button6.Text = "Thực phẩm Trung Quốc - Surat";
+                button7.Text = "Thực phẩm Trung Quốc - Surat";
+                button8.Text = "Ăn trưa / Ăn tối - Surat";
+                button9.Text = "Hủy đặt phòng";
+                button10.Text = "Hủy bỏ hoạt động này";
+            }
+        }
+
         #endregion
 
 
@@ -578,7 +740,15 @@ namespace TKBOXEDMEAL
         {
             Meal = "10";
             Dish = "1";
-            OrderBoxed = "中餐-葷";
+
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "中餐-葷";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Ăn trưa -thịt";
+            }
 
             if (OrderCancel.Equals("Order"))
             {   
@@ -616,8 +786,15 @@ namespace TKBOXEDMEAL
         {
             Meal = "20";
             Dish = "1";
-            OrderBoxed = "晚餐-葷";
 
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "晚餐-葷";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Ăn tối - C";
+            }
             if (OrderCancel.Equals("Order"))
             {   
                 if (!string.IsNullOrEmpty(Name))
@@ -653,7 +830,15 @@ namespace TKBOXEDMEAL
         {
             Meal = "10+20";
             Dish = "1";
-            OrderBoxed = "中/晚餐-葷";
+
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "中/晚餐-葷";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Ăn trưa / Ăn tối - bẩn ";
+            }
 
             if (OrderCancel.Equals("Order"))
             {
@@ -690,7 +875,15 @@ namespace TKBOXEDMEAL
         {
             Meal = "10";
             Dish = "2";
-            OrderBoxed = "中餐-素";
+
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "中餐-素";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Thực phẩm Trung Quốc - Surat";
+            }
 
             if (OrderCancel.Equals("Order"))
             {
@@ -727,7 +920,15 @@ namespace TKBOXEDMEAL
         {
             Meal = "20";
             Dish = "2";
-            OrderBoxed = "晚餐-素";
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "晚餐-素";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Ăn tối - Surat";
+            }
+           
 
             if (OrderCancel.Equals("Order"))
             {
@@ -764,7 +965,15 @@ namespace TKBOXEDMEAL
         {
             Meal = "10+20";
             Dish = "2";
-            OrderBoxed = "中/晚餐-素";
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "中/晚餐-素";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Ăn trưa / Ăn tối - Surat";
+            }
+           
 
             if (OrderCancel.Equals("Order"))
             {
@@ -797,12 +1006,27 @@ namespace TKBOXEDMEAL
             Meal = null;
         }
 
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Lang = "CH";
+            ds.Tables["TEMPds"].Columns.Clear();
+            Search();
+            SetLang();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Lang = "VN";
+            ds.Tables["TEMPds"].Columns.Clear();
+            Search();
+            SetLang();
+        }
 
 
 
 
         #endregion
 
-       
+
     }
 }
