@@ -34,6 +34,8 @@ namespace TKBOXEDMEAL
         int rownum = 0;
         DateTime startdt;
         DateTime enddt;
+        DateTime startdinnerdt;
+        DateTime enddinnerdt;
         DateTime comdt;
         string InputID;
         string CardNo;
@@ -64,8 +66,8 @@ namespace TKBOXEDMEAL
         {
             Search();
             textBox1.Select();
-            //comdt = DateTime.Now;
-            comdt = Convert.ToDateTime("10:10");
+            comdt = DateTime.Now;
+            //comdt = Convert.ToDateTime("10:10");
         }
 
         public void Search()
@@ -110,7 +112,13 @@ namespace TKBOXEDMEAL
                         startdt = Convert.ToDateTime(row[2].ToString());
                         enddt = Convert.ToDateTime(row[3].ToString());
                     }
-                        
+                    DataRow[] result2 = ds.Tables["TEMPds"].Select("名稱='晚餐'");
+                    foreach (DataRow row2 in result2)
+                    {
+                        startdinnerdt = Convert.ToDateTime(row2[2].ToString());
+                        enddinnerdt = Convert.ToDateTime(row2[3].ToString());
+                    }
+
 
                 }
 
@@ -132,7 +140,7 @@ namespace TKBOXEDMEAL
         public void SetOrderButton()
         {
 
-            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
+            if ((DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0|| (DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0)))
             {
                 if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
                 {
@@ -169,8 +177,8 @@ namespace TKBOXEDMEAL
         }
 
         public void SetCancelButton()
-        {     
-            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
+        {
+            if ((DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0 || (DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0)))
             {
                 if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
                 {

@@ -57,14 +57,13 @@ namespace TKBOXEDMEAL
             timer1.Enabled = true;
             timer1.Interval = 1000;
             timer1.Start();
-            StartLunchdt = DateTime.Now;
-            StartDinnerdt = DateTime.Now;
+           
 
             Search();
             textBox1.Select();
 
-            //comdt = DateTime.Now;
-            comdt = Convert.ToDateTime("12:10");
+            comdt = DateTime.Now;
+            //comdt = Convert.ToDateTime("12:10");
 
         }
         private void timer1_Tick(object sender, EventArgs e)
