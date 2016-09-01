@@ -126,19 +126,42 @@ namespace TKBOXEDMEAL
                     dataGridView1.CurrentCell = dataGridView1.Rows[rownum].Cells[0];
                     //dataGridView1.CurrentCell = dataGridView1[0, 2];
 
-                    DataRow[] result = ds.Tables["TEMPds"].Select("名稱='午餐'");
-                    foreach (DataRow row in result)
+                    
+
+                    if (Lang.Equals("CH"))
                     {
-                        StartLunchdt = Convert.ToDateTime(row[4].ToString());
-                        EndLunchdt = Convert.ToDateTime(row[5].ToString());
+                        DataRow[] result = ds.Tables["TEMPds"].Select("名稱='午餐'");
+                        foreach (DataRow row in result)
+                        {
+                            StartLunchdt = Convert.ToDateTime(row[4].ToString());
+                            EndLunchdt = Convert.ToDateTime(row[5].ToString());
+                        }
+                        DataRow[] result2 = ds.Tables["TEMPds"].Select("名稱='晚餐'");
+                        foreach (DataRow row in result2)
+                        {
+                            StartDinnerdt = Convert.ToDateTime(row[4].ToString());
+                            EndDinnerdt = Convert.ToDateTime(row[5].ToString());
+                        }
+
                     }
-                    DataRow[] result2 = ds.Tables["TEMPds"].Select("名稱='晚餐'");
-                    foreach (DataRow row in result2)
+
+                    else if (Lang.Equals("VN"))
                     {
-                        StartDinnerdt = Convert.ToDateTime(row[4].ToString());
-                        EndDinnerdt = Convert.ToDateTime(row[5].ToString());
+                        DataRow[] result = ds.Tables["TEMPds"].Select("tên='bữa ăn trưa'");
+                        foreach (DataRow row in result)
+                        {
+                            StartLunchdt = Convert.ToDateTime(row[4].ToString());
+                            EndLunchdt = Convert.ToDateTime(row[5].ToString());
+                        }
+                        DataRow[] result2 = ds.Tables["TEMPds"].Select("tên='bữa tối'");
+                        foreach (DataRow row in result2)
+                        {
+                            StartDinnerdt = Convert.ToDateTime(row[4].ToString());
+                            EndDinnerdt = Convert.ToDateTime(row[5].ToString());
+                        }
+
                     }
-                   
+
                 }
 
             }
