@@ -55,6 +55,10 @@ namespace TKBOXEDMEAL
         }
 
         #region FUNCTION
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.Now.ToString();
+        }
         public void PLAYMP3()
         {
             WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
@@ -64,6 +68,10 @@ namespace TKBOXEDMEAL
 
         private void frmORDER_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
+            timer1.Interval = 1000;
+            timer1.Start();
+
             Search();
             textBox1.Select();
             comdt = DateTime.Now;
@@ -792,8 +800,9 @@ namespace TKBOXEDMEAL
 
 
 
+
         #endregion
 
-
+       
     }
 }

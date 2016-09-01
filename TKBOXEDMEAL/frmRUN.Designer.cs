@@ -61,11 +61,11 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 22);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 21);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 12);
             this.tableLayoutPanel1.Controls.Add(this.button1, 4, 7);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 4, 5);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label5, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 11);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -141,7 +141,7 @@
             this.label4.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.label4, 6);
             this.label4.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(243, 486);
+            this.label4.Location = new System.Drawing.Point(243, 446);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(474, 27);
             this.label4.TabIndex = 11;
