@@ -714,7 +714,7 @@ namespace TKBOXEDMEAL
                 button6.Text = "Thực phẩm Trung Quốc - Surat";
                 button7.Text = "Thực phẩm Trung Quốc - Surat";
                 button8.Text = "Ăn trưa / Ăn tối - Surat";
-                button9.Text = "Hủy đặt phòng";
+                button9.Text = "Hủy bỏ bữa ăn";
                 button10.Text = "Hủy bỏ hoạt động này";
             }
         }
