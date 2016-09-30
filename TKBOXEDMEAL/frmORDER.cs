@@ -18,6 +18,7 @@ namespace TKBOXEDMEAL
         SqlCommand sqlComm = new SqlCommand();
         string connectionString;
         StringBuilder sbSql = new StringBuilder();
+        StringBuilder InsertsbSql = new StringBuilder();
         StringBuilder sbSqlQuery = new StringBuilder();
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlCommandBuilder sqlCmdBuilder = new SqlCommandBuilder();
@@ -341,73 +342,150 @@ namespace TKBOXEDMEAL
         {
             try
             {
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
-
-                sqlConn.Close();
-                sqlConn.Open();
-                tran = sqlConn.BeginTransaction();
-
+                
+                InsertsbSql.Clear();
                 sbSql.Clear();
                 //ADD COPTC
                 
                 if (Meal.Equals("10+20"))
                 {
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') ", EmployeeID, Meal);
-                    Meal = "10";
-                    sbSql.Append(" ");                    
-                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal,Dish);
+                    DataSet ds1 = new DataSet();
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    sqlConn = new SqlConnection(connectionString);
 
-                    Meal = "20";
-                    sbSql.Append(" ");                 
-                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                    sbSql.Clear();
+                    sbSqlQuery.Clear();
+
+                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}'  ", EmployeeID, "10");
+
+                    adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                    sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                    sqlConn.Open();
+                    ds1.Clear();
+                    adapter.Fill(ds1, "TEMPds1");
+                    sqlConn.Close();
+
+                    if (ds1.Tables["TEMPds1"].Rows.Count == 0)
+                    {
+                        //InsertsbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [EATNUM]=0", EmployeeID, Meal);
+                        Meal = "10";
+                        InsertsbSql.Append(" ");
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                    }
+
+                    sqlConn = new SqlConnection(connectionString);
+
+                    sbSql.Clear();
+                    sbSqlQuery.Clear();
+
+                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}'  ", EmployeeID, "20");
+
+                    adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                    sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                    sqlConn.Open();
+                    ds1.Clear();
+                    adapter.Fill(ds1, "TEMPds1");
+                    sqlConn.Close();
+                    if (ds1.Tables["TEMPds1"].Rows.Count == 0)
+                    {
+                        Meal = "20";
+                        InsertsbSql.Append(" ");
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                    }
 
                 }              
                 else
                 {
-                    sbSql.Append(" ");
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' ", EmployeeID, Meal);
-                    sbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                    DataSet ds1 = new DataSet();
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    sqlConn = new SqlConnection(connectionString);
+
+                    sbSql.Clear();
+                    sbSqlQuery.Clear();
+
+                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [EATNUM]=0 ", EmployeeID, Meal);
+
+                    adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                    sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                    sqlConn.Open();
+                    ds1.Clear();
+                    adapter.Fill(ds1, "TEMPds1");
+                    sqlConn.Close();
+
+                    if (ds1.Tables["TEMPds1"].Rows.Count == 0)
+                    {
+                        InsertsbSql.Append(" ");
+                        //InsertsbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [EATNUM]=0 ", EmployeeID, Meal);
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                    }
+                      
                 }
 
-                cmd.Connection = sqlConn;
-                cmd.CommandTimeout = 60;
-                cmd.CommandText = sbSql.ToString();
-                cmd.Transaction = tran;
-                result = cmd.ExecuteNonQuery();
-                if (result == 0)
+
+                if (!string.IsNullOrEmpty(InsertsbSql.ToString()))
                 {
-                    tran.Rollback();    //交易取消
-                    if (Lang.Equals("CH"))
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    sqlConn = new SqlConnection(connectionString);
+
+                    sqlConn.Close();
+                    sqlConn.Open();
+                    tran = sqlConn.BeginTransaction();
+                    cmd.Connection = sqlConn;
+                    cmd.CommandTimeout = 60;
+                    cmd.CommandText = InsertsbSql.ToString();
+                    cmd.Transaction = tran;
+                    result = cmd.ExecuteNonQuery();
+                    if (result == 0)
                     {
-                        label5.Text = "訂餐失敗!";
-                        label4.Text = "";
+                        tran.Rollback();    //交易取消
+                        if (Lang.Equals("CH"))
+                        {
+                            label5.Text = "訂餐失敗!";
+                            label4.Text = "";
+                        }
+                        else if (Lang.Equals("VN"))
+                        {
+                            label5.Text = "đặt hàng không!";
+                            label4.Text = "";
+                        }
+                        PLAYMP3();
                     }
-                    else if (Lang.Equals("VN"))
+                    else
                     {
-                        label5.Text = "đặt hàng không!";
-                        label4.Text = "";
+                        tran.Commit();      //執行交易  
+                        if (Lang.Equals("CH"))
+                        {
+                            label5.Text = "訂餐成功!";
+                            label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+
+                        }
+                        else if (Lang.Equals("VN"))
+                        {
+                            label5.Text = "thành công đặt phòng!";
+                            label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
+
+                        }
                     }
-                    PLAYMP3();
+
+                    sqlConn.Close();
                 }
                 else
                 {
-                    tran.Commit();      //執行交易  
                     if (Lang.Equals("CH"))
                     {
-                        label5.Text = "訂餐成功!";
-                        label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
-
+                        label5.Text = "";
+                        label4.Text = "";
                     }
                     else if (Lang.Equals("VN"))
                     {
-                        label5.Text = "thành công đặt phòng!";
-                        label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
-
+                        label5.Text = "";
+                        label4.Text = "";
                     }
                 }
-
-                sqlConn.Close();
+                
                 Search();
             }
             catch
@@ -512,10 +590,10 @@ namespace TKBOXEDMEAL
 
                     sbSql.Clear();
                     //ADD COPTC
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", EmployeeID);
+                    //sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", EmployeeID);
                     sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]) SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
                     sbSql.AppendFormat(" WHERE CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}' ORDER BY SERNO DESC) ", EmployeeID);
-
+                    sbSql.AppendFormat(" AND NOT EXISTS (SELECT[CARDNO] FROM[TKBOXEDMEAL].[dbo].[EMPORDER]  WHERE CONVERT(varchar(20),[DATE], 112) = CONVERT(varchar(20), GETDATE(), 112) )");
 
                     cmd.Connection = sqlConn;
                     cmd.CommandTimeout = 60;
