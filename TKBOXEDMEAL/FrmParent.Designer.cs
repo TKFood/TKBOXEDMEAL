@@ -41,9 +41,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 741);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FrmParent";
             this.Text = "FrmParent";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmParent_FormClosed);
             this.Load += new System.EventHandler(this.FrmParent_Load);
             this.ResumeLayout(false);
