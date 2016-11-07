@@ -87,7 +87,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(984, 733);
-            this.splitContainer1.SplitterDistance = 120;
+            this.splitContainer1.SplitterDistance = 142;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -105,8 +105,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer2.Size = new System.Drawing.Size(984, 120);
-            this.splitContainer2.SplitterDistance = 39;
+            this.splitContainer2.Size = new System.Drawing.Size(984, 142);
+            this.splitContainer2.SplitterDistance = 46;
             this.splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -137,7 +137,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(980, 35);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(980, 42);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label1
@@ -146,7 +146,7 @@
             this.label1.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.label1, 4);
             this.label1.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(3, 8);
+            this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(314, 24);
             this.label1.TabIndex = 0;
@@ -159,7 +159,7 @@
             this.label5.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.label5, 5);
             this.label5.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(323, 6);
+            this.label5.Location = new System.Drawing.Point(323, 7);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(394, 27);
             this.label5.TabIndex = 13;
@@ -176,7 +176,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(980, 73);
+            this.dataGridView1.Size = new System.Drawing.Size(980, 88);
             this.dataGridView1.TabIndex = 11;
             // 
             // tableLayoutPanel1
@@ -239,7 +239,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 605);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(980, 583);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // label3
