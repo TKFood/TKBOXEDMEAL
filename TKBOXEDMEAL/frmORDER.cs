@@ -577,7 +577,7 @@ namespace TKBOXEDMEAL
         public void OrderLast()
         {
 
-            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
+            if ((DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0 || (DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0)))
             {
                 try
                 {
@@ -592,8 +592,16 @@ namespace TKBOXEDMEAL
                     //ADD COPTC
                     //sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", EmployeeID);
                     sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]) SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
-                    sbSql.AppendFormat(" WHERE CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}' ORDER BY SERNO DESC) ", EmployeeID);
-                    sbSql.AppendFormat(" AND NOT EXISTS (SELECT[CARDNO] FROM[TKBOXEDMEAL].[dbo].[EMPORDER]  WHERE CONVERT(varchar(20),[DATE], 112) = CONVERT(varchar(20), GETDATE(), 112) )");
+                    sbSql.AppendFormat(" WHERE [ID]='{0}' ", EmployeeID);
+                    sbSql.AppendFormat(" AND  CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}'  AND [MEAL]='10' ORDER BY SERNO DESC) ", EmployeeID);
+                    sbSql.AppendFormat(" AND CONVERT(varchar(20),[DATE],112)<>CONVERT(varchar(20),GETDATE(),112) ");
+                    sbSql.AppendFormat("  AND [MEAL]='10'");
+                    sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]) SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+                    sbSql.AppendFormat(" WHERE [ID]='{0}' ", EmployeeID);
+                    sbSql.AppendFormat(" AND  CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}'  AND [MEAL]='20' ORDER BY SERNO DESC) ", EmployeeID);
+                    sbSql.AppendFormat(" AND CONVERT(varchar(20),[DATE],112)<>CONVERT(varchar(20),GETDATE(),112) ");
+                    sbSql.AppendFormat("  AND [MEAL]='20'");
+
 
                     cmd.Connection = sqlConn;
                     cmd.CommandTimeout = 60;
