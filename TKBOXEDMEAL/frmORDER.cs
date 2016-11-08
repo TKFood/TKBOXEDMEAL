@@ -47,6 +47,7 @@ namespace TKBOXEDMEAL
         string OrderCancel;
         string QueryMeal;
         string Lang = "CH";
+        string lastdate = null;
 
         public frmORDER()
         {
@@ -581,6 +582,9 @@ namespace TKBOXEDMEAL
             {
                 try
                 {
+                   
+                    lastdate = SearchLastDate();
+
                     connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
                     sqlConn = new SqlConnection(connectionString);
 
@@ -591,16 +595,17 @@ namespace TKBOXEDMEAL
                     sbSql.Clear();
                     //ADD COPTC
                     //sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", EmployeeID);
-                    sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]) SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
-                    sbSql.AppendFormat(" WHERE [ID]='{0}' ", EmployeeID);
-                    sbSql.AppendFormat(" AND  CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}'  AND [MEAL]='10' ORDER BY SERNO DESC) ", EmployeeID);
-                    sbSql.AppendFormat(" AND CONVERT(varchar(20),[DATE],112)<>CONVERT(varchar(20),GETDATE(),112) ");
-                    sbSql.AppendFormat("  AND [MEAL]='10'");
-                    sbSql.Append(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]) SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
-                    sbSql.AppendFormat(" WHERE [ID]='{0}' ", EmployeeID);
-                    sbSql.AppendFormat(" AND  CONVERT(varchar(20),[DATE],112) IN (SELECT TOP 1 CONVERT(varchar(20),[DATE],112) FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}'  AND [MEAL]='20' ORDER BY SERNO DESC) ", EmployeeID);
-                    sbSql.AppendFormat(" AND CONVERT(varchar(20),[DATE],112)<>CONVERT(varchar(20),GETDATE(),112) ");
-                    sbSql.AppendFormat("  AND [MEAL]='20'");
+                    sbSql.AppendFormat(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM])");
+                    sbSql.AppendFormat(" SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] ");
+                    sbSql.AppendFormat(" FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+                    sbSql.AppendFormat(" WHERE [ID]='{0}' AND  CONVERT(varchar(100),[DATE],112)='{1}'",EmployeeID, lastdate);
+                    sbSql.AppendFormat(" AND NOT EXISTS");
+                    sbSql.AppendFormat(" (SELECT [ID],[MEAL],[DISH] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] AS EMP2");
+                    sbSql.AppendFormat(" WHERE EMP2.[ID]=EMPORDER.[ID]");
+                    sbSql.AppendFormat(" AND EMP2.[MEAL]=EMPORDER.[MEAL]");
+                    sbSql.AppendFormat(" AND EMP2.[DISH]=EMPORDER.[DISH]");
+                    sbSql.AppendFormat(" AND CONVERT(varchar(100), EMP2.[DATE],112)=CONVERT(varchar(100),getdate(),112))");
+                    sbSql.AppendFormat(" ");
 
 
                     cmd.Connection = sqlConn;
@@ -680,6 +685,53 @@ namespace TKBOXEDMEAL
             textBox1.Select();
         }
 
+        public string SearchLastDate()
+        {
+            StringBuilder Query = new StringBuilder();
+
+            try
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sbSql.Clear();
+                sbSqlQuery.Clear();
+
+                sbSql.AppendFormat(@" SELECT TOP 1 CONVERT(varchar(100),[DATE],112) AS DATE    FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}' ORDER BY [DATE] DESC ", EmployeeID);
+                
+                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+
+                sqlCmdBuilder = new SqlCommandBuilder(adapter);
+                sqlConn.Open();
+                ds.Clear();
+                adapter.Fill(ds, "TEMPds1");
+                sqlConn.Close();
+
+
+                if (ds.Tables["TEMPds1"].Rows.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (ds.Tables["TEMPds1"].Rows.Count >= 1)
+                    {
+                        return ds.Tables["TEMPds1"].Rows[0]["DATE"].ToString();
+                    }
+                    return null;
+                }
+
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+               
+            }
+           
+        }
         public string SearchMeal()
         {
             QueryMeal = null;
