@@ -27,6 +27,7 @@ namespace TKBOXEDMEAL
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
         DataSet ds2 = new DataSet();
+        DataSet ds3 = new DataSet();
         DataTable dt = new DataTable();
         string strFilePath;
         OpenFileDialog file = new OpenFileDialog();
@@ -48,6 +49,7 @@ namespace TKBOXEDMEAL
         string QueryMeal;
         string Lang = "CH";
         string lastdate = null;
+        int messagetime = 3000;
 
         public frmORDER()
         {
@@ -210,11 +212,13 @@ namespace TKBOXEDMEAL
             {
                 if (Lang.Equals("CH"))
                 {
-                    label5.Text = "超過可點餐時間!!";
+                    //label5.Text = "超過可點餐時間!!";
+                    AutoClosingMessageBox.Show("超過可點餐時間!!" , "TITLE", messagetime);
                 }
                 else if (Lang.Equals("VN"))
                 {
-                    label5.Text = "Vượt quá thời gian bữa ăn!";
+                    //label5.Text = "Vượt quá thời gian bữa ăn!";
+                    AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);                  
                 }
                 PLAYMP3();
                 //label4.Text = "";
@@ -250,11 +254,13 @@ namespace TKBOXEDMEAL
                 
                 if (Lang.Equals("CH"))
                 {
-                    label5.Text = "超過可取消點餐時間!";
+                    //label5.Text = "超過可取消點餐時間!";
+                    AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
                 }
                 else if (Lang.Equals("VN"))
                 {
-                    label5.Text = "Qua thời gian để hủy bỏ các bữa ăn!";
+                    //label5.Text = "Qua thời gian để hủy bỏ các bữa ăn!";
+                    AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
                 }
                 PLAYMP3();
                 //label4.Text = "";
@@ -306,11 +312,13 @@ namespace TKBOXEDMEAL
                     {
                         label5.Text = "沒有此員工!";
                         label4.Text = "";
+                        AutoClosingMessageBox.Show("沒有此員工!!", "TITLE", messagetime);
                     }
                     else if (Lang.Equals("VN"))
                     {
                         label5.Text = "Không có nhân viên!";
                         label4.Text = "";
+                        AutoClosingMessageBox.Show("Không có nhân viên!!", "TITLE", messagetime);
                     }
 
                     textBox1.Text = "";
@@ -422,6 +430,10 @@ namespace TKBOXEDMEAL
                         //InsertsbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [EATNUM]=0 ", EmployeeID, Meal);
                         InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
                     }
+                    else
+                    {
+                        AutoClosingMessageBox.Show("已經訂過餐了!!", "TITLE", messagetime);
+                    }
                       
                 }
 
@@ -446,11 +458,13 @@ namespace TKBOXEDMEAL
                         {
                             label5.Text = "訂餐失敗!";
                             label4.Text = "";
+                            AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
                         }
                         else if (Lang.Equals("VN"))
                         {
                             label5.Text = "đặt hàng không!";
                             label4.Text = "";
+                            AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
                         }
                         PLAYMP3();
                     }
@@ -459,15 +473,16 @@ namespace TKBOXEDMEAL
                         tran.Commit();      //執行交易  
                         if (Lang.Equals("CH"))
                         {
-                            label5.Text = "訂餐成功!";
-                            label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                            //label5.Text = "訂餐成功!";
+                            //label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                            AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
 
                         }
                         else if (Lang.Equals("VN"))
                         {
-                            label5.Text = "thành công đặt phòng!";
-                            label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
-
+                            //label5.Text = "thành công đặt phòng!";
+                            //label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
+                            AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
                         }
                     }
 
@@ -537,11 +552,13 @@ namespace TKBOXEDMEAL
                     {
                         label5.Text = "取消訂餐失敗!";
                         label4.Text = "";
+                        AutoClosingMessageBox.Show("取消訂餐失敗!!", "TITLE", messagetime);
                     }
                     else if (Lang.Equals("VN"))
                     {
                         label5.Text = "Hủy bỏ Đặt Không!";
                         label4.Text = "";
+                        AutoClosingMessageBox.Show("Hủy bỏ Đặt Không!!", "TITLE", messagetime);
                     }
                     PLAYMP3();
                 }
@@ -552,11 +569,14 @@ namespace TKBOXEDMEAL
                     {
                         label5.Text = "取消訂餐成功!";
                         label4.Text = Name.ToString() + " 您取消了: " + OrderBoxed.ToString();
+
+                        AutoClosingMessageBox.Show("取消訂餐成功!!"+ Name.ToString() + " 您取消了: " + OrderBoxed.ToString(), "TITLE", messagetime);
                     }
                     else if (Lang.Equals("VN"))
                     {
                         label5.Text = "Hủy bỏ thành công Reservation!";
                         label4.Text = Name.ToString() + " bạn đã huỷ: " + OrderBoxed.ToString();
+                        AutoClosingMessageBox.Show("Hủy bỏ thành công Reservation!!" + Name.ToString() + "  bạn đã huỷ: " + OrderBoxed.ToString(), "TITLE", messagetime);
                     }
                     
                 }
@@ -621,11 +641,13 @@ namespace TKBOXEDMEAL
                         {
                             label5.Text = "訂餐失敗!";
                             label4.Text = "";
+                            AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
                         }
                         else if (Lang.Equals("VN"))
                         {
                             label5.Text = "đặt hàng không!";
                             label4.Text = "";
+                            AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
                         }
                         PLAYMP3();
                     }
@@ -639,12 +661,14 @@ namespace TKBOXEDMEAL
                             {
                                 label5.Text = "訂餐成功!";
                                 label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                                AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
 
                             }
                             else if (Lang.Equals("VN"))
                             {
                                 label5.Text = "thành công đặt phòng!";
                                 label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
+                                AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
 
                             }
                         }
@@ -673,11 +697,13 @@ namespace TKBOXEDMEAL
                 {
                     label5.Text = "超過可點餐時間!";
                     label4.Text = "";
+                    AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
                 }
                 else if (Lang.Equals("VN"))
                 {
                     label5.Text = "Vượt quá thời gian bữa ăn!";
                     label4.Text = "";
+                    AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
                 }
                 
                 PLAYMP3();
@@ -857,6 +883,138 @@ namespace TKBOXEDMEAL
             }
         }
 
+
+        public class AutoClosingMessageBox
+        {
+            System.Threading.Timer _timeoutTimer;
+            string _caption;
+            AutoClosingMessageBox(string text, string caption, int timeout)
+            {
+                _caption = caption;
+                _timeoutTimer = new System.Threading.Timer(OnTimerElapsed,
+                    null, timeout, System.Threading.Timeout.Infinite);
+                using (_timeoutTimer)
+                    MessageBox.Show(text, caption);
+            }
+            public static void Show(string text, string caption, int timeout)
+            {
+                new AutoClosingMessageBox(text, caption, timeout);
+            }
+            void OnTimerElapsed(object state)
+            {
+                IntPtr mbWnd = FindWindow("#32770", _caption); // lpClassName is #32770 for MessageBox
+                if (mbWnd != IntPtr.Zero)
+                    SendMessage(mbWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                _timeoutTimer.Dispose();
+            }
+            const int WM_CLOSE = 0x0010;
+            [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+            static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+            [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+            static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        }
+
+        public void SEARCHORDER()
+        {
+            string mess = null;
+            try
+            {
+
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sbSql.Clear();
+                sbSqlQuery.Clear();
+
+
+                sbSql.AppendFormat(@"  SELECT  [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]");
+                sbSql.AppendFormat(@"  FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+                sbSql.AppendFormat(@"  WHERE CONVERT(varchar(100),[DATE],112) =CONVERT(varchar(100),GETDATE(),112)");
+                sbSql.AppendFormat(@"  AND (ID='{0}' OR CARDNO='{0}')",textBox1.Text.ToString());
+                sbSql.AppendFormat(@"  ");
+
+                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                sqlConn.Open();
+                ds3.Clear();
+                adapter.Fill(ds3, "TEMPds3");
+                sqlConn.Close();
+
+                if (ds3.Tables["TEMPds3"].Rows.Count == 0)
+                {
+                    AutoClosingMessageBox.Show("沒有訂餐記錄" + mess, "TITLE", messagetime);
+                }
+                else
+                {
+                   
+
+                    foreach (DataRow dr in ds3.Tables["TEMPds3"].Rows)
+                    {
+                        if (dr["MEAL"].ToString().Equals("10"))
+                        {
+                            if (Lang.Equals("CH"))
+                            {
+                                mess = mess + "中餐 ";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {    
+                                mess = mess + "Ăn trưa ";
+                            }
+                           
+                        }
+                        else if (dr["MEAL"].ToString().Equals("20"))
+                        {
+                            if (Lang.Equals("CH"))
+                            {
+                                mess = mess + "晚餐 ";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                mess = mess + "Ăn trưa ";
+                            }
+                            
+                        }
+
+                        if (dr["DISH"].ToString().Equals("1"))
+                        {
+                            if (Lang.Equals("CH"))
+                            {
+                                mess = mess + "葷 ";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                mess = mess + "thịt";
+                            }
+                           
+                        }
+                        else if (dr["DISH"].ToString().Equals("2"))
+                        {
+                            if (Lang.Equals("CH"))
+                            {
+                                mess = mess + "素 ";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                mess = mess + "Surat";
+                            }                            
+                        }
+
+                    }                    
+
+                    AutoClosingMessageBox.Show("您訂了" + mess, "TITLE", messagetime);
+                }
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
         #endregion
 
 
@@ -1179,6 +1337,10 @@ namespace TKBOXEDMEAL
             SetLang();
         }
 
+        private void button13_Click(object sender, EventArgs e)
+        {
+            SEARCHORDER();
+        }
 
 
 
