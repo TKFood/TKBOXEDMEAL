@@ -1021,6 +1021,8 @@ namespace TKBOXEDMEAL
         #region BUTTON
         private void button1_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
+
             if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
             {
                 InputID = textBox1.Text.ToString();
@@ -1036,12 +1038,14 @@ namespace TKBOXEDMEAL
         
         private void button2_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
             OrderCancel = "Order";
             SetOrderButton();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
             OrderCancel = "Cancel";
             SetCancelButton();
         }
@@ -1053,6 +1057,7 @@ namespace TKBOXEDMEAL
 
         private void button3_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
             Meal = "10";
             Dish = "1";
 
@@ -1099,6 +1104,8 @@ namespace TKBOXEDMEAL
 
         private void button4_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
+
             Meal = "20";
             Dish = "1";
 
@@ -1143,6 +1150,8 @@ namespace TKBOXEDMEAL
 
         private void button5_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
+
             Meal = "10+20";
             Dish = "1";
 
@@ -1188,6 +1197,8 @@ namespace TKBOXEDMEAL
 
         private void button6_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
+
             Meal = "10";
             Dish = "2";
 
@@ -1233,6 +1244,8 @@ namespace TKBOXEDMEAL
 
         private void button7_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
+
             Meal = "20";
             Dish = "2";
             if (Lang.Equals("CH"))
@@ -1278,6 +1291,8 @@ namespace TKBOXEDMEAL
 
         private void button8_Click(object sender, EventArgs e)
         {
+            comdt = DateTime.Now;
+
             Meal = "10+20";
             Dish = "2";
             if (Lang.Equals("CH"))
