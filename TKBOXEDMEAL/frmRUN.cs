@@ -41,6 +41,7 @@ namespace TKBOXEDMEAL
         string orderMeal;
         string Lang = "CH";
         int messagetime = 3000;
+        string Name;
 
         public frmRUN()
         {
@@ -195,6 +196,7 @@ namespace TKBOXEDMEAL
                 sqlConn.Open();
                 ds1.Clear();
                 adapter.Fill(ds1, "TEMPds1");
+                Name = ds1.Tables["TEMPds1"].Rows[0][2].ToString();
                 sqlConn.Close();
 
                 if (ds1.Tables["TEMPds1"].Rows.Count == 0)
@@ -219,13 +221,15 @@ namespace TKBOXEDMEAL
                     {                       
                         if (Lang.Equals("CH"))
                         {
-                            label4.Text = "沒有訂餐記錄!";
-                            AutoClosingMessageBox.Show("沒有訂餐記錄!!", "TITLE", messagetime);
+                            //label4.Text = "沒有訂餐記錄!";
+                            //AutoClosingMessageBox.Show("沒有訂餐記錄!!", "TITLE", messagetime);
+                            SHOWMESSAGE(Name + "沒有訂餐記錄");
                         }
                         else if (Lang.Equals("VN"))
                         {
-                            label4.Text = "Không có hồ sơ đặt hàng!";
-                            AutoClosingMessageBox.Show("Không có hồ sơ đặt hàng!!", "TITLE", messagetime);
+                            //label4.Text = "Không có hồ sơ đặt hàng!";
+                            //AutoClosingMessageBox.Show("Không có hồ sơ đặt hàng!!", "TITLE", messagetime);
+                            SHOWMESSAGE(Name + "Không có hồ sơ đặt hàng");
                         }
                         //System.Media.SystemSounds.Beep.Play();
                         PLAYMP3();
@@ -236,13 +240,15 @@ namespace TKBOXEDMEAL
                         {                            
                             if (Lang.Equals("CH"))
                             {
-                                label4.Text = "已經用過餐了!";
-                                AutoClosingMessageBox.Show("已經用過餐了!!", "TITLE", messagetime);
+                                //label4.Text = "已經用過餐了!";
+                                //AutoClosingMessageBox.Show("已經用過餐了!!", "TITLE", messagetime);
+                                SHOWMESSAGE(Name + " 超過可點餐時間!!");
                             }
                             else if (Lang.Equals("VN"))
                             {
-                                label4.Text = "Đã ăn lên!";
-                                AutoClosingMessageBox.Show("Đã ăn lên!!", "TITLE", messagetime);
+                                //label4.Text = "Đã ăn lên!";
+                                //AutoClosingMessageBox.Show("Đã ăn lên!!", "TITLE", messagetime);
+                                SHOWMESSAGE(Name + "Đã ăn lên!");
                             }
                             //System.Media.SystemSounds.Beep.Play();
                             PLAYMP3();
@@ -295,13 +301,15 @@ namespace TKBOXEDMEAL
                     tran.Rollback();    //交易取消
                     if (Lang.Equals("CH"))
                     {
-                        label4.Text = "無法用餐!";
-                        AutoClosingMessageBox.Show("無法用餐!!", "TITLE", messagetime);
+                        //label4.Text = "無法用餐!";
+                        //AutoClosingMessageBox.Show("無法用餐!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " 無法用餐!!");
                     }
                     else if (Lang.Equals("VN"))
                     {
-                        label4.Text = "không thể để ăn cơm trưa!";
-                        AutoClosingMessageBox.Show("không thể để ăn cơm trưa!!", "TITLE", messagetime);
+                        //label4.Text = "không thể để ăn cơm trưa!";
+                        //AutoClosingMessageBox.Show("không thể để ăn cơm trưa!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " không thể để ăn cơm trưa!!");
                     }
                     
                     //System.Media.SystemSounds.Beep.Play();
@@ -311,13 +319,15 @@ namespace TKBOXEDMEAL
                 {                    
                     if (Lang.Equals("CH"))
                     {
-                         label4.Text = "用餐愉快!";
-                         AutoClosingMessageBox.Show("用餐愉快!!", "TITLE", messagetime);
+                         //label4.Text = "用餐愉快!";
+                         //AutoClosingMessageBox.Show("用餐愉快!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " 用餐愉快!!");
                     }
                     else if (Lang.Equals("VN"))
                     {
-                        label4.Text = "Thưởng thức bữa ăn của bạn!";
-                        AutoClosingMessageBox.Show("Thưởng thức bữa ăn của bạn!!", "TITLE", messagetime);
+                        //label4.Text = "Thưởng thức bữa ăn của bạn!";
+                        //AutoClosingMessageBox.Show("Thưởng thức bữa ăn của bạn!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " Thưởng thức bữa ăn của bạn!!");
                     }
                     tran.Commit();      
                     
@@ -381,6 +391,13 @@ namespace TKBOXEDMEAL
             [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
             static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
         }
+
+        public void SHOWMESSAGE(String mess)
+        {
+            String text = mess;
+            Message message = new Message(text);
+            message.Show();
+        }
         #endregion
 
         #region BUTTON
@@ -405,13 +422,15 @@ namespace TKBOXEDMEAL
             {
                 if (Lang.Equals("CH"))
                 {
-                    label4.Text = "非用餐時間";
-                    AutoClosingMessageBox.Show("非用餐時間" , "TITLE", messagetime);
+                    //label4.Text = "非用餐時間";
+                    //AutoClosingMessageBox.Show("非用餐時間" , "TITLE", messagetime);
+                    SHOWMESSAGE(Name + " 非用餐時間!!");
                 }
                 else if (Lang.Equals("VN"))
                 {
-                    label4.Text = "Hiện không bữa ăn";
-                    AutoClosingMessageBox.Show("Hiện không bữa ăn", "TITLE", messagetime);
+                    //label4.Text = "Hiện không bữa ăn";
+                    //AutoClosingMessageBox.Show("Hiện không bữa ăn", "TITLE", messagetime);
+                    SHOWMESSAGE(Name + " Hiện không bữa ăn!!");
                 }
                 
                 PLAYMP3();

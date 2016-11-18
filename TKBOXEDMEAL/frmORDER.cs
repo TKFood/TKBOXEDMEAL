@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Threading;
 
 namespace TKBOXEDMEAL
 {
@@ -213,12 +214,15 @@ namespace TKBOXEDMEAL
                 if (Lang.Equals("CH"))
                 {
                     //label5.Text = "超過可點餐時間!!";
-                    AutoClosingMessageBox.Show("超過可點餐時間!!" , "TITLE", messagetime);
+                    //AutoClosingMessageBox.Show("超過可點餐時間!!" , "TITLE", messagetime);
+                    SHOWMESSAGE(Name + "超過可點餐時間!!");
+                    
                 }
                 else if (Lang.Equals("VN"))
                 {
                     //label5.Text = "Vượt quá thời gian bữa ăn!";
-                    AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);                  
+                    //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);                  
+                    SHOWMESSAGE(Name + "Vượt quá thời gian bữa ăn!!");
                 }
                 PLAYMP3();
                 //label4.Text = "";
@@ -255,12 +259,14 @@ namespace TKBOXEDMEAL
                 if (Lang.Equals("CH"))
                 {
                     //label5.Text = "超過可取消點餐時間!";
-                    AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
+                    //AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
+                    SHOWMESSAGE(Name + "超過可點餐時間!!");
                 }
                 else if (Lang.Equals("VN"))
                 {
                     //label5.Text = "Qua thời gian để hủy bỏ các bữa ăn!";
-                    AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
+                    //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
+                    SHOWMESSAGE(Name + "Vượt quá thời gian bữa ăn!!");
                 }
                 PLAYMP3();
                 //label4.Text = "";
@@ -310,15 +316,17 @@ namespace TKBOXEDMEAL
                    
                     if (Lang.Equals("CH"))
                     {
-                        label5.Text = "沒有此員工!";
-                        label4.Text = "";
-                        AutoClosingMessageBox.Show("沒有此員工!!", "TITLE", messagetime);
+                        //label5.Text = "沒有此員工!";
+                        //label4.Text = "";
+                        //AutoClosingMessageBox.Show("沒有此員工!!", "TITLE", messagetime);
+                        SHOWMESSAGE("沒有此員工!!");
                     }
                     else if (Lang.Equals("VN"))
                     {
-                        label5.Text = "Không có nhân viên!";
-                        label4.Text = "";
-                        AutoClosingMessageBox.Show("Không có nhân viên!!", "TITLE", messagetime);
+                        //label5.Text = "Không có nhân viên!";
+                        //label4.Text = "";
+                        //AutoClosingMessageBox.Show("Không có nhân viên!!", "TITLE", messagetime);
+                        SHOWMESSAGE("Không có nhân viên!!");
                     }
 
                     textBox1.Text = "";
@@ -432,7 +440,8 @@ namespace TKBOXEDMEAL
                     }
                     else
                     {
-                        AutoClosingMessageBox.Show("已經訂過餐了!!", "TITLE", messagetime);
+                        //AutoClosingMessageBox.Show("已經訂過餐了!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name+"已經訂過餐了!!!!");
                     }
                       
                 }
@@ -456,15 +465,17 @@ namespace TKBOXEDMEAL
                         tran.Rollback();    //交易取消
                         if (Lang.Equals("CH"))
                         {
-                            label5.Text = "訂餐失敗!";
-                            label4.Text = "";
-                            AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
+                            //label5.Text = "訂餐失敗!";
+                            //label4.Text = "";
+                            //AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
+                            SHOWMESSAGE(Name + " 訂餐失敗!!");
                         }
                         else if (Lang.Equals("VN"))
                         {
-                            label5.Text = "đặt hàng không!";
-                            label4.Text = "";
-                            AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
+                            //label5.Text = "đặt hàng không!";
+                            //label4.Text = "";
+                            //AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
+                            SHOWMESSAGE(Name + " đặt hàng không!!");
                         }
                         PLAYMP3();
                     }
@@ -475,14 +486,16 @@ namespace TKBOXEDMEAL
                         {
                             //label5.Text = "訂餐成功!";
                             //label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
-                            AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                            //AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                            SHOWMESSAGE(Name + " 訂餐成功!!"+" 訂了: " + OrderBoxed.ToString());
 
                         }
                         else if (Lang.Equals("VN"))
                         {
                             //label5.Text = "thành công đặt phòng!";
                             //label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
-                            AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                            //AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                            SHOWMESSAGE(Name + " thành công đặt phòng!!" + "  bạn đặt: " + OrderBoxed.ToString());
                         }
                     }
 
@@ -550,15 +563,17 @@ namespace TKBOXEDMEAL
 
                     if (Lang.Equals("CH"))
                     {
-                        label5.Text = "取消訂餐失敗!";
-                        label4.Text = "";
-                        AutoClosingMessageBox.Show("取消訂餐失敗!!", "TITLE", messagetime);
+                        //label5.Text = "取消訂餐失敗!";
+                        //label4.Text = "";
+                        //AutoClosingMessageBox.Show("取消訂餐失敗!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " 取消訂餐失敗!!");
                     }
                     else if (Lang.Equals("VN"))
                     {
-                        label5.Text = "Hủy bỏ Đặt Không!";
-                        label4.Text = "";
-                        AutoClosingMessageBox.Show("Hủy bỏ Đặt Không!!", "TITLE", messagetime);
+                        //label5.Text = "Hủy bỏ Đặt Không!";
+                        //label4.Text = "";
+                        //AutoClosingMessageBox.Show("Hủy bỏ Đặt Không!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " Hủy bỏ Đặt Không!!");
                     }
                     PLAYMP3();
                 }
@@ -567,16 +582,18 @@ namespace TKBOXEDMEAL
                     tran.Commit();      //執行交易  
                     if (Lang.Equals("CH"))
                     {
-                        label5.Text = "取消訂餐成功!";
-                        label4.Text = Name.ToString() + " 您取消了: " + OrderBoxed.ToString();
+                        //label5.Text = "取消訂餐成功!";
+                        //label4.Text = Name.ToString() + " 您取消了: " + OrderBoxed.ToString();
 
-                        AutoClosingMessageBox.Show("取消訂餐成功!!"+ Name.ToString() + " 您取消了: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                        //AutoClosingMessageBox.Show("取消訂餐成功!!"+ Name.ToString() + " 您取消了: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " 取消訂餐成功!!" + " 您取消了: " + OrderBoxed.ToString());
                     }
                     else if (Lang.Equals("VN"))
                     {
-                        label5.Text = "Hủy bỏ thành công Reservation!";
-                        label4.Text = Name.ToString() + " bạn đã huỷ: " + OrderBoxed.ToString();
-                        AutoClosingMessageBox.Show("Hủy bỏ thành công Reservation!!" + Name.ToString() + "  bạn đã huỷ: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                        //label5.Text = "Hủy bỏ thành công Reservation!";
+                        //label4.Text = Name.ToString() + " bạn đã huỷ: " + OrderBoxed.ToString();
+                        //AutoClosingMessageBox.Show("Hủy bỏ thành công Reservation!!" + Name.ToString() + "  bạn đã huỷ: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                        SHOWMESSAGE(Name + " Hủy bỏ thành công Reservation!!" + "   bạn đã huỷ: " + OrderBoxed.ToString());
                     }
                     
                 }
@@ -639,15 +656,17 @@ namespace TKBOXEDMEAL
 
                         if (Lang.Equals("CH"))
                         {
-                            label5.Text = "訂餐失敗!";
-                            label4.Text = "";
-                            AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
+                            //label5.Text = "訂餐失敗!";
+                            //label4.Text = "";
+                            //AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
+                            SHOWMESSAGE(Name + " 訂餐失敗!!" );
                         }
                         else if (Lang.Equals("VN"))
                         {
-                            label5.Text = "đặt hàng không!";
-                            label4.Text = "";
-                            AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
+                            //label5.Text = "đặt hàng không!";
+                            //label4.Text = "";
+                            //AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
+                            SHOWMESSAGE(Name + " 訂餐失敗!!");
                         }
                         PLAYMP3();
                     }
@@ -659,17 +678,17 @@ namespace TKBOXEDMEAL
                         {                          
                             if (Lang.Equals("CH"))
                             {
-                                label5.Text = "訂餐成功!";
-                                label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
-                                AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
-
+                                //label5.Text = "訂餐成功!";
+                                //label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+                                //AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                                SHOWMESSAGE(Name + " 訂餐成功!!" + " 您訂了: " + OrderBoxed.ToString());
                             }
                             else if (Lang.Equals("VN"))
                             {
-                                label5.Text = "thành công đặt phòng!";
-                                label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
-                                AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
-
+                                //label5.Text = "thành công đặt phòng!";
+                                //label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
+                                //AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                                SHOWMESSAGE(Name + " thành công đặt phòng!!" + " bạn đặt: " + OrderBoxed.ToString());
                             }
                         }
                         
@@ -695,15 +714,17 @@ namespace TKBOXEDMEAL
                 
                 if (Lang.Equals("CH"))
                 {
-                    label5.Text = "超過可點餐時間!";
-                    label4.Text = "";
-                    AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
+                    //label5.Text = "超過可點餐時間!";
+                    //label4.Text = "";
+                    //AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
+                    SHOWMESSAGE(Name + " 超過可點餐時間!!");
                 }
                 else if (Lang.Equals("VN"))
                 {
-                    label5.Text = "Vượt quá thời gian bữa ăn!";
-                    label4.Text = "";
-                    AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
+                    //label5.Text = "Vượt quá thời gian bữa ăn!";
+                    //label4.Text = "";
+                    //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
+                    SHOWMESSAGE(Name + " Vượt quá thời gian bữa ăn!!");
                 }
                 
                 PLAYMP3();
@@ -857,7 +878,7 @@ namespace TKBOXEDMEAL
             {
                 label6.Text = "請刷卡";
                 button1.Text = "複製上次訂餐";
-                button2.Text = "重新訂餐";
+                button2.Text = "新訂餐";
                 button3.Text = "中餐-葷";
                 button4.Text = "晚餐-葷";
                 button5.Text = "中/晚餐-葷";
@@ -943,7 +964,8 @@ namespace TKBOXEDMEAL
 
                 if (ds3.Tables["TEMPds3"].Rows.Count == 0)
                 {
-                    AutoClosingMessageBox.Show("沒有訂餐記錄" + mess, "TITLE", messagetime);
+                    //AutoClosingMessageBox.Show("沒有訂餐記錄" + mess, "TITLE", messagetime);
+                    SHOWMESSAGE(Name + " 沒有訂餐記錄!!");
                 }
                 else
                 {
@@ -1000,9 +1022,10 @@ namespace TKBOXEDMEAL
                             }                            
                         }
 
-                    }                    
+                    }
 
-                    AutoClosingMessageBox.Show("您訂了" + mess, "TITLE", messagetime);
+                    // AutoClosingMessageBox.Show("您訂了" + mess, "TITLE", messagetime);
+                    SHOWMESSAGE(Name + "您訂了" + mess);
                 }
 
             }
@@ -1014,6 +1037,13 @@ namespace TKBOXEDMEAL
             {
 
             }
+        }
+
+        public void SHOWMESSAGE(String mess)
+        {
+            String text = mess;
+            Message message = new Message(text);
+            message.Show();
         }
         #endregion
 
@@ -1354,7 +1384,8 @@ namespace TKBOXEDMEAL
 
         private void button13_Click(object sender, EventArgs e)
         {
-            SEARCHORDER();
+            SEARCHORDER();         
+            
         }
 
 
