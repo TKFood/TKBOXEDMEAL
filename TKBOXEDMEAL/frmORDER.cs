@@ -215,14 +215,14 @@ namespace TKBOXEDMEAL
                 {
                     //label5.Text = "超過可點餐時間!!";
                     //AutoClosingMessageBox.Show("超過可點餐時間!!" , "TITLE", messagetime);
-                    SHOWMESSAGE(Name + "超過可點餐時間!!");
+                    SHOWMESSAGE( "超過可點餐時間!!");
                     
                 }
                 else if (Lang.Equals("VN"))
                 {
                     //label5.Text = "Vượt quá thời gian bữa ăn!";
                     //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);                  
-                    SHOWMESSAGE(Name + "Vượt quá thời gian bữa ăn!!");
+                    SHOWMESSAGE( "Vượt quá thời gian bữa ăn!!");
                 }
                 PLAYMP3();
                 //label4.Text = "";
@@ -260,13 +260,13 @@ namespace TKBOXEDMEAL
                 {
                     //label5.Text = "超過可取消點餐時間!";
                     //AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
-                    SHOWMESSAGE(Name + "超過可點餐時間!!");
+                    SHOWMESSAGE( "超過可點餐時間!!");
                 }
                 else if (Lang.Equals("VN"))
                 {
                     //label5.Text = "Qua thời gian để hủy bỏ các bữa ăn!";
                     //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
-                    SHOWMESSAGE(Name + "Vượt quá thời gian bữa ăn!!");
+                    SHOWMESSAGE( "Vượt quá thời gian bữa ăn!!");
                 }
                 PLAYMP3();
                 //label4.Text = "";
@@ -301,7 +301,7 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name]FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), InputID);
+                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name]FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -430,6 +430,10 @@ namespace TKBOXEDMEAL
                     sqlConn.Open();
                     ds1.Clear();
                     adapter.Fill(ds1, "TEMPds1");
+                    if (ds1.Tables["TEMPds1"].Rows.Count > 0)
+                    {
+                        Name = ds1.Tables["TEMPds1"].Rows[0][2].ToString();
+                    }
                     sqlConn.Close();
 
                     if (ds1.Tables["TEMPds1"].Rows.Count == 0)
@@ -1062,6 +1066,7 @@ namespace TKBOXEDMEAL
                     OrderLast();
                 }
             }
+            SetCancel();
         }
                                    
            
@@ -1130,6 +1135,8 @@ namespace TKBOXEDMEAL
             Name = null;
             CardNo = null;
             Meal = null;
+
+            SetCancel();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -1176,6 +1183,8 @@ namespace TKBOXEDMEAL
             Name = null;
             CardNo = null;
             Meal = null;
+
+            SetCancel();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -1223,6 +1232,8 @@ namespace TKBOXEDMEAL
             Name = null;
             CardNo = null;
             Meal = null;
+
+            SetCancel();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -1270,6 +1281,9 @@ namespace TKBOXEDMEAL
             Name = null;
             CardNo = null;
             Meal = null;
+
+            SetCancel();
+
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -1317,6 +1331,8 @@ namespace TKBOXEDMEAL
             Name = null;
             CardNo = null;
             Meal = null;
+
+            SetCancel();
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -1364,6 +1380,8 @@ namespace TKBOXEDMEAL
             Name = null;
             CardNo = null;
             Meal = null;
+
+            SetCancel();
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -1384,8 +1402,10 @@ namespace TKBOXEDMEAL
 
         private void button13_Click(object sender, EventArgs e)
         {
-            SEARCHORDER();         
-            
+            SearchEmplyee();
+            SEARCHORDER();            
+            SetCancel();
+
         }
 
 

@@ -51,16 +51,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(618, 347);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(766, 349);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnOK
             // 
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOK.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnOK.Location = new System.Drawing.Point(209, 233);
+            this.btnOK.Location = new System.Drawing.Point(258, 235);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(200, 111);
+            this.btnOK.Size = new System.Drawing.Size(249, 111);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -72,9 +72,9 @@
             this.tbxMessage.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.tbxMessage, 3);
             this.tbxMessage.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbxMessage.Location = new System.Drawing.Point(3, 148);
+            this.tbxMessage.Location = new System.Drawing.Point(3, 150);
             this.tbxMessage.Name = "tbxMessage";
-            this.tbxMessage.Size = new System.Drawing.Size(612, 48);
+            this.tbxMessage.Size = new System.Drawing.Size(760, 48);
             this.tbxMessage.TabIndex = 1;
             this.tbxMessage.Text = "HI";
             this.tbxMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 347);
+            this.ClientSize = new System.Drawing.Size(766, 349);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Message";
             this.Text = "Message";

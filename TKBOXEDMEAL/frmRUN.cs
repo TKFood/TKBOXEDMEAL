@@ -196,7 +196,8 @@ namespace TKBOXEDMEAL
                 sqlConn.Open();
                 ds1.Clear();
                 adapter.Fill(ds1, "TEMPds1");
-                Name = ds1.Tables["TEMPds1"].Rows[0][2].ToString();
+               
+                    
                 sqlConn.Close();
 
                 if (ds1.Tables["TEMPds1"].Rows.Count == 0)
@@ -215,6 +216,10 @@ namespace TKBOXEDMEAL
                     sqlConn.Open();
                     ds2.Clear();
                     adapter.Fill(ds2, "TEMPds2");
+                    if (ds2.Tables["TEMPds2"].Rows.Count > 0)
+                    {
+                        Name = ds2.Tables["TEMPds2"].Rows[0][2].ToString();
+                    }
                     sqlConn.Close();
 
                     if (ds2.Tables["TEMPds2"].Rows.Count == 0)
@@ -242,7 +247,7 @@ namespace TKBOXEDMEAL
                             {
                                 //label4.Text = "已經用過餐了!";
                                 //AutoClosingMessageBox.Show("已經用過餐了!!", "TITLE", messagetime);
-                                SHOWMESSAGE(Name + " 超過可點餐時間!!");
+                                SHOWMESSAGE(Name + " 已經用過餐了!!");
                             }
                             else if (Lang.Equals("VN"))
                             {
@@ -272,6 +277,68 @@ namespace TKBOXEDMEAL
             }
 
             
+        }
+        public void SearchEmplyee()
+        {
+            try
+            {
+
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sbSql.Clear();
+                sbSqlQuery.Clear();
+
+                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name]FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
+
+                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                sqlConn.Open();
+                ds1.Clear();
+                adapter.Fill(ds1, "TEMPds1");
+                sqlConn.Close();
+
+                if (ds1.Tables["TEMPds1"].Rows.Count == 0)
+                {
+
+                    if (Lang.Equals("CH"))
+                    {
+                        //label5.Text = "沒有此員工!";
+                        //label4.Text = "";
+                        //AutoClosingMessageBox.Show("沒有此員工!!", "TITLE", messagetime);
+                        SHOWMESSAGE("沒有此員工!!");
+                    }
+                    else if (Lang.Equals("VN"))
+                    {
+                        //label5.Text = "Không có nhân viên!";
+                        //label4.Text = "";
+                        //AutoClosingMessageBox.Show("Không có nhân viên!!", "TITLE", messagetime);
+                        SHOWMESSAGE("Không có nhân viên!!");
+                    }
+
+                    textBox1.Text = "";
+                   
+                    Name = null;                   
+                    PLAYMP3();
+                }
+                else
+                {
+                   
+                    Name = ds1.Tables["TEMPds1"].Rows[0][2].ToString();
+
+                }
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+
         }
         public void UPDATEEAT(string ID,string MEAL)
         { 
@@ -406,6 +473,7 @@ namespace TKBOXEDMEAL
             //System.Media.SystemSounds.Exclamation.Play();
             //System.Media.SystemSounds.Hand.Play();
 
+            SearchEmplyee();
 
             comdt = DateTime.Now;
 
