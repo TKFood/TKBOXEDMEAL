@@ -467,6 +467,7 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "HI";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.Visible = false;
             // 
             // button13
             // 
