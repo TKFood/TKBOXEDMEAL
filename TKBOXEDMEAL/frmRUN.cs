@@ -478,7 +478,8 @@ namespace TKBOXEDMEAL
         {
             //System.Media.SystemSounds.Exclamation.Play();
             //System.Media.SystemSounds.Hand.Play();
-
+            mess = null;
+            Name = null;
             SearchEmplyee();
 
             comdt = DateTime.Now;
@@ -530,8 +531,15 @@ namespace TKBOXEDMEAL
             SetLang();
         }
 
+
         #endregion
 
-
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if ((textBox1.Text.Length == 6) || (textBox1.Text.Length == 10))
+            {
+                button1.PerformClick();
+            }
+        }
     }
 }
