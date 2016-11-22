@@ -42,6 +42,7 @@ namespace TKBOXEDMEAL
         string Lang = "CH";
         int messagetime = 3000;
         string Name;
+        string mess=null;
 
         public frmRUN()
         {
@@ -228,13 +229,13 @@ namespace TKBOXEDMEAL
                         {
                             //label4.Text = "沒有訂餐記錄!";
                             //AutoClosingMessageBox.Show("沒有訂餐記錄!!", "TITLE", messagetime);
-                            SHOWMESSAGE(Name + "沒有訂餐記錄");
+                            SHOWMESSAGE(Name + mess+"沒有訂餐記錄!!");
                         }
                         else if (Lang.Equals("VN"))
                         {
                             //label4.Text = "Không có hồ sơ đặt hàng!";
                             //AutoClosingMessageBox.Show("Không có hồ sơ đặt hàng!!", "TITLE", messagetime);
-                            SHOWMESSAGE(Name + "Không có hồ sơ đặt hàng");
+                            SHOWMESSAGE(Name + mess + "Không có hồ sơ đặt hàng!!");
                         }
                         //System.Media.SystemSounds.Beep.Play();
                         PLAYMP3();
@@ -282,52 +283,57 @@ namespace TKBOXEDMEAL
         {
             try
             {
-
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
-
-                sbSql.Clear();
-                sbSqlQuery.Clear();
-
-                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name]FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
-
-                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
-                sqlCmdBuilder = new SqlCommandBuilder(adapter);
-
-                sqlConn.Open();
-                ds1.Clear();
-                adapter.Fill(ds1, "TEMPds1");
-                sqlConn.Close();
-
-                if (ds1.Tables["TEMPds1"].Rows.Count == 0)
+                if(!string.IsNullOrEmpty(textBox1.Text.ToString()))
                 {
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    sqlConn = new SqlConnection(connectionString);
 
-                    if (Lang.Equals("CH"))
+                    sbSql.Clear();
+                    sbSqlQuery.Clear();
+
+                    sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name]FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
+
+                    adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                    sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                    sqlConn.Open();
+                    ds1.Clear();
+                    adapter.Fill(ds1, "TEMPds1");
+                    sqlConn.Close();
+
+                    if (ds1.Tables["TEMPds1"].Rows.Count == 0)
                     {
-                        //label5.Text = "沒有此員工!";
-                        //label4.Text = "";
-                        //AutoClosingMessageBox.Show("沒有此員工!!", "TITLE", messagetime);
-                        SHOWMESSAGE("沒有此員工!!");
+
+                        if (Lang.Equals("CH"))
+                        {
+                            //label5.Text = "沒有此員工!";
+                            //label4.Text = "";
+                            //AutoClosingMessageBox.Show("沒有此員工!!", "TITLE", messagetime);
+                            //SHOWMESSAGE("沒有此員工!!");
+                            mess = "沒有此員工!!";
+                        }
+                        else if (Lang.Equals("VN"))
+                        {
+                            //label5.Text = "Không có nhân viên!";
+                            //label4.Text = "";
+                            //AutoClosingMessageBox.Show("Không có nhân viên!!", "TITLE", messagetime);
+                            //SHOWMESSAGE("Không có nhân viên!!");
+                            mess = "Không có nhân viên!!";
+                        }
+
+                        textBox1.Text = "";
+
+                        Name = null;
+                        PLAYMP3();
                     }
-                    else if (Lang.Equals("VN"))
+                    else
                     {
-                        //label5.Text = "Không có nhân viên!";
-                        //label4.Text = "";
-                        //AutoClosingMessageBox.Show("Không có nhân viên!!", "TITLE", messagetime);
-                        SHOWMESSAGE("Không có nhân viên!!");
+
+                        Name = ds1.Tables["TEMPds1"].Rows[0][2].ToString();
+
                     }
-
-                    textBox1.Text = "";
-                   
-                    Name = null;                   
-                    PLAYMP3();
                 }
-                else
-                {
-                   
-                    Name = ds1.Tables["TEMPds1"].Rows[0][2].ToString();
-
-                }
+                
 
             }
             catch
