@@ -394,7 +394,7 @@ namespace TKBOXEDMEAL
                     {
                          //label4.Text = "用餐愉快!";
                          //AutoClosingMessageBox.Show("用餐愉快!!", "TITLE", messagetime);
-                        SHOWMESSAGE(Name + " 用餐愉快!!");
+                        SHOWMESSAGE(Name + " 請取餐，祝用餐愉快!!");
                     }
                     else if (Lang.Equals("VN"))
                     {
