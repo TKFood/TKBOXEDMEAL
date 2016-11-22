@@ -536,7 +536,7 @@ namespace TKBOXEDMEAL
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if ((textBox1.Text.Length == 6) || (textBox1.Text.Length == 10))
+            if ( (textBox1.Text.Length == 10))
             {
                 button1.PerformClick();
             }
