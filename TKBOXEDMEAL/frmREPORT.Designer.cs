@@ -133,6 +133,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "便當統計",
+            "部門訂餐統計",
             "各人訂單及用餐查詢",
             "有訂未用餐查詢"});
             this.comboBox1.Location = new System.Drawing.Point(177, 50);
