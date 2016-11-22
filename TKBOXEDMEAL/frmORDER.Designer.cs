@@ -174,7 +174,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 12);
             this.label2.TabIndex = 14;
-            this.label2.Text = "V2016115";
+            this.label2.Text = "V2016122";
             // 
             // dataGridView1
             // 
