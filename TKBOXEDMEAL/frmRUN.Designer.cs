@@ -272,6 +272,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 4);
             this.textBox1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox1.Location = new System.Drawing.Point(323, 124);
+            this.textBox1.MaxLength = 10;
             this.textBox1.Name = "textBox1";
             this.tableLayoutPanel1.SetRowSpan(this.textBox1, 2);
             this.textBox1.Size = new System.Drawing.Size(314, 46);
