@@ -536,7 +536,16 @@ namespace TKBOXEDMEAL
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if ( (textBox1.Text.Length == 10))
+            //if ((textBox1.Text.Length == 11))
+            //{
+            //    button1.PerformClick();
+            //}
+          
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
             {
                 button1.PerformClick();
             }
