@@ -193,8 +193,10 @@ namespace TKBOXEDMEAL
                 STR.AppendFormat(@"  AND [AttendanceRollcall].EmployeeId=[Employee].EmployeeId");
                 STR.AppendFormat(@"  AND [Department].[DepartmentId]=[Employee].[DepartmentId]");
                 STR.AppendFormat(@"  AND CONVERT(varchar(100),[AttendanceRollcall].[Date],112) LIKE '{0}%'", dateTimePicker1.Value.ToString("yyyyMM"));
+                STR.AppendFormat(@"  AND CONVERT(varchar(100),[DoorLog].[DateTime],112)= CONVERT(varchar(100),[AttendanceRollcall].[Date],112)");
                 STR.AppendFormat(@"  AND NOT  EXISTS (SELECT ID FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE],112)=CONVERT(varchar(100),[AttendanceRollcall].[Date],112) AND ID=[Employee].[Code] COLLATE Chinese_PRC_CI_AS) ");
                 STR.AppendFormat(@"  ORDER BY CONVERT(varchar(100),[AttendanceRollcall].[Date],112), [Department].[Name]");
+               
                 STR.AppendFormat(@"  ");
 
                 tablename = "TEMPds7";
