@@ -183,6 +183,22 @@ namespace TKBOXEDMEAL
 
                 tablename = "TEMPds6";
             }
+            else if (comboBox1.Text.ToString().Equals("有上班未訂餐查詢"))
+            {
+                STR.AppendFormat(@"  SELECT  DISTINCT CONVERT(varchar(100),[AttendanceRollcall].[Date],112) AS '日期', [Department].[Name] AS '部門',[Employee].[Code] AS '工號',[Employee].[CnName] AS '姓名'");
+                STR.AppendFormat(@"  FROM [SQL102].[Chiyu].[dbo].[DoorLog],[SQL102].[Chiyu].[dbo].[Person],[HRMDB].[dbo].[AttendanceRollcall],[HRMDB].[dbo].[Employee],[HRMDB].[dbo].[Department]");
+                STR.AppendFormat(@"  WHERE [DoorLog].[UserID]=[Person].[UserID]");
+                STR.AppendFormat(@"  AND [Person].[EmployeeID]=[Employee].[Code]");
+                STR.AppendFormat(@"  AND CONVERT(varchar(100),[DoorLog].[DateTime],112) LIKE '{0}%'", dateTimePicker1.Value.ToString("yyyyMM"));
+                STR.AppendFormat(@"  AND [AttendanceRollcall].EmployeeId=[Employee].EmployeeId");
+                STR.AppendFormat(@"  AND [Department].[DepartmentId]=[Employee].[DepartmentId]");
+                STR.AppendFormat(@"  AND CONVERT(varchar(100),[AttendanceRollcall].[Date],112) LIKE '{0}%'", dateTimePicker1.Value.ToString("yyyyMM"));
+                STR.AppendFormat(@"  AND NOT  EXISTS (SELECT ID FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE],112)=CONVERT(varchar(100),[AttendanceRollcall].[Date],112) AND ID=[Employee].[Code] COLLATE Chinese_PRC_CI_AS) ");
+                STR.AppendFormat(@"  ORDER BY CONVERT(varchar(100),[AttendanceRollcall].[Date],112), [Department].[Name]");
+                STR.AppendFormat(@"  ");
+
+                tablename = "TEMPds7";
+            }
 
 
 
@@ -302,6 +318,20 @@ namespace TKBOXEDMEAL
                     ws.GetRow(j + 1).CreateCell(7).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[7].ToString()));
                     ws.GetRow(j + 1).CreateCell(8).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[8].ToString()));
 
+                    j++;
+                }
+
+            }
+            if (tablename.Equals("TEMPds7"))
+            {
+                foreach (DataGridViewRow dr in this.dataGridView1.Rows)
+                {
+                    ws.CreateRow(j + 1);
+                    ws.GetRow(j + 1).CreateCell(0).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[0].ToString());
+                    ws.GetRow(j + 1).CreateCell(1).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[1].ToString());
+                    ws.GetRow(j + 1).CreateCell(2).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[2].ToString());
+                    ws.GetRow(j + 1).CreateCell(3).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[3].ToString());
+                
                     j++;
                 }
 
