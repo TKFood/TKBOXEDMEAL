@@ -150,13 +150,45 @@ namespace TKBOXEDMEAL
 
                 tablename = "TEMPds4";
             }
+            else if (comboBox1.Text.ToString().Equals("部門訂餐統計-午餐"))
+            {
+                STR.AppendFormat(@"  SELECT [Department].[Name],[ID] AS '工號' ,[EMPORDER].[NAME] AS '姓名',[CARDNO] AS '卡號'");
+                STR.AppendFormat(@"  ,CONVERT(varchar(10),[EMPORDER].[DATE],112) AS '日期',[MEAL].[MEALNAME] AS '午晚餐'");
+                STR.AppendFormat(@"  ,[MEALDISH].[DISHNAME] AS '葷素',[NUM] AS '訂餐量',[EATNUM] AS '用餐量'");
+                STR.AppendFormat(@"  FROM [TKBOXEDMEAL].[dbo].[EMPORDER],[TKBOXEDMEAL].[dbo].[MEAL],[TKBOXEDMEAL].[dbo].[MEALDISH],[HRMDB].[dbo].[Employee],[HRMDB].[dbo].[Department] ");
+                STR.AppendFormat(@"  WHERE [Employee].[Code]=[EMPORDER].[ID] COLLATE Chinese_Taiwan_Stroke_BIN");
+                STR.AppendFormat(@"  AND [Employee].DepartmentId=[Department] .DepartmentId");
+                STR.AppendFormat(@"  AND [EMPORDER].[MEAL]=[MEAL].[MEAL] AND [EMPORDER].[DISH]=[MEALDISH].[DISH]  ");
+                STR.AppendFormat(@"  AND CONVERT(varchar(10),[EMPORDER].[DATE],112)='{0}' ", dateTimePicker1.Value.ToString("yyyyMMdd"));
+                STR.AppendFormat(@"  AND [EMPORDER].[MEAL]='10' ");
+                STR.AppendFormat(@"  ORDER BY  CONVERT(varchar(10),[EMPORDER].[DATE],112),[Department].[Name],[MEAL].[MEALNAME],[MEALDISH].[DISHNAME],[ID]");
+                STR.AppendFormat(@"  ");
+
+                tablename = "TEMPds5";
+            }
+
+            else if (comboBox1.Text.ToString().Equals("部門訂餐統計-晚餐"))
+            {
+                STR.AppendFormat(@"  SELECT [Department].[Name],[ID] AS '工號' ,[EMPORDER].[NAME] AS '姓名',[CARDNO] AS '卡號'");
+                STR.AppendFormat(@"  ,CONVERT(varchar(10),[EMPORDER].[DATE],112) AS '日期',[MEAL].[MEALNAME] AS '午晚餐'");
+                STR.AppendFormat(@"  ,[MEALDISH].[DISHNAME] AS '葷素',[NUM] AS '訂餐量',[EATNUM] AS '用餐量'");
+                STR.AppendFormat(@"  FROM [TKBOXEDMEAL].[dbo].[EMPORDER],[TKBOXEDMEAL].[dbo].[MEAL],[TKBOXEDMEAL].[dbo].[MEALDISH],[HRMDB].[dbo].[Employee],[HRMDB].[dbo].[Department] ");
+                STR.AppendFormat(@"  WHERE [Employee].[Code]=[EMPORDER].[ID] COLLATE Chinese_Taiwan_Stroke_BIN");
+                STR.AppendFormat(@"  AND [Employee].DepartmentId=[Department] .DepartmentId");
+                STR.AppendFormat(@"  AND [EMPORDER].[MEAL]=[MEAL].[MEAL] AND [EMPORDER].[DISH]=[MEALDISH].[DISH]  ");
+                STR.AppendFormat(@"  AND CONVERT(varchar(10),[EMPORDER].[DATE],112)='{0}' ", dateTimePicker1.Value.ToString("yyyyMMdd"));
+                STR.AppendFormat(@"  AND [EMPORDER].[MEAL]='20' ");
+                STR.AppendFormat(@"  ORDER BY  CONVERT(varchar(10),[EMPORDER].[DATE],112),[Department].[Name],[MEAL].[MEALNAME],[MEALDISH].[DISHNAME],[ID]");
+                STR.AppendFormat(@"  ");
+
+                tablename = "TEMPds6";
+            }
 
 
 
 
 
-
-            return STR;
+                return STR;
         }
 
         public void ExcelExport()
