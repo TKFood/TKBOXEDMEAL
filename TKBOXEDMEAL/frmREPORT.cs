@@ -196,10 +196,27 @@ namespace TKBOXEDMEAL
                 STR.AppendFormat(@"  AND CONVERT(varchar(100),[DoorLog].[DateTime],112)= CONVERT(varchar(100),[AttendanceRollcall].[Date],112)");
                 STR.AppendFormat(@"  AND NOT  EXISTS (SELECT ID FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE],112)=CONVERT(varchar(100),[AttendanceRollcall].[Date],112) AND ID=[Employee].[Code] COLLATE Chinese_PRC_CI_AS) ");
                 STR.AppendFormat(@"  ORDER BY CONVERT(varchar(100),[AttendanceRollcall].[Date],112), [Department].[Name]");
-               
+                STR.AppendFormat(@"  AND NOT  EXISTS ");
+                STR.AppendFormat(@"  (SELECT ID FROM [TKBOXEDMEAL].[dbo].[EMPCARDNOTEAT]");
+                STR.AppendFormat(@"  WHERE CONVERT(varchar(100),[DATE],112)=CONVERT(varchar(100),[AttendanceRollcall].[Date],112) ");
+                STR.AppendFormat(@"  AND ID=[Employee].[Code] COLLATE Chinese_PRC_CI_AS) ");
+                STR.AppendFormat(@"  ");
+
                 STR.AppendFormat(@"  ");
 
                 tablename = "TEMPds7";
+            }
+            else if (comboBox1.Text.ToString().Equals("部門員工查詢"))
+            {
+                STR.AppendFormat(@"  SELECT  DISTINCT [Department].[Name] AS '部門',[Person].CardNo AS '卡號',[Employee].[Code] AS '工號',[Employee].[CnName] AS '姓名'  ");
+                STR.AppendFormat(@"  FROM [SQL102].[Chiyu].[dbo].[Person],[HRMDB].[dbo].[Employee],[HRMDB].[dbo].[Department]  ");
+                STR.AppendFormat(@"  WHERE [Person].[EmployeeID]=[Employee].[Code] ");
+                STR.AppendFormat(@"  AND [Department].[DepartmentId]=[Employee].[DepartmentId]  ");
+                STR.AppendFormat(@"  ORDER BY [Department].[Name],[Employee].[Code],[Employee].[CnName]");
+                STR.AppendFormat(@"  ");
+
+
+                tablename = "TEMPds8";
             }
 
 
@@ -334,6 +351,20 @@ namespace TKBOXEDMEAL
                     ws.GetRow(j + 1).CreateCell(2).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[2].ToString());
                     ws.GetRow(j + 1).CreateCell(3).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[3].ToString());
                 
+                    j++;
+                }
+
+            }
+            if (tablename.Equals("TEMPds8"))
+            {
+                foreach (DataGridViewRow dr in this.dataGridView1.Rows)
+                {
+                    ws.CreateRow(j + 1);
+                    ws.GetRow(j + 1).CreateCell(0).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[0].ToString());
+                    ws.GetRow(j + 1).CreateCell(1).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[1].ToString());
+                    ws.GetRow(j + 1).CreateCell(2).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[2].ToString());
+                    ws.GetRow(j + 1).CreateCell(3).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[3].ToString());
+
                     j++;
                 }
 
