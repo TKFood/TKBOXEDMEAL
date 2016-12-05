@@ -1049,6 +1049,77 @@ namespace TKBOXEDMEAL
             Message message = new Message(text);
             message.Show();
         }
+
+        public void ADDEMPCARDNOTEAT()
+        {
+            try
+            {
+                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                sqlConn = new SqlConnection(connectionString);
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+                //ADD COPTC
+
+                sbSql.AppendFormat("   INSERT INTO [TKBOXEDMEAL].[dbo].[EMPCARDNOTEAT]");
+                sbSql.AppendFormat("   ([ID],[NAME],[CARDNO],[DATE])");
+                sbSql.AppendFormat("   VALUES ('{0}','{1}','{2}','{3}')", EmployeeID, Name, CardNo,DateTime.Now.ToString("yyyy/MM/dd"));
+               
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+
+                    if (Lang.Equals("CH"))
+                    {
+                        //label5.Text = "取消訂餐失敗!";
+                        //label4.Text = "";
+                        //AutoClosingMessageBox.Show("取消訂餐失敗!!", "TITLE", messagetime);
+                        SHOWMESSAGE(Name + "公出不用餐失敗!!");
+                    }
+                  
+                    PLAYMP3();
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+                    if (Lang.Equals("CH"))
+                    {
+                       SHOWMESSAGE(Name + " 公出不用餐成功!!");
+                    }
+                    
+
+                }
+
+                sqlConn.Close();
+                Search();
+            }
+            catch
+            {
+                if (Lang.Equals("CH"))
+                {
+                    //label5.Text = "取消訂餐失敗!";
+                    //label4.Text = "";
+                    //AutoClosingMessageBox.Show("取消訂餐失敗!!", "TITLE", messagetime);
+                    SHOWMESSAGE(Name + "公出不用餐失敗!!");
+                }
+            }
+            finally
+            {
+
+            }
+            textBox1.Select();
+        }
+
+
         #endregion
 
 
@@ -1408,6 +1479,12 @@ namespace TKBOXEDMEAL
 
         }
 
+        private void button14_Click(object sender, EventArgs e)
+        {
+            SearchEmplyee();
+            ADDEMPCARDNOTEAT();
+            SetCancel();
+        }
 
 
         #endregion
