@@ -218,6 +218,86 @@ namespace TKBOXEDMEAL
 
                 tablename = "TEMPds8";
             }
+            else if (comboBox1.Text.ToString().Equals("每月統計"))
+            {
+                DateTime dt1 = dateTimePicker1.Value;
+                dt1.AddMonths(-1);
+                DateTime dt2 = dateTimePicker1.Value;
+                string sdt1 = dt1.ToString("yyyyMM");
+                string sdt2 = dt2.ToString("yyyyMM");
+
+
+
+                STR.AppendFormat(@"  SELECT DISTINCT [ID],[NAME]");
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'26%' AND [MEAL]='10'),0) AS '26-中餐'",sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'27%' AND [MEAL]='10'),0) AS '27-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'28%' AND [MEAL]='10'),0) AS '28-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'29%' AND [MEAL]='10'),0) AS '29-中餐' ", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'30%' AND [MEAL]='10'),0) AS '30-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'31%' AND [MEAL]='10'),0) AS '31-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'01%' AND [MEAL]='10'),0) AS '01-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'02%' AND [MEAL]='10'),0) AS '02-中餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'03%' AND [MEAL]='10'),0) AS '03-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'04%' AND [MEAL]='10'),0) AS '04-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'05%' AND [MEAL]='10'),0) AS '05-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'06%' AND [MEAL]='10'),0) AS '06-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'07%' AND [MEAL]='10'),0) AS '07-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'08%' AND [MEAL]='10'),0) AS '08-中餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'09%' AND [MEAL]='10'),0) AS '09-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'10%' AND [MEAL]='10'),0) AS '10-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'11%' AND [MEAL]='10'),0) AS '11-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'12%' AND [MEAL]='10'),0) AS '12-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'13%' AND [MEAL]='10'),0) AS '13-中餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'14%' AND [MEAL]='10'),0) AS '14-中餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'15%' AND [MEAL]='10'),0) AS '15-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'16%' AND [MEAL]='10'),0) AS '16-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'17%' AND [MEAL]='10'),0) AS '17-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'18%' AND [MEAL]='10'),0) AS '18-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'19%' AND [MEAL]='10'),0) AS '19-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'20%' AND [MEAL]='10'),0) AS '20-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'21%' AND [MEAL]='10'),0) AS '21-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'22%' AND [MEAL]='10'),0) AS '22-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'23%' AND [MEAL]='10'),0) AS '23-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'24%' AND [MEAL]='10'),0) AS '24-中餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'25%' AND [MEAL]='10'),0) AS '25-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'26%' AND [MEAL]='20'),0) AS '26-晚餐' ", sdt1);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'27%' AND [MEAL]='20'),0) AS '27-晚餐' ", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'28%' AND [MEAL]='20'),0) AS '28-晚餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'29%' AND [MEAL]='20'),0) AS '29-晚餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'30%' AND [MEAL]='20'),0) AS '30-晚餐'", sdt1);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'31%' AND [MEAL]='20'),0) AS '31-晚餐' ", sdt1);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'01%' AND [MEAL]='20'),0) AS '01-晚餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'02%' AND [MEAL]='20'),0) AS '02-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'03%' AND [MEAL]='20'),0) AS '03-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'04%' AND [MEAL]='20'),0) AS '04-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'05%' AND [MEAL]='20'),0) AS '05-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'06%' AND [MEAL]='20'),0) AS '06-晚餐'", sdt2);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'07%' AND [MEAL]='20'),0) AS '07-晚餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'08%' AND [MEAL]='20'),0) AS '08-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'09%' AND [MEAL]='20'),0) AS '09-晚餐'", sdt2);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'10%' AND [MEAL]='20'),0) AS '10-晚餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'12%' AND [MEAL]='20'),0) AS '12-晚餐'", sdt2);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'13%' AND [MEAL]='20'),0) AS '13-晚餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'14%' AND [MEAL]='20'),0) AS '14-晚餐'", sdt2);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'15%' AND [MEAL]='20'),0) AS '15-晚餐' ", sdt2);
+                STR.AppendFormat(@" ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'16%' AND [MEAL]='20'),0) AS '16-晚餐' ", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'17%' AND [MEAL]='20'),0) AS '17-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'18%' AND [MEAL]='20'),0) AS '18-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'19%' AND [MEAL]='20'),0) AS '19-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'20%' AND [MEAL]='20'),0) AS '20-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'21%' AND [MEAL]='20'),0) AS '21-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'22%' AND [MEAL]='20'),0) AS '22-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'23%' AND [MEAL]='20'),0) AS '23-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'24%' AND [MEAL]='20'),0) AS '24-晚餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT 1 FROM [TKBOXEDMEAL].[dbo].[EMPORDER] EMP WHERE EMP.[ID]=[EMPORDER].[ID] AND CONVERT(varchar(100),EMP.[DATE],112) LIKE '{0}'+'25%' AND [MEAL]='20'),0) AS '25-晚餐'", sdt2);
+                STR.AppendFormat(@"  FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+                STR.AppendFormat(@"  WHERE CONVERT(varchar(100),[DATE],112)>= '{0}26' AND  CONVERT(varchar(100),[DATE],112)>= '{1}25'",sdt1,sdt2);
+                STR.AppendFormat(@" ORDER BY [ID],[NAME] ");
+                STR.AppendFormat(@"  ");
+
+
+                tablename = "TEMPds9";
+            }
 
 
 
@@ -369,7 +449,84 @@ namespace TKBOXEDMEAL
                 }
 
             }
-
+            if(tablename.Equals("TEMPds9"))
+            {
+                foreach (DataGridViewRow dr in this.dataGridView1.Rows)
+                {
+                    ws.CreateRow(j + 1);
+                    ws.GetRow(j + 1).CreateCell(0).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[0].ToString());
+                    ws.GetRow(j + 1).CreateCell(1).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[1].ToString());
+                    ws.GetRow(j + 1).CreateCell(2).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[2].ToString()));
+                    ws.GetRow(j + 1).CreateCell(3).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[3].ToString()));
+                    ws.GetRow(j + 1).CreateCell(4).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[4].ToString()));
+                    ws.GetRow(j + 1).CreateCell(5).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[5].ToString()));
+                    ws.GetRow(j + 1).CreateCell(6).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[6].ToString()));
+                    ws.GetRow(j + 1).CreateCell(7).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[7].ToString()));
+                    ws.GetRow(j + 1).CreateCell(8).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[8].ToString()));
+                    ws.GetRow(j + 1).CreateCell(9).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[9].ToString()));
+                    ws.GetRow(j + 1).CreateCell(10).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[10].ToString()));
+                    ws.GetRow(j + 1).CreateCell(11).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[11].ToString()));
+                    ws.GetRow(j + 1).CreateCell(12).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[12].ToString()));
+                    ws.GetRow(j + 1).CreateCell(13).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[13].ToString()));
+                    ws.GetRow(j + 1).CreateCell(14).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[14].ToString()));
+                    ws.GetRow(j + 1).CreateCell(15).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[15].ToString()));
+                    ws.GetRow(j + 1).CreateCell(16).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[16].ToString()));
+                    ws.GetRow(j + 1).CreateCell(17).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[17].ToString()));
+                    ws.GetRow(j + 1).CreateCell(18).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[18].ToString()));
+                    ws.GetRow(j + 1).CreateCell(19).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[19].ToString()));
+                    ws.GetRow(j + 1).CreateCell(20).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[20].ToString()));
+                    ws.GetRow(j + 1).CreateCell(21).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[21].ToString()));
+                    ws.GetRow(j + 1).CreateCell(22).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[22].ToString()));
+                    ws.GetRow(j + 1).CreateCell(23).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[23].ToString()));
+                    ws.GetRow(j + 1).CreateCell(24).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[24].ToString()));
+                    ws.GetRow(j + 1).CreateCell(25).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[25].ToString()));
+                    ws.GetRow(j + 1).CreateCell(26).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[26].ToString()));
+                    ws.GetRow(j + 1).CreateCell(27).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[27].ToString()));
+                    ws.GetRow(j + 1).CreateCell(28).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[28].ToString()));
+                    ws.GetRow(j + 1).CreateCell(29).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[29].ToString()));
+                    ws.GetRow(j + 1).CreateCell(30).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[30].ToString()));
+                    ws.GetRow(j + 1).CreateCell(31).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[31].ToString()));
+                    ws.GetRow(j + 1).CreateCell(32).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[32].ToString()));
+                    ws.GetRow(j + 1).CreateCell(33).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[33].ToString()));
+                    ws.GetRow(j + 1).CreateCell(34).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[34].ToString()));
+                    ws.GetRow(j + 1).CreateCell(35).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[35].ToString()));
+                    ws.GetRow(j + 1).CreateCell(36).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[36].ToString()));
+                    ws.GetRow(j + 1).CreateCell(37).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[37].ToString()));
+                    ws.GetRow(j + 1).CreateCell(38).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[38].ToString()));
+                    ws.GetRow(j + 1).CreateCell(39).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[39].ToString()));
+                    ws.GetRow(j + 1).CreateCell(40).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[40].ToString()));
+                    ws.GetRow(j + 1).CreateCell(41).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[41].ToString()));
+                    ws.GetRow(j + 1).CreateCell(42).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[42].ToString()));
+                    ws.GetRow(j + 1).CreateCell(43).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[43].ToString()));
+                    ws.GetRow(j + 1).CreateCell(44).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[44].ToString()));
+                    ws.GetRow(j + 1).CreateCell(45).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[45].ToString()));
+                    ws.GetRow(j + 1).CreateCell(46).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[46].ToString()));
+                    ws.GetRow(j + 1).CreateCell(47).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[47].ToString()));
+                    ws.GetRow(j + 1).CreateCell(48).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[48].ToString()));
+                    ws.GetRow(j + 1).CreateCell(49).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[49].ToString()));
+                    ws.GetRow(j + 1).CreateCell(50).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[50].ToString()));
+                    ws.GetRow(j + 1).CreateCell(51).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[51].ToString()));
+                    ws.GetRow(j + 1).CreateCell(52).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[52].ToString()));
+                    ws.GetRow(j + 1).CreateCell(53).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[53].ToString()));
+                    ws.GetRow(j + 1).CreateCell(54).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[54].ToString()));
+                    ws.GetRow(j + 1).CreateCell(55).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[55].ToString()));
+                    ws.GetRow(j + 1).CreateCell(56).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[56].ToString()));
+                    ws.GetRow(j + 1).CreateCell(57).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[57].ToString()));
+                    ws.GetRow(j + 1).CreateCell(58).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[58].ToString()));
+                    ws.GetRow(j + 1).CreateCell(59).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[59].ToString()));
+                    ws.GetRow(j + 1).CreateCell(60).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[60].ToString()));
+                    ws.GetRow(j + 1).CreateCell(61).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[61].ToString()));
+                    ws.GetRow(j + 1).CreateCell(62).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[62].ToString()));
+                    //ws.GetRow(j + 1).CreateCell(63).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[63].ToString()));
+                    //ws.GetRow(j + 1).CreateCell(64).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[64].ToString()));
+                    //ws.GetRow(j + 1).CreateCell(65).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[65].ToString()));
+                    //ws.GetRow(j + 1).CreateCell(66).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[66].ToString()));
+                    //ws.GetRow(j + 1).CreateCell(67).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[67].ToString()));
+                    //ws.GetRow(j + 1).CreateCell(68).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[68].ToString()));
+                   // ws.GetRow(j + 1).CreateCell(69).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArra[2].ToString()));
+                    j++;
+                }
+            }
 
             if (Directory.Exists(@"c:\temp\"))
             {

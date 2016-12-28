@@ -139,7 +139,8 @@
             "各人訂單及用餐查詢",
             "有訂未用餐查詢",
             "有上班未訂餐查詢",
-            "部門員工查詢"});
+            "部門員工查詢",
+            "每月統計"});
             this.comboBox1.Location = new System.Drawing.Point(177, 50);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(165, 20);
