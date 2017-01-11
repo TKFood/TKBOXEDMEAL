@@ -198,7 +198,7 @@ namespace TKBOXEDMEAL
                         button7.Visible = true;
                         button8.Visible = true;
 
-                        button1.Visible = false;
+                        //button1.Visible = false;
                         button9.Visible = false;
                     }
                     else
@@ -248,7 +248,7 @@ namespace TKBOXEDMEAL
                         button7.Visible = true;
                         button8.Visible = true;
 
-                        button1.Visible = false;
+                        //button1.Visible = false;
                         button2.Visible = false;
                     }
                 }                
@@ -275,7 +275,7 @@ namespace TKBOXEDMEAL
 
         public void SetCancel()
         {
-            button1.Visible = true;
+            //button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
 
@@ -1190,7 +1190,7 @@ namespace TKBOXEDMEAL
 
 
 
-            button1.Visible = true;
+            //button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
 
@@ -1238,7 +1238,7 @@ namespace TKBOXEDMEAL
             }
 
 
-            button1.Visible = true;
+            //button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
 
@@ -1287,7 +1287,7 @@ namespace TKBOXEDMEAL
                 OrderCanel(Meal, Dish, OrderBoxed);
             }
 
-            button1.Visible = true;
+            //button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
 
@@ -1335,7 +1335,7 @@ namespace TKBOXEDMEAL
                 OrderCanel(Meal, Dish, OrderBoxed);
             }
 
-            button1.Visible = true;
+            //button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
 
@@ -1386,7 +1386,7 @@ namespace TKBOXEDMEAL
                 OrderCanel(Meal, Dish, OrderBoxed);
             }
 
-            button1.Visible = true;
+            //button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
 
@@ -1435,7 +1435,7 @@ namespace TKBOXEDMEAL
                 OrderCanel(Meal, Dish, OrderBoxed);
             }
 
-            button1.Visible = true;
+            //button1.Visible = true;
             button2.Visible = true;
             button9.Visible = true;
 
