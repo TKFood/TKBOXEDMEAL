@@ -307,7 +307,7 @@ namespace TKBOXEDMEAL
                 string sdt1 = dt1.ToString("yyyyMM");
                 string sdt2 = dt2.ToString("yyyyMM");
 
-                STR.AppendFormat(@"  SELECT DISTINCT [EmployeeCode],[EmployeeName]");
+                STR.AppendFormat(@"  SELECT DISTINCT  DEP1.[Name] AS '部門名稱',[EmployeeCode] AS '工號',[EmployeeName]  AS '中文名' ");
                 STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'26%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '26-中餐'", sdt1);
                 STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'27%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '27-中餐'", sdt1);
                 STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'28%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '28-中餐'", sdt1);
@@ -343,8 +343,10 @@ namespace TKBOXEDMEAL
 
 
                 STR.AppendFormat(@"  FROM [HRMDB].[dbo].[AttendanceCollect] ");
-                STR.AppendFormat(@"  WHERE CONVERT(VARCHAR(12),[Date],112)>='{0}26' AND CONVERT(VARCHAR(12),[Date],112)<='{1}25' ", sdt1, sdt2);
-                STR.AppendFormat(@"  ORDER BY [EmployeeCode],[EmployeeName]");
+                STR.AppendFormat(@"  LEFT JOIN[HRMDB].[dbo].[Employee] ON [Employee].[EmployeeId] =[AttendanceCollect].[EmployeeId]");
+                STR.AppendFormat(@"  LEFT JOIN [HRMDB].[dbo].[Department] DEP1 ON DEP1.[DepartmentId]=[Employee].[DepartmentId]");
+                STR.AppendFormat(@"  WHERE CONVERT(VARCHAR(12),[AttendanceCollect].[Date],112)>='{0}26' AND CONVERT(VARCHAR(12),[AttendanceCollect].[Date],112)<='{1}25' ", sdt1, sdt2);
+                STR.AppendFormat(@"  ORDER BY    DEP1.[Name],[EmployeeCode]");
                 STR.AppendFormat(@"  ");
 
                 tablename = "TEMPds10";
@@ -584,7 +586,8 @@ namespace TKBOXEDMEAL
                     ws.CreateRow(j + 1);
                     ws.GetRow(j + 1).CreateCell(0).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[0].ToString());
                     ws.GetRow(j + 1).CreateCell(1).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[1].ToString());
-                    ws.GetRow(j + 1).CreateCell(2).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[2].ToString()));
+                    ws.GetRow(j + 1).CreateCell(2).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[2].ToString());
+                    
                     ws.GetRow(j + 1).CreateCell(3).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[3].ToString()));
                     ws.GetRow(j + 1).CreateCell(4).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[4].ToString()));
                     ws.GetRow(j + 1).CreateCell(5).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[5].ToString()));
@@ -614,7 +617,7 @@ namespace TKBOXEDMEAL
                     ws.GetRow(j + 1).CreateCell(29).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[29].ToString()));
                     ws.GetRow(j + 1).CreateCell(30).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[30].ToString()));
                     ws.GetRow(j + 1).CreateCell(31).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[31].ToString()));
-                    
+                    ws.GetRow(j + 1).CreateCell(32).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[32].ToString()));
                     // ws.GetRow(j + 1).CreateCell(69).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArra[2].ToString()));
                     j++;
                 }
