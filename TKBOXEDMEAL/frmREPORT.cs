@@ -221,7 +221,7 @@ namespace TKBOXEDMEAL
             else if (comboBox1.Text.ToString().Equals("每月統計"))
             {
                 DateTime dt1 = dateTimePicker1.Value;
-                dt1.AddMonths(-1);
+                dt1 = dt1.AddMonths(-1);
                 DateTime dt2 = dateTimePicker1.Value;
                 string sdt1 = dt1.ToString("yyyyMM");
                 string sdt2 = dt2.ToString("yyyyMM");
@@ -298,8 +298,58 @@ namespace TKBOXEDMEAL
 
                 tablename = "TEMPds9";
             }
+            else if(comboBox1.Text.ToString().Equals("每月刷卡當中餐統計"))
+            {
+                //刷卡6~9前當訂中餐
+                DateTime dt1 = dateTimePicker1.Value;
+                dt1=dt1.AddMonths(-1);
+                DateTime dt2 = dateTimePicker1.Value;
+                string sdt1 = dt1.ToString("yyyyMM");
+                string sdt2 = dt2.ToString("yyyyMM");
+
+                STR.AppendFormat(@"  SELECT DISTINCT [EmployeeCode],[EmployeeName]");
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'26%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '26-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'27%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '27-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'28%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '28-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'29%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '29-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'30%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '30-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'31%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '31-中餐'", sdt1);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'01%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '01-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'02%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '02-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'03%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '03-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'04%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '04-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'05%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '05-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'06%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '06-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'07%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '07-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'08%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '08-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'09%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '09-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'10%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '10-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'11%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '11-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'12%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '12-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'13%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '13-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'14%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '14-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'15%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '15-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'16%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '16-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'17%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '17-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'18%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '18-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'19%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '19-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'20%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '20-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'21%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '21-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'22%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '22-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'23%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '23-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'24%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '24-中餐'", sdt2);
+                STR.AppendFormat(@"  ,ISNULL((SELECT TOP 1 1 FROM [HRMDB].[dbo].[AttendanceCollect] ATT WHERE ATT.[EmployeeCode]=[AttendanceCollect].[EmployeeCode] AND CONVERT(VARCHAR(12),ATT.[Date],112) LIKE '{0}'+'25%' AND DATEPART(hh,ATT.[Date])>=6 AND DATEPART(hh,ATT.[Date])<=8 ),0) AS '25-中餐'", sdt2);
+                
 
 
+                STR.AppendFormat(@"  FROM [HRMDB].[dbo].[AttendanceCollect] ");
+                STR.AppendFormat(@"  WHERE CONVERT(VARCHAR(12),[Date],112)>='{0}26' AND CONVERT(VARCHAR(12),[Date],112)<='{1}25' ", sdt1, sdt2);
+                STR.AppendFormat(@"  ORDER BY [EmployeeCode],[EmployeeName]");
+                STR.AppendFormat(@"  ");
+
+                tablename = "TEMPds10";
+            }
+            
 
 
 
@@ -524,6 +574,48 @@ namespace TKBOXEDMEAL
                     //ws.GetRow(j + 1).CreateCell(67).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[67].ToString()));
                     //ws.GetRow(j + 1).CreateCell(68).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[68].ToString()));
                    // ws.GetRow(j + 1).CreateCell(69).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArra[2].ToString()));
+                    j++;
+                }
+            }
+            if (tablename.Equals("TEMPds10"))
+            {
+                foreach (DataGridViewRow dr in this.dataGridView1.Rows)
+                {
+                    ws.CreateRow(j + 1);
+                    ws.GetRow(j + 1).CreateCell(0).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[0].ToString());
+                    ws.GetRow(j + 1).CreateCell(1).SetCellValue(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[1].ToString());
+                    ws.GetRow(j + 1).CreateCell(2).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[2].ToString()));
+                    ws.GetRow(j + 1).CreateCell(3).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[3].ToString()));
+                    ws.GetRow(j + 1).CreateCell(4).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[4].ToString()));
+                    ws.GetRow(j + 1).CreateCell(5).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[5].ToString()));
+                    ws.GetRow(j + 1).CreateCell(6).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[6].ToString()));
+                    ws.GetRow(j + 1).CreateCell(7).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[7].ToString()));
+                    ws.GetRow(j + 1).CreateCell(8).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[8].ToString()));
+                    ws.GetRow(j + 1).CreateCell(9).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[9].ToString()));
+                    ws.GetRow(j + 1).CreateCell(10).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[10].ToString()));
+                    ws.GetRow(j + 1).CreateCell(11).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[11].ToString()));
+                    ws.GetRow(j + 1).CreateCell(12).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[12].ToString()));
+                    ws.GetRow(j + 1).CreateCell(13).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[13].ToString()));
+                    ws.GetRow(j + 1).CreateCell(14).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[14].ToString()));
+                    ws.GetRow(j + 1).CreateCell(15).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[15].ToString()));
+                    ws.GetRow(j + 1).CreateCell(16).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[16].ToString()));
+                    ws.GetRow(j + 1).CreateCell(17).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[17].ToString()));
+                    ws.GetRow(j + 1).CreateCell(18).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[18].ToString()));
+                    ws.GetRow(j + 1).CreateCell(19).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[19].ToString()));
+                    ws.GetRow(j + 1).CreateCell(20).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[20].ToString()));
+                    ws.GetRow(j + 1).CreateCell(21).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[21].ToString()));
+                    ws.GetRow(j + 1).CreateCell(22).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[22].ToString()));
+                    ws.GetRow(j + 1).CreateCell(23).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[23].ToString()));
+                    ws.GetRow(j + 1).CreateCell(24).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[24].ToString()));
+                    ws.GetRow(j + 1).CreateCell(25).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[25].ToString()));
+                    ws.GetRow(j + 1).CreateCell(26).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[26].ToString()));
+                    ws.GetRow(j + 1).CreateCell(27).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[27].ToString()));
+                    ws.GetRow(j + 1).CreateCell(28).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[28].ToString()));
+                    ws.GetRow(j + 1).CreateCell(29).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[29].ToString()));
+                    ws.GetRow(j + 1).CreateCell(30).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[30].ToString()));
+                    ws.GetRow(j + 1).CreateCell(31).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArray[31].ToString()));
+                    
+                    // ws.GetRow(j + 1).CreateCell(69).SetCellValue(Convert.ToInt32(((System.Data.DataRowView)(dr.DataBoundItem)).Row.ItemArra[2].ToString()));
                     j++;
                 }
             }
