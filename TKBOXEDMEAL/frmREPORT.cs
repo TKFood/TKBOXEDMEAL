@@ -121,7 +121,7 @@ namespace TKBOXEDMEAL
             }
             else if (comboBox1.Text.ToString().Equals("各人訂單及用餐查詢"))
             {
-                STR.Append(@" SELECT [ID] AS '工號' ,[NAME] AS '姓名',[CARDNO] AS '卡號',CONVERT(varchar(10),[DATE],112) AS '日期',[MEAL].[MEALNAME] AS '午晚餐',[MEALDISH].[DISHNAME] AS '葷素',[NUM] AS '訂餐量',[EATNUM] AS '用餐量'");
+                STR.Append(@" SELECT [ID] AS '工號' ,[NAME] AS '姓名',[CARDNO] AS '卡號',[DATE] AS '日期',[MEAL].[MEALNAME] AS '午晚餐',[MEALDISH].[DISHNAME] AS '葷素',[NUM] AS '訂餐量',[EATNUM] AS '用餐量'");
                 STR.Append(@" FROM [TKBOXEDMEAL].[dbo].[EMPORDER],[TKBOXEDMEAL].[dbo].[MEAL],[TKBOXEDMEAL].[dbo].[MEALDISH]");
                 STR.Append(@" WHERE [EMPORDER].[MEAL]=[MEAL].[MEAL] AND [EMPORDER].[DISH]=[MEALDISH].[DISH]");
                 STR.AppendFormat(@"  AND CONVERT(varchar(10),[DATE],112)='{0}' ", dateTimePicker1.Value.ToString("yyyyMMdd"));
