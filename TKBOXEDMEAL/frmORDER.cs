@@ -186,7 +186,9 @@ namespace TKBOXEDMEAL
             {
                 if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
                 {
+                    textBox1.Text= textBox1.Text.TrimStart('0').ToString();
                     InputID = textBox1.Text.ToString();
+                    
                     SearchEmplyee();
                     
                     if (!string.IsNullOrEmpty(Name))
@@ -200,6 +202,7 @@ namespace TKBOXEDMEAL
 
                         //button1.Visible = false;
                         button9.Visible = false;
+                        button2.Visible = false;
                     }
                     else
                     {
@@ -1119,7 +1122,10 @@ namespace TKBOXEDMEAL
             textBox1.Select();
         }
 
-
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            //this.textBox1.Text = this.textBox1.Text.TrimStart('0');
+        }
         #endregion
 
 
@@ -1487,8 +1493,9 @@ namespace TKBOXEDMEAL
         }
 
 
+
         #endregion
 
-
+       
     }
 }
