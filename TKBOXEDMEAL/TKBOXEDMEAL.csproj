@@ -75,6 +75,12 @@
     <Compile Include="frmORDER.Designer.cs">
       <DependentUpon>frmORDER.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmORDERLOCAL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmORDERLOCAL.Designer.cs">
+      <DependentUpon>frmORDERLOCAL.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmParent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmORDER.resx">
       <DependentUpon>frmORDER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmORDERLOCAL.resx">
+      <DependentUpon>frmORDERLOCAL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmORDERLOCAL.vi-VN.resx">
+      <DependentUpon>frmORDERLOCAL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmORDERLOCAL.zh.resx">
+      <DependentUpon>frmORDERLOCAL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmParent.resx">
       <DependentUpon>FrmParent.cs</DependentUpon>

@@ -304,7 +304,7 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name]FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
+                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name] FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
