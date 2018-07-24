@@ -105,6 +105,12 @@
     <Compile Include="frmRUN.Designer.cs">
       <DependentUpon>frmRUN.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRUNLOCAL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRUNLOCAL.Designer.cs">
+      <DependentUpon>frmRUNLOCAL.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSET.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRUN.resx">
       <DependentUpon>frmRUN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRUNLOCAL.resx">
+      <DependentUpon>frmRUNLOCAL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSET.resx">
       <DependentUpon>frmSET.cs</DependentUpon>
