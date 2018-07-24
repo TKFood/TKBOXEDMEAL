@@ -1,6 +1,6 @@
 ﻿namespace TKBOXEDMEAL
 {
-    partial class frmREPORT
+    partial class frmREPORTLOCAL
     {
         /// <summary>
         /// Required designer variable.
@@ -58,8 +58,8 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1130, 663);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(984, 663);
+            this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -68,7 +68,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1122, 633);
+            this.tabPage1.Size = new System.Drawing.Size(976, 633);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -89,8 +89,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(1114, 625);
-            this.splitContainer1.SplitterDistance = 110;
+            this.splitContainer1.Size = new System.Drawing.Size(968, 625);
+            this.splitContainer1.SplitterDistance = 124;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -102,18 +102,18 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 276F));
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 8, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 7, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 5, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
@@ -124,7 +124,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1110, 106);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(964, 120);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // comboBox1
@@ -143,7 +143,7 @@
             "部門員工查詢",
             "每月統計",
             "每月刷卡當中餐統計"});
-            this.comboBox1.Location = new System.Drawing.Point(265, 69);
+            this.comboBox1.Location = new System.Drawing.Point(265, 14);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(249, 24);
@@ -154,10 +154,10 @@
             // 
             this.button1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(522, 57);
+            this.button1.Location = new System.Drawing.Point(522, 4);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 45);
+            this.button1.Size = new System.Drawing.Size(115, 45);
             this.button1.TabIndex = 1;
             this.button1.Text = "查詢";
             this.button1.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(133, 66);
+            this.dateTimePicker1.Location = new System.Drawing.Point(133, 13);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(124, 27);
@@ -186,7 +186,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(844, 57);
+            this.button2.Location = new System.Drawing.Point(646, 57);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(111, 45);
@@ -205,7 +205,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1110, 506);
+            this.dataGridView1.Size = new System.Drawing.Size(964, 492);
             this.dataGridView1.TabIndex = 16;
             // 
             // tabPage2
@@ -214,21 +214,21 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1149, 709);
+            this.tabPage2.Size = new System.Drawing.Size(1122, 633);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // frmREPORT
+            // frmREPORTLOCAL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 663);
+            this.ClientSize = new System.Drawing.Size(984, 663);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmREPORT";
-            this.Text = "frmREPORT";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "frmREPORTLOCAL";
+            this.Text = "frmREPORTLOCAL";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

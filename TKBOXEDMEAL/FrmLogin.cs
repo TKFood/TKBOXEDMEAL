@@ -42,7 +42,7 @@ namespace TKBOXEDMEAL
                 //Create SqlConnection
                 String connectionString;
                 SqlConnection conn;
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                 conn = new SqlConnection(connectionString);
                 SqlCommand cmd = new SqlCommand("Select * from MNU_Login where UserName=@username and Password=@password", conn);
                 cmd.Parameters.AddWithValue("@username", txt_UserName.Text);

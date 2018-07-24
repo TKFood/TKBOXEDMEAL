@@ -1064,6 +1064,8 @@ namespace TKBOXEDMEAL
             Lang = "CH";
             ds.Tables["TEMPds"].Columns.Clear();
             Search();
+
+            SetCancel();
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -1077,6 +1079,8 @@ namespace TKBOXEDMEAL
             Lang = "VN";
             ds.Tables["TEMPds"].Columns.Clear();
             Search();
+
+            SetCancel();
         }
 
 
