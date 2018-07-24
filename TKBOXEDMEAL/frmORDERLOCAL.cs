@@ -553,12 +553,12 @@ namespace TKBOXEDMEAL
                     if (Lang.Equals("CH"))
                     {
                         label5.Text = "";
-                        label4.Text = "";
+                        
                     }
                     else if (Lang.Equals("VN"))
                     {
                         label5.Text = "";
-                        label4.Text = "";
+                        
                     }
                 }
 
