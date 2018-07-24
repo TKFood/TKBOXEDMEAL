@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmORDERLOCAL));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -57,6 +58,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,40 +76,36 @@
             // 
             // splitContainer1
             // 
-            resources.ApplyResources(this.splitContainer1, "splitContainer1");
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
             // 
             // splitContainer1.Panel2
             // 
-            resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             // 
             // splitContainer2
             // 
-            resources.ApplyResources(this.splitContainer2, "splitContainer2");
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.splitContainer2, "splitContainer2");
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
-            resources.ApplyResources(this.splitContainer2.Panel1, "splitContainer2.Panel1");
             this.splitContainer2.Panel1.Controls.Add(this.tableLayoutPanel2);
             // 
             // splitContainer2.Panel2
             // 
-            resources.ApplyResources(this.splitContainer2.Panel2, "splitContainer2.Panel2");
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
             // 
             // tableLayoutPanel2
             // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.LightGreen;
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label5, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 10, 0);
@@ -132,18 +130,18 @@
             // 
             // dataGridView1
             // 
-            resources.ApplyResources(this.dataGridView1, "dataGridView1");
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resources.ApplyResources(this.dataGridView1, "dataGridView1");
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
             // 
             // tableLayoutPanel1
             // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.LightGreen;
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 21);
             this.tableLayoutPanel1.Controls.Add(this.button11, 11, 0);
             this.tableLayoutPanel1.Controls.Add(this.button12, 11, 1);
@@ -187,12 +185,13 @@
             // 
             // button10
             // 
-            resources.ApplyResources(this.button10, "button10");
             this.tableLayoutPanel1.SetColumnSpan(this.button10, 3);
+            resources.ApplyResources(this.button10, "button10");
             this.button10.ForeColor = System.Drawing.Color.Red;
             this.button10.Name = "button10";
             this.tableLayoutPanel1.SetRowSpan(this.button10, 2);
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // textBox1
             // 
@@ -210,78 +209,87 @@
             // 
             // button1
             // 
-            resources.ApplyResources(this.button1, "button1");
             this.tableLayoutPanel1.SetColumnSpan(this.button1, 3);
+            resources.ApplyResources(this.button1, "button1");
             this.button1.ForeColor = System.Drawing.Color.Blue;
             this.button1.Name = "button1";
             this.tableLayoutPanel1.SetRowSpan(this.button1, 3);
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
-            resources.ApplyResources(this.button3, "button3");
             this.tableLayoutPanel1.SetColumnSpan(this.button3, 3);
+            resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
             this.tableLayoutPanel1.SetRowSpan(this.button3, 3);
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button6
             // 
-            resources.ApplyResources(this.button6, "button6");
             this.tableLayoutPanel1.SetColumnSpan(this.button6, 3);
+            resources.ApplyResources(this.button6, "button6");
             this.button6.Name = "button6";
             this.tableLayoutPanel1.SetRowSpan(this.button6, 3);
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
-            resources.ApplyResources(this.button7, "button7");
             this.tableLayoutPanel1.SetColumnSpan(this.button7, 3);
+            resources.ApplyResources(this.button7, "button7");
             this.button7.Name = "button7";
             this.tableLayoutPanel1.SetRowSpan(this.button7, 3);
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button2
             // 
-            resources.ApplyResources(this.button2, "button2");
             this.tableLayoutPanel1.SetColumnSpan(this.button2, 3);
+            resources.ApplyResources(this.button2, "button2");
             this.button2.ForeColor = System.Drawing.Color.Blue;
             this.button2.Name = "button2";
             this.tableLayoutPanel1.SetRowSpan(this.button2, 3);
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button4
             // 
-            resources.ApplyResources(this.button4, "button4");
             this.tableLayoutPanel1.SetColumnSpan(this.button4, 3);
+            resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
             this.tableLayoutPanel1.SetRowSpan(this.button4, 3);
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button9
             // 
-            resources.ApplyResources(this.button9, "button9");
             this.tableLayoutPanel1.SetColumnSpan(this.button9, 3);
+            resources.ApplyResources(this.button9, "button9");
             this.button9.ForeColor = System.Drawing.Color.Blue;
             this.button9.Name = "button9";
             this.tableLayoutPanel1.SetRowSpan(this.button9, 3);
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button5
             // 
-            resources.ApplyResources(this.button5, "button5");
             this.tableLayoutPanel1.SetColumnSpan(this.button5, 3);
+            resources.ApplyResources(this.button5, "button5");
             this.button5.Name = "button5";
             this.tableLayoutPanel1.SetRowSpan(this.button5, 3);
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button8
             // 
-            resources.ApplyResources(this.button8, "button8");
             this.tableLayoutPanel1.SetColumnSpan(this.button8, 3);
+            resources.ApplyResources(this.button8, "button8");
             this.button8.Name = "button8";
             this.tableLayoutPanel1.SetRowSpan(this.button8, 3);
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label4
             // 
@@ -295,19 +303,20 @@
             this.button13.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button13.Name = "button13";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // tabControl1
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tabPage1
             // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Controls.Add(this.splitContainer1);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -317,12 +326,17 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmORDERLOCAL
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
             this.Name = "frmORDERLOCAL";
+            this.Load += new System.EventHandler(this.frmORDERLOCAL_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -372,5 +386,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Timer timer1;
     }
 }
