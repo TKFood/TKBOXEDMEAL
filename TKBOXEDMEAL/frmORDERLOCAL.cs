@@ -96,11 +96,19 @@ namespace TKBOXEDMEAL
         private void button11_Click(object sender, EventArgs e)
         {
             CreateResourceManager(this, "zh-TW");
+
+            this.WindowState = FormWindowState.Normal;
+            this.WindowState = FormWindowState.Maximized;
+            this.TopMost = true;
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
             CreateResourceManager(this, "vi-VN");
+
+            this.WindowState = FormWindowState.Normal;
+            this.WindowState = FormWindowState.Maximized;
+            this.TopMost = true;
         }
 
         #endregion
