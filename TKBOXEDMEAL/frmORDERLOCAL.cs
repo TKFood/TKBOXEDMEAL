@@ -579,12 +579,12 @@ namespace TKBOXEDMEAL
 
                 if (Meal.Equals("10+20"))
                 {
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [DISH]='{1}' ", EmployeeID, Dish);
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [DISH]='{1}' ", EmployeeID, Dish);
                 }
                 else
                 {
                     sbSql.Append(" ");
-                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [DISH]='{2}' ", EmployeeID, Meal, Dish);
+                    sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [DISH]='{2}' ", EmployeeID, Meal, Dish);
                 }
 
                 cmd.Connection = sqlConn;
@@ -779,7 +779,7 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@" SELECT TOP 1 CONVERT(varchar(100),[DATE],112) AS DATE    FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE [ID]='{0}' ORDER BY [DATE] DESC ", EmployeeID);
+                sbSql.AppendFormat(@" SELECT TOP 1 CONVERT(varchar(100),[DATE],112) AS DATE    FROM [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] WHERE [ID]='{0}' ORDER BY [DATE] DESC ", EmployeeID);
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
 
@@ -826,7 +826,7 @@ namespace TKBOXEDMEAL
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@"SELECT [MEAL],[DISH] FROM [{0}].[dbo].[EMPORDER] WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}'", sqlConn.Database.ToString(), EmployeeID);
+                sbSql.AppendFormat(@"SELECT [MEAL],[DISH] FROM [{0}].[dbo].[LOCALEMPORDER] WHERE CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{1}'", sqlConn.Database.ToString(), EmployeeID);
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -952,7 +952,7 @@ namespace TKBOXEDMEAL
 
 
                 sbSql.AppendFormat(@"  SELECT  [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]");
-                sbSql.AppendFormat(@"  FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+                sbSql.AppendFormat(@"  FROM [TKBOXEDMEAL].[dbo].[LOCALEMPORDER]");
                 sbSql.AppendFormat(@"  WHERE CONVERT(varchar(100),[DATE],112) =CONVERT(varchar(100),GETDATE(),112)");
                 sbSql.AppendFormat(@"  AND (ID='{0}' OR CARDNO='{0}')", textBox1.Text.ToString());
                 sbSql.AppendFormat(@"  ");
