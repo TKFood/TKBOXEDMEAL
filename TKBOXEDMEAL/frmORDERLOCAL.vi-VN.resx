@@ -117,8 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="button10.Text" xml:space="preserve">
+    <value>Hủy bỏ hoạt động này</value>
+  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Hãy swipe</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Sao chép các đặt hàng cuối cùng</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>Ăn trưa - thịt</value>
+  </data>
+  <data name="button6.Text" xml:space="preserve">
+    <value>Thực phẩm Trung Quốc - Surat</value>
+  </data>
+  <data name="button7.Text" xml:space="preserve">
+    <value>Thực phẩm Trung Quốc - Surat</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Sắp xếp lại</value>
+  </data>
+  <data name="button4.Text" xml:space="preserve">
+    <value>Ăn tối - C</value>
+  </data>
+  <data name="button9.Text" xml:space="preserve">
+    <value>Hủy bỏ bữa ăn</value>
+  </data>
+  <data name="button5.Text" xml:space="preserve">
+    <value>Ăn trưa / Ăn tối - C</value>
+  </data>
+  <data name="button8.Text" xml:space="preserve">
+    <value>Ăn trưa / Ăn tối - Surat</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
