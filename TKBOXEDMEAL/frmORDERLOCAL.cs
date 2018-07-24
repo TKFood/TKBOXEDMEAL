@@ -128,7 +128,7 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                 sqlConn = new SqlConnection(connectionString);
 
                 sbSql.Clear();
@@ -338,13 +338,13 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                 sqlConn = new SqlConnection(connectionString);
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
 
-                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name] FROM [TKBOXEDMEAL].[dbo].[VEMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
+                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name] FROM [TKBOXEDMEAL].[dbo].[EMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), textBox1.Text.ToString());
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -410,13 +410,13 @@ namespace TKBOXEDMEAL
                 if (Meal.Equals("10+20"))
                 {
                     DataSet ds1 = new DataSet();
-                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                     sqlConn = new SqlConnection(connectionString);
 
                     sbSql.Clear();
                     sbSqlQuery.Clear();
 
-                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}'  ", EmployeeID, "10");
+                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] WHERE  CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}'  ", EmployeeID, "10");
 
                     adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                     sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -431,7 +431,7 @@ namespace TKBOXEDMEAL
                         //InsertsbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [EATNUM]=0", EmployeeID, Meal);
                         Meal = "10";
                         InsertsbSql.Append(" ");
-                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss") ,EmployeeID, Name, CardNo, Meal, Dish);
                     }
 
                     sqlConn = new SqlConnection(connectionString);
@@ -439,7 +439,7 @@ namespace TKBOXEDMEAL
                     sbSql.Clear();
                     sbSqlQuery.Clear();
 
-                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}'  ", EmployeeID, "20");
+                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}'  ", EmployeeID, "20");
 
                     adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                     sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -452,20 +452,20 @@ namespace TKBOXEDMEAL
                     {
                         Meal = "20";
                         InsertsbSql.Append(" ");
-                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss"), EmployeeID, Name, CardNo, Meal, Dish);
                     }
 
                 }
                 else
                 {
                     DataSet ds1 = new DataSet();
-                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                     sqlConn = new SqlConnection(connectionString);
 
                     sbSql.Clear();
                     sbSqlQuery.Clear();
 
-                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' ", EmployeeID, Meal);
+                    sbSql.AppendFormat(@"SELECT [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM] FROM [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' ", EmployeeID, Meal);
 
                     adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                     sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -483,7 +483,7 @@ namespace TKBOXEDMEAL
                     {
                         InsertsbSql.Append(" ");
                         //InsertsbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [EATNUM]=0 ", EmployeeID, Meal);
-                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}',GETDATE(),'{3}','{4}',1) ", EmployeeID, Name, CardNo, Meal, Dish);
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss"), EmployeeID, Name, CardNo, Meal, Dish);
                     }
                     else
                     {
@@ -496,7 +496,7 @@ namespace TKBOXEDMEAL
 
                 if (!string.IsNullOrEmpty(InsertsbSql.ToString()))
                 {
-                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                    connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                     sqlConn = new SqlConnection(connectionString);
 
                     sqlConn.Close();
@@ -511,18 +511,12 @@ namespace TKBOXEDMEAL
                     {
                         tran.Rollback();    //交易取消
                         if (Lang.Equals("CH"))
-                        {
-                            //label5.Text = "訂餐失敗!";
-                            //label4.Text = "";
-                            //AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
+                        {                           
                             SHOWMESSAGE(Name + " 訂餐失敗!!");
                         }
                         else if (Lang.Equals("VN"))
                         {
-                            //label5.Text = "đặt hàng không!";
-                            //label4.Text = "";
-                            //AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
-                            SHOWMESSAGE(Name + " đặt hàng không!!");
+                                                       SHOWMESSAGE(Name + " đặt hàng không!!");
                         }
                         PLAYMP3();
                     }
@@ -530,18 +524,12 @@ namespace TKBOXEDMEAL
                     {
                         tran.Commit();      //執行交易  
                         if (Lang.Equals("CH"))
-                        {
-                            //label5.Text = "訂餐成功!";
-                            //label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
-                            //AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                        {  
                             SHOWMESSAGE(Name + " 訂餐成功!!" + " 訂了: " + OrderBoxed.ToString());
 
                         }
                         else if (Lang.Equals("VN"))
-                        {
-                            //label5.Text = "thành công đặt phòng!";
-                            //label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
-                            //AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
+                        {                           
                             SHOWMESSAGE(Name + " thành công đặt phòng!!" + "  bạn đặt: " + OrderBoxed.ToString());
                         }
                     }
@@ -579,7 +567,7 @@ namespace TKBOXEDMEAL
         {
             try
             {
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                 sqlConn = new SqlConnection(connectionString);
 
                 sqlConn.Close();
@@ -662,121 +650,121 @@ namespace TKBOXEDMEAL
         public void OrderLast()
         {
 
-            if ((DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0 || (DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0)))
-            {
-                try
-                {
+            //if ((DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0 || (DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0)))
+            //{
+            //    try
+            //    {
 
-                    lastdate = SearchLastDate();
+            //        lastdate = SearchLastDate();
 
-                    connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
-                    sqlConn = new SqlConnection(connectionString);
+            //        connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
+            //        sqlConn = new SqlConnection(connectionString);
 
-                    sqlConn.Close();
-                    sqlConn.Open();
-                    tran = sqlConn.BeginTransaction();
+            //        sqlConn.Close();
+            //        sqlConn.Open();
+            //        tran = sqlConn.BeginTransaction();
 
-                    sbSql.Clear();
-                    //ADD COPTC
-                    //sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", EmployeeID);
-                    sbSql.AppendFormat(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM])");
-                    sbSql.AppendFormat(" SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] ");
-                    sbSql.AppendFormat(" FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
-                    sbSql.AppendFormat(" WHERE [ID]='{0}' AND  CONVERT(varchar(100),[DATE],112)='{1}'", EmployeeID, lastdate);
-                    sbSql.AppendFormat(" AND NOT EXISTS");
-                    sbSql.AppendFormat(" (SELECT [ID],[MEAL],[DISH] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] AS EMP2");
-                    sbSql.AppendFormat(" WHERE EMP2.[ID]=EMPORDER.[ID]");
-                    sbSql.AppendFormat(" AND EMP2.[MEAL]=EMPORDER.[MEAL]");
-                    sbSql.AppendFormat(" AND EMP2.[DISH]=EMPORDER.[DISH]");
-                    sbSql.AppendFormat(" AND CONVERT(varchar(100), EMP2.[DATE],112)=CONVERT(varchar(100),getdate(),112))");
-                    sbSql.AppendFormat(" ");
+            //        sbSql.Clear();
+            //        //ADD COPTC
+            //        //sbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE  CONVERT(varchar(20),[DATE],112)=CONVERT(varchar(20),GETDATE(),112) AND [ID]='{0}' ", EmployeeID);
+            //        sbSql.AppendFormat(" INSERT INTO [TKBOXEDMEAL].[dbo].[EMPORDER] ([ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM])");
+            //        sbSql.AppendFormat(" SELECT [ID],[NAME],[CARDNO],GETDATE()AS  [DATE],[MEAL],[DISH],[NUM],0 AS [EATNUM] ");
+            //        sbSql.AppendFormat(" FROM [TKBOXEDMEAL].[dbo].[EMPORDER]");
+            //        sbSql.AppendFormat(" WHERE [ID]='{0}' AND  CONVERT(varchar(100),[DATE],112)='{1}'", EmployeeID, lastdate);
+            //        sbSql.AppendFormat(" AND NOT EXISTS");
+            //        sbSql.AppendFormat(" (SELECT [ID],[MEAL],[DISH] FROM [TKBOXEDMEAL].[dbo].[EMPORDER] AS EMP2");
+            //        sbSql.AppendFormat(" WHERE EMP2.[ID]=EMPORDER.[ID]");
+            //        sbSql.AppendFormat(" AND EMP2.[MEAL]=EMPORDER.[MEAL]");
+            //        sbSql.AppendFormat(" AND EMP2.[DISH]=EMPORDER.[DISH]");
+            //        sbSql.AppendFormat(" AND CONVERT(varchar(100), EMP2.[DATE],112)=CONVERT(varchar(100),getdate(),112))");
+            //        sbSql.AppendFormat(" ");
 
 
-                    cmd.Connection = sqlConn;
-                    cmd.CommandTimeout = 60;
-                    cmd.CommandText = sbSql.ToString();
-                    cmd.Transaction = tran;
-                    result = cmd.ExecuteNonQuery();
-                    if (result == 0)
-                    {
-                        tran.Rollback();    //交易取消
+            //        cmd.Connection = sqlConn;
+            //        cmd.CommandTimeout = 60;
+            //        cmd.CommandText = sbSql.ToString();
+            //        cmd.Transaction = tran;
+            //        result = cmd.ExecuteNonQuery();
+            //        if (result == 0)
+            //        {
+            //            tran.Rollback();    //交易取消
 
-                        if (Lang.Equals("CH"))
-                        {
-                            //label5.Text = "訂餐失敗!";
-                            //label4.Text = "";
-                            //AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
-                            SHOWMESSAGE(Name + " 訂餐失敗!!");
-                        }
-                        else if (Lang.Equals("VN"))
-                        {
-                            //label5.Text = "đặt hàng không!";
-                            //label4.Text = "";
-                            //AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
-                            SHOWMESSAGE(Name + " 訂餐失敗!!");
-                        }
-                        PLAYMP3();
-                    }
-                    else
-                    {
-                        tran.Commit();      //訂餐成功  
-                        OrderBoxed = SearchMeal();
-                        if (!string.IsNullOrEmpty(OrderBoxed))
-                        {
-                            if (Lang.Equals("CH"))
-                            {
-                                //label5.Text = "訂餐成功!";
-                                //label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
-                                //AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
-                                SHOWMESSAGE(Name + " 訂餐成功!!" + " 您訂了: " + OrderBoxed.ToString());
-                            }
-                            else if (Lang.Equals("VN"))
-                            {
-                                //label5.Text = "thành công đặt phòng!";
-                                //label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
-                                //AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
-                                SHOWMESSAGE(Name + " thành công đặt phòng!!" + " bạn đặt: " + OrderBoxed.ToString());
-                            }
-                        }
+            //            if (Lang.Equals("CH"))
+            //            {
+            //                //label5.Text = "訂餐失敗!";
+            //                //label4.Text = "";
+            //                //AutoClosingMessageBox.Show("訂餐失敗!!", "TITLE", messagetime);
+            //                SHOWMESSAGE(Name + " 訂餐失敗!!");
+            //            }
+            //            else if (Lang.Equals("VN"))
+            //            {
+            //                //label5.Text = "đặt hàng không!";
+            //                //label4.Text = "";
+            //                //AutoClosingMessageBox.Show("đặt hàng không!!", "TITLE", messagetime);
+            //                SHOWMESSAGE(Name + " 訂餐失敗!!");
+            //            }
+            //            PLAYMP3();
+            //        }
+            //        else
+            //        {
+            //            tran.Commit();      //訂餐成功  
+            //            OrderBoxed = SearchMeal();
+            //            if (!string.IsNullOrEmpty(OrderBoxed))
+            //            {
+            //                if (Lang.Equals("CH"))
+            //                {
+            //                    //label5.Text = "訂餐成功!";
+            //                    //label4.Text = Name.ToString() + " 您訂了: " + OrderBoxed.ToString();
+            //                    //AutoClosingMessageBox.Show("訂餐成功!!"+ Name.ToString() + " 您訂了: " + OrderBoxed.ToString(), "TITLE", messagetime);
+            //                    SHOWMESSAGE(Name + " 訂餐成功!!" + " 您訂了: " + OrderBoxed.ToString());
+            //                }
+            //                else if (Lang.Equals("VN"))
+            //                {
+            //                    //label5.Text = "thành công đặt phòng!";
+            //                    //label4.Text = Name.ToString() + " bạn đặt: " + OrderBoxed.ToString();
+            //                    //AutoClosingMessageBox.Show("thành công đặt phòng!!" + Name.ToString() + " bạn đặt: " + OrderBoxed.ToString(), "TITLE", messagetime);
+            //                    SHOWMESSAGE(Name + " thành công đặt phòng!!" + " bạn đặt: " + OrderBoxed.ToString());
+            //                }
+            //            }
 
-                    }
+            //        }
 
-                    sqlConn.Close();
-                    Search();
+            //        sqlConn.Close();
+            //        Search();
 
-                    textBox1.Text = null;
-                }
-                catch
-                {
+            //        textBox1.Text = null;
+            //    }
+            //    catch
+            //    {
 
-                }
-                finally
-                {
+            //    }
+            //    finally
+            //    {
 
-                }
+            //    }
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                if (Lang.Equals("CH"))
-                {
-                    //label5.Text = "超過可點餐時間!";
-                    //label4.Text = "";
-                    //AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
-                    SHOWMESSAGE(Name + " 超過可點餐時間!!");
-                }
-                else if (Lang.Equals("VN"))
-                {
-                    //label5.Text = "Vượt quá thời gian bữa ăn!";
-                    //label4.Text = "";
-                    //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
-                    SHOWMESSAGE(Name + " Vượt quá thời gian bữa ăn!!");
-                }
+            //    if (Lang.Equals("CH"))
+            //    {
+            //        //label5.Text = "超過可點餐時間!";
+            //        //label4.Text = "";
+            //        //AutoClosingMessageBox.Show("超過可點餐時間!!", "TITLE", messagetime);
+            //        SHOWMESSAGE(Name + " 超過可點餐時間!!");
+            //    }
+            //    else if (Lang.Equals("VN"))
+            //    {
+            //        //label5.Text = "Vượt quá thời gian bữa ăn!";
+            //        //label4.Text = "";
+            //        //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);
+            //        SHOWMESSAGE(Name + " Vượt quá thời gian bữa ăn!!");
+            //    }
 
-                PLAYMP3();
-            }
-            textBox1.Select();
+            //    PLAYMP3();
+            //}
+            //textBox1.Select();
         }
 
         public string SearchLastDate()
@@ -785,7 +773,7 @@ namespace TKBOXEDMEAL
 
             try
             {
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                 sqlConn = new SqlConnection(connectionString);
 
                 sbSql.Clear();
@@ -832,7 +820,7 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                 sqlConn = new SqlConnection(connectionString);
 
                 sbSql.Clear();
@@ -956,7 +944,7 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString;
+                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
                 sqlConn = new SqlConnection(connectionString);
 
                 sbSql.Clear();

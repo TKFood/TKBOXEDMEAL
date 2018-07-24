@@ -143,18 +143,18 @@
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.button3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.button6, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.button11, 9, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button12, 9, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button13, 9, 2);
             this.tableLayoutPanel1.Controls.Add(this.button2, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.button4, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.button7, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.button8, 6, 4);
             this.tableLayoutPanel1.Controls.Add(this.button5, 6, 3);
             this.tableLayoutPanel1.Controls.Add(this.button9, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button10, 6, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button11, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button12, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button13, 8, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // button11
@@ -191,7 +191,6 @@
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
-            this.tableLayoutPanel1.SetColumnSpan(this.label6, 2);
             this.label6.Name = "label6";
             // 
             // button1
