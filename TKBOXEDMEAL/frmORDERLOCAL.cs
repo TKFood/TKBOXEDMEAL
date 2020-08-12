@@ -431,7 +431,7 @@ namespace TKBOXEDMEAL
                         //InsertsbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  ([MEAL]='10' OR [MEAL]='20') AND [EATNUM]=0", EmployeeID, Meal);
                         Meal = "10";
                         InsertsbSql.Append(" ");
-                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss") ,EmployeeID, Name, CardNo, Meal, Dish);
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}',N'{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss") ,EmployeeID, Name, CardNo, Meal, Dish);
                     }
 
                     sqlConn = new SqlConnection(connectionString);
@@ -452,7 +452,7 @@ namespace TKBOXEDMEAL
                     {
                         Meal = "20";
                         InsertsbSql.Append(" ");
-                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss"), EmployeeID, Name, CardNo, Meal, Dish);
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}',N'{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss"), EmployeeID, Name, CardNo, Meal, Dish);
                     }
 
                 }
@@ -483,7 +483,7 @@ namespace TKBOXEDMEAL
                     {
                         InsertsbSql.Append(" ");
                         //InsertsbSql.AppendFormat(" DELETE [TKBOXEDMEAL].[dbo].[EMPORDER] WHERE CONVERT(varchar(100),[DATE], 112)=CONVERT(varchar(100),GETDATE(), 112) AND [ID]='{0}' AND  [MEAL]='{1}' AND [EATNUM]=0 ", EmployeeID, Meal);
-                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}','{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss"), EmployeeID, Name, CardNo, Meal, Dish);
+                        InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}',N'{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss"), EmployeeID, Name, CardNo, Meal, Dish);
                     }
                     else
                     {
