@@ -38,25 +38,25 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -141,13 +141,7 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.LightGreen;
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button6, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.button2, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button4, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button7, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.button8, 6, 4);
-            this.tableLayoutPanel1.Controls.Add(this.button5, 6, 3);
             this.tableLayoutPanel1.Controls.Add(this.button9, 6, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button10, 6, 0);
@@ -155,43 +149,13 @@
             this.tableLayoutPanel1.Controls.Add(this.button11, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button12, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.button13, 8, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button5, 9, 3);
+            this.tableLayoutPanel1.Controls.Add(this.button8, 9, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button4, 8, 3);
+            this.tableLayoutPanel1.Controls.Add(this.button7, 8, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button6, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button3, 3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            // 
-            // button11
-            // 
-            resources.ApplyResources(this.button11, "button11");
-            this.button11.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button11.Name = "button11";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button12
-            // 
-            resources.ApplyResources(this.button12, "button12");
-            this.button12.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button12.Name = "button12";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // button10
-            // 
-            resources.ApplyResources(this.button10, "button10");
-            this.tableLayoutPanel1.SetColumnSpan(this.button10, 2);
-            this.button10.ForeColor = System.Drawing.Color.Red;
-            this.button10.Name = "button10";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // textBox1
-            // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 3);
-            this.textBox1.Name = "textBox1";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
             // 
             // button1
             // 
@@ -218,14 +182,6 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button7
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.button7, 3);
-            resources.ApplyResources(this.button7, "button7");
-            this.button7.Name = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // button2
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.button2, 3);
@@ -237,11 +193,24 @@
             // 
             // button4
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.button4, 3);
             resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button7
+            // 
+            resources.ApplyResources(this.button7, "button7");
+            this.button7.Name = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button5
+            // 
+            resources.ApplyResources(this.button5, "button5");
+            this.button5.Name = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button9
             // 
@@ -252,21 +221,41 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // button5
+            // textBox1
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.button5, 3);
-            resources.ApplyResources(this.button5, "button5");
-            this.button5.Name = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 3);
+            this.textBox1.Name = "textBox1";
             // 
-            // button8
+            // button10
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.button8, 3);
-            resources.ApplyResources(this.button8, "button8");
-            this.button8.Name = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            resources.ApplyResources(this.button10, "button10");
+            this.tableLayoutPanel1.SetColumnSpan(this.button10, 2);
+            this.button10.ForeColor = System.Drawing.Color.Red;
+            this.button10.Name = "button10";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // button11
+            // 
+            resources.ApplyResources(this.button11, "button11");
+            this.button11.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button11.Name = "button11";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            resources.ApplyResources(this.button12, "button12");
+            this.button12.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button12.Name = "button12";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button13
             // 
@@ -300,6 +289,13 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button8
+            // 
+            resources.ApplyResources(this.button8, "button8");
+            this.button8.Name = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // frmORDERLOCAL
             // 
@@ -353,8 +349,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button8;
     }
 }

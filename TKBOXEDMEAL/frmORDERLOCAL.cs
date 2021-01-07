@@ -223,6 +223,7 @@ namespace TKBOXEDMEAL
         {
 
             if ((DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0 || (DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0)))
+            //if(1==1)
             {
                 if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
                 {
@@ -234,11 +235,11 @@ namespace TKBOXEDMEAL
                     if (!string.IsNullOrEmpty(Name))
                     {
                         button3.Visible = true;
-                        button4.Visible = true;
-                        button5.Visible = true;
+                        button4.Visible = false;
+                        button5.Visible = false;
                         button6.Visible = true;
-                        button7.Visible = true;
-                        button8.Visible = true;
+                        button7.Visible = false;
+                        button8.Visible = false;
 
                         //button1.Visible = false;
                         button9.Visible = false;
@@ -285,11 +286,11 @@ namespace TKBOXEDMEAL
                     if (!string.IsNullOrEmpty(Name))
                     {
                         button3.Visible = true;
-                        button4.Visible = true;
-                        button5.Visible = true;
+                        button4.Visible = false;
+                        button5.Visible = false;
                         button6.Visible = true;
-                        button7.Visible = true;
-                        button8.Visible = true;
+                        button7.Visible = false;
+                        button8.Visible = false;
 
                         //button1.Visible = false;
                         button2.Visible = false;
