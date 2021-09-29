@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Media;
+using TKITDLL;
 
 namespace TKBOXEDMEAL
 {
@@ -90,8 +91,16 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
