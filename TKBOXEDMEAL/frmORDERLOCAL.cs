@@ -13,6 +13,7 @@ using System.Threading;
 using System.Globalization;
 using System.Resources;
 using System.Reflection;
+using TKITDLL;
 
 namespace TKBOXEDMEAL
 {
@@ -126,10 +127,17 @@ namespace TKBOXEDMEAL
         {
 
             try
-            {
+            {     
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
@@ -339,8 +347,16 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
@@ -411,8 +427,16 @@ namespace TKBOXEDMEAL
                 if (Meal.Equals("10+20"))
                 {
                     DataSet ds1 = new DataSet();
-                    connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                    sqlConn = new SqlConnection(connectionString);
+                    //20210902密
+                    Class1 TKID = new Class1();//用new 建立類別實體
+                    SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                    //資料庫使用者密碼解密
+                    sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                    sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                    String connectionString;
+                    sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                     sbSql.Clear();
                     sbSqlQuery.Clear();
@@ -435,7 +459,7 @@ namespace TKBOXEDMEAL
                         InsertsbSql.AppendFormat(" INSERT INTO  [TKBOXEDMEAL].[dbo].[LOCALEMPORDER] ([SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM]) VALUES ('{0}','{1}',N'{2}','{3}',GETDATE(),'{4}','{5}',1) ", DateTime.Now.ToString("yyyyMMddHHmmss") ,EmployeeID, Name, CardNo, Meal, Dish);
                     }
 
-                    sqlConn = new SqlConnection(connectionString);
+                    sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                     sbSql.Clear();
                     sbSqlQuery.Clear();
@@ -460,8 +484,16 @@ namespace TKBOXEDMEAL
                 else
                 {
                     DataSet ds1 = new DataSet();
-                    connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                    sqlConn = new SqlConnection(connectionString);
+                    //20210902密
+                    Class1 TKID = new Class1();//用new 建立類別實體
+                    SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                    //資料庫使用者密碼解密
+                    sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                    sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                    String connectionString;
+                    sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                     sbSql.Clear();
                     sbSqlQuery.Clear();
@@ -497,8 +529,16 @@ namespace TKBOXEDMEAL
 
                 if (!string.IsNullOrEmpty(InsertsbSql.ToString()))
                 {
-                    connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                    sqlConn = new SqlConnection(connectionString);
+                    //20210902密
+                    Class1 TKID = new Class1();//用new 建立類別實體
+                    SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                    //資料庫使用者密碼解密
+                    sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                    sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                    String connectionString;
+                    sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                     sqlConn.Close();
                     sqlConn.Open();
@@ -568,8 +608,16 @@ namespace TKBOXEDMEAL
         {
             try
             {
-                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                 sqlConn.Close();
                 sqlConn.Open();
@@ -774,8 +822,16 @@ namespace TKBOXEDMEAL
 
             try
             {
-                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
@@ -821,8 +877,16 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
@@ -945,8 +1009,16 @@ namespace TKBOXEDMEAL
             try
             {
 
-                connectionString = ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString;
-                sqlConn = new SqlConnection(connectionString);
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
 
                 sbSql.Clear();
                 sbSqlQuery.Clear();
