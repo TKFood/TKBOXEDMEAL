@@ -154,4 +154,10 @@
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
     <value>976, 633</value>
   </data>
+  <data name="button14.Text" xml:space="preserve">
+    <value>Bữa tối tăng ca - Ăn mặn</value>
+  </data>
+  <data name="button15.Text" xml:space="preserve">
+    <value>Bữa tối tăng ca - Ăn chay</value>
+  </data>
 </root>

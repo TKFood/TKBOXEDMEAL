@@ -487,7 +487,7 @@ namespace TKBOXEDMEAL
                     }
 
                 }
-                else
+                else 
                 {
                     DataSet ds1 = new DataSet();
                     //20210902密
@@ -554,6 +554,7 @@ namespace TKBOXEDMEAL
                     cmd.CommandText = InsertsbSql.ToString();
                     cmd.Transaction = tran;
                     result = cmd.ExecuteNonQuery();
+
                     if (result == 0)
                     {
                         tran.Rollback();    //交易取消
@@ -563,7 +564,7 @@ namespace TKBOXEDMEAL
                         }
                         else if (Lang.Equals("VN"))
                         {
-                                                       SHOWMESSAGE(Name + " đặt hàng không!!");
+                            SHOWMESSAGE(Name + " đặt hàng không!!");
                         }
                         PLAYMP3();
                     }
@@ -1497,8 +1498,107 @@ namespace TKBOXEDMEAL
             SetCancel();
         }
 
+        private void button14_Click(object sender, EventArgs e)
+        {
+            DateTime omdt = DateTime.Now;
+
+            Meal = "30";
+            Dish = "1";
+
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "延後加班晚餐-葷";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Bữa tối tăng ca - Ăn mặn ";
+            }
+            if (OrderCancel.Equals("Order"))
+            {
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
+            }
+            else if (OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
+            }
+
+
+            //button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+            button14.Visible = false;
+            button15.Visible = false;
+
+            textBox1.Text = "";
+            EmployeeID = null;
+            Name = null;
+            CardNo = null;
+            Meal = null;
+
+            SetCancel();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            DateTime omdt = DateTime.Now;
+
+            Meal = "30";
+            Dish = "2";
+
+            if (Lang.Equals("CH"))
+            {
+                OrderBoxed = "延後加班晚餐-素";
+            }
+            else if (Lang.Equals("VN"))
+            {
+                OrderBoxed = "Bữa tối tăng ca - Ăn chay";
+            }
+            if (OrderCancel.Equals("Order"))
+            {
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    ORDERAdd(Meal, Dish, OrderBoxed);
+                }
+            }
+            else if (OrderCancel.Equals("Cancel"))
+            {
+                OrderCanel(Meal, Dish, OrderBoxed);
+            }
+
+
+            //button1.Visible = true;
+            button2.Visible = true;
+            button9.Visible = true;
+
+            button3.Visible = false;
+            button4.Visible = false;
+            button5.Visible = false;
+            button6.Visible = false;
+            button7.Visible = false;
+            button8.Visible = false;
+            button14.Visible = false;
+            button15.Visible = false;
+
+            textBox1.Text = "";
+            EmployeeID = null;
+            Name = null;
+            CardNo = null;
+            Meal = null;
+
+            SetCancel();
+        }
         #endregion
 
-       
+
     }
 }
