@@ -1031,11 +1031,12 @@ namespace TKBOXEDMEAL
                 sbSqlQuery.Clear();
 
 
-                sbSql.AppendFormat(@"  SELECT  [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]");
-                sbSql.AppendFormat(@"  FROM [TKBOXEDMEAL].[dbo].[LOCALEMPORDER]");
-                sbSql.AppendFormat(@"  WHERE CONVERT(varchar(100),[DATE],112) =CONVERT(varchar(100),GETDATE(),112)");
-                sbSql.AppendFormat(@"  AND (ID='{0}' OR CARDNO='{0}')", textBox1.Text.ToString());
-                sbSql.AppendFormat(@"  ");
+                sbSql.AppendFormat(@"  
+                                    SELECT  [SERNO],[ID],[NAME],[CARDNO],[DATE],[MEAL],[DISH],[NUM],[EATNUM]
+                                    FROM [TKBOXEDMEAL].[dbo].[LOCALEMPORDER]
+                                    WHERE CONVERT(varchar(100),[DATE],112) =CONVERT(varchar(100),GETDATE(),112)
+                                    AND (ID='{0}' OR CARDNO='{0}')"
+                                    , textBox1.Text.ToString());
 
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
                 sqlCmdBuilder = new SqlCommandBuilder(adapter);
@@ -1077,6 +1078,18 @@ namespace TKBOXEDMEAL
                             else if (Lang.Equals("VN"))
                             {
                                 mess = mess + "Ăn trưa ";
+                            }
+
+                        }
+                        else if (dr["MEAL"].ToString().Equals("30"))
+                        {
+                            if (Lang.Equals("CH"))
+                            {
+                                mess = mess + "延後加班的晚餐 ";
+                            }
+                            else if (Lang.Equals("VN"))
+                            {
+                                mess = mess + "Bữa tối tăng ca ";
                             }
 
                         }
