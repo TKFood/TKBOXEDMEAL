@@ -156,9 +156,9 @@
             this.tableLayoutPanel1.Controls.Add(this.button3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.button6, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.button4, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button7, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.button14, 6, 3);
             this.tableLayoutPanel1.Controls.Add(this.button15, 6, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button7, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // button1
@@ -249,7 +249,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.button4, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.button4, 3);
             resources.ApplyResources(this.button4, "button4");
             this.button4.Name = "button4";
             this.button4.UseVisualStyleBackColor = false;
@@ -258,7 +258,7 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.button7, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.button7, 3);
             resources.ApplyResources(this.button7, "button7");
             this.button7.Name = "button7";
             this.button7.UseVisualStyleBackColor = false;
@@ -267,7 +267,7 @@
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.button6, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.button6, 3);
             resources.ApplyResources(this.button6, "button6");
             this.button6.Name = "button6";
             this.button6.UseVisualStyleBackColor = false;
@@ -276,7 +276,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.button3, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.button3, 3);
             resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = false;
@@ -310,7 +310,7 @@
             // button14
             // 
             this.button14.BackColor = System.Drawing.Color.Pink;
-            this.tableLayoutPanel1.SetColumnSpan(this.button14, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.button14, 3);
             resources.ApplyResources(this.button14, "button14");
             this.button14.Name = "button14";
             this.button14.UseVisualStyleBackColor = false;
@@ -319,7 +319,7 @@
             // button15
             // 
             this.button15.BackColor = System.Drawing.Color.LightPink;
-            this.tableLayoutPanel1.SetColumnSpan(this.button15, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.button15, 3);
             resources.ApplyResources(this.button15, "button15");
             this.button15.Name = "button15";
             this.button15.UseVisualStyleBackColor = false;

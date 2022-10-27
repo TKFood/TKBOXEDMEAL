@@ -745,7 +745,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 76</value>
+    <value>284, 76</value>
   </data>
   <data name="button3.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -778,7 +778,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="button6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 76</value>
+    <value>284, 76</value>
   </data>
   <data name="button6.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -814,7 +814,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 76</value>
+    <value>284, 76</value>
   </data>
   <data name="button4.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -837,42 +837,6 @@
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="button7.Font" type="System.Drawing.Font, System.Drawing">
-    <value>新細明體, 24pt</value>
-  </data>
-  <data name="button7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>290, 303</value>
-  </data>
-  <data name="button7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="button7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 76</value>
-  </data>
-  <data name="button7.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="button7.Text" xml:space="preserve">
-    <value>晚餐-素</value>
-  </data>
-  <data name="button7.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;button7.Name" xml:space="preserve">
-    <value>button7</value>
-  </data>
-  <data name="&gt;&gt;button7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button7.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;button7.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
   <data name="button14.Font" type="System.Drawing.Font, System.Drawing">
     <value>新細明體, 24pt</value>
   </data>
@@ -886,7 +850,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="button14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 76</value>
+    <value>284, 76</value>
   </data>
   <data name="button14.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -907,7 +871,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;button14.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="button15.Font" type="System.Drawing.Font, System.Drawing">
     <value>新細明體, 24pt</value>
@@ -922,7 +886,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="button15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 76</value>
+    <value>284, 76</value>
   </data>
   <data name="button15.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -943,6 +907,42 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;button15.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="button7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>新細明體, 24pt</value>
+  </data>
+  <data name="button7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 303</value>
+  </data>
+  <data name="button7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="button7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>284, 76</value>
+  </data>
+  <data name="button7.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="button7.Text" xml:space="preserve">
+    <value>晚餐-素</value>
+  </data>
+  <data name="button7.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;button7.Name" xml:space="preserve">
+    <value>button7</value>
+  </data>
+  <data name="&gt;&gt;button7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button7.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;button7.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -976,7 +976,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="button1" Row="2" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="button2" Row="2" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;Control Name="button9" Row="2" RowSpan="1" Column="6" ColumnSpan="3" /&gt;&lt;Control Name="textBox1" Row="0" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;Control Name="button10" Row="0" RowSpan="1" Column="6" ColumnSpan="2" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="button11" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="button12" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="button13" Row="0" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="button5" Row="3" RowSpan="1" Column="9" ColumnSpan="1" /&gt;&lt;Control Name="button8" Row="4" RowSpan="1" Column="9" ColumnSpan="1" /&gt;&lt;Control Name="button3" Row="3" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="button6" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="button4" Row="3" RowSpan="1" Column="3" ColumnSpan="2" /&gt;&lt;Control Name="button7" Row="4" RowSpan="1" Column="3" ColumnSpan="2" /&gt;&lt;Control Name="button14" Row="3" RowSpan="1" Column="6" ColumnSpan="2" /&gt;&lt;Control Name="button15" Row="4" RowSpan="1" Column="6" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Absolute,8" /&gt;&lt;Rows Styles="Absolute,80,Absolute,33,Absolute,95,Absolute,93,Absolute,99,Absolute,80" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="button1" Row="2" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="button2" Row="2" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;Control Name="button9" Row="2" RowSpan="1" Column="6" ColumnSpan="3" /&gt;&lt;Control Name="textBox1" Row="0" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;Control Name="button10" Row="0" RowSpan="1" Column="6" ColumnSpan="2" /&gt;&lt;Control Name="label6" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="button11" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="button12" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="button13" Row="0" RowSpan="1" Column="8" ColumnSpan="1" /&gt;&lt;Control Name="button5" Row="3" RowSpan="1" Column="9" ColumnSpan="1" /&gt;&lt;Control Name="button8" Row="4" RowSpan="1" Column="9" ColumnSpan="1" /&gt;&lt;Control Name="button3" Row="3" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="button6" Row="4" RowSpan="1" Column="0" ColumnSpan="3" /&gt;&lt;Control Name="button4" Row="3" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;Control Name="button14" Row="3" RowSpan="1" Column="6" ColumnSpan="3" /&gt;&lt;Control Name="button15" Row="4" RowSpan="1" Column="6" ColumnSpan="3" /&gt;&lt;Control Name="button7" Row="4" RowSpan="1" Column="3" ColumnSpan="3" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Percent,10,Absolute,8" /&gt;&lt;Rows Styles="Absolute,80,Absolute,33,Absolute,95,Absolute,93,Absolute,99,Absolute,80" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.Name" xml:space="preserve">
     <value>splitContainer1.Panel2</value>
