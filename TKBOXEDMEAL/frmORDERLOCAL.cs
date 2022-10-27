@@ -145,11 +145,11 @@ namespace TKBOXEDMEAL
 
                 if (Lang.Equals("CH"))
                 {
-                    sbSql.AppendFormat(@"SELECT [ID] AS '編號',[NAME]  AS '名稱',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS '訂餐開始時間',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS '訂餐結束時間', CONVERT(VARCHAR(5),[STARTEATTIME] ,108)  AS '用餐開始時間',CONVERT(VARCHAR(5),[ENDEATTIME] ,108)   AS '用餐結束時間' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
+                    sbSql.AppendFormat(@"SELECT [NAME]  AS '名稱',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS '訂餐開始時間',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS '訂餐結束時間' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
                 }
                 else if (Lang.Equals("VN"))
                 {
-                    sbSql.AppendFormat(@"SELECT [ID] AS 'số',[VNNAME]  AS 'tên',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS 'Thứ tự thời gian bắt đầu',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS 'Đặt End Time', CONVERT(VARCHAR(5),[STARTEATTIME] ,108)  AS 'Ăn Start Time',CONVERT(VARCHAR(5),[ENDEATTIME] ,108)   AS 'Kết thúc thời gian bữa ăn' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
+                    sbSql.AppendFormat(@"SELECT [VNNAME]  AS 'tên',CONVERT(VARCHAR(5),[STARTORDERTIME] ,108)  AS 'Thứ tự thời gian bắt đầu',CONVERT(VARCHAR(5),[ENDORDERTIME] ,108)   AS 'Đặt End Time' FROM [{0}].[dbo].[BOXEDMEALSET]  ", sqlConn.Database.ToString());
 
                 }
                 adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
@@ -180,14 +180,14 @@ namespace TKBOXEDMEAL
                         DataRow[] result = ds.Tables["TEMPds"].Select("名稱='午餐'");
                         foreach (DataRow row in result)
                         {
-                            startdt = Convert.ToDateTime(row[2].ToString());
-                            enddt = Convert.ToDateTime(row[3].ToString());
+                            startdt = Convert.ToDateTime(row[1].ToString());
+                            enddt = Convert.ToDateTime(row[2].ToString());
                         }
                         DataRow[] result2 = ds.Tables["TEMPds"].Select("名稱='晚餐'");
                         foreach (DataRow row2 in result2)
                         {
-                            startdinnerdt = Convert.ToDateTime(row2[2].ToString());
-                            enddinnerdt = Convert.ToDateTime(row2[3].ToString());
+                            startdinnerdt = Convert.ToDateTime(row2[1].ToString());
+                            enddinnerdt = Convert.ToDateTime(row2[2].ToString());
                         }
 
                     }
@@ -243,11 +243,13 @@ namespace TKBOXEDMEAL
                     if (!string.IsNullOrEmpty(Name))
                     {
                         button3.Visible = true;
-                        button4.Visible = false;
+                        button4.Visible = true;
                         button5.Visible = false;
                         button6.Visible = true;
-                        button7.Visible = false;
+                        button7.Visible = true;
                         button8.Visible = false;
+                        button14.Visible = true;
+                        button15.Visible = true;
 
                         //button1.Visible = false;
                         button9.Visible = false;
@@ -294,11 +296,13 @@ namespace TKBOXEDMEAL
                     if (!string.IsNullOrEmpty(Name))
                     {
                         button3.Visible = true;
-                        button4.Visible = false;
+                        button4.Visible = true;
                         button5.Visible = false;
                         button6.Visible = true;
-                        button7.Visible = false;
+                        button7.Visible = true;
                         button8.Visible = false;
+                        button14.Visible = true;
+                        button15.Visible = true;
 
                         //button1.Visible = false;
                         button2.Visible = false;
@@ -337,6 +341,8 @@ namespace TKBOXEDMEAL
             button6.Visible = false;
             button7.Visible = false;
             button8.Visible = false;
+            button14.Visible = false;
+            button15.Visible = false;
 
             textBox1.Text = null;
             textBox1.Select();
