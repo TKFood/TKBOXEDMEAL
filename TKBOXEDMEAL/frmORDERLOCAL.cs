@@ -879,8 +879,7 @@ namespace TKBOXEDMEAL
 
         }
         public string SearchMeal()
-        {
-            QueryMeal = null;
+        {           QueryMeal = null;
             try
             {
 
