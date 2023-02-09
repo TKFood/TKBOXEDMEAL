@@ -252,7 +252,7 @@ namespace TKBOXEDMEAL
                         button15.Visible = true;
 
                         //button1.Visible = false;
-                        button9.Visible = false;
+                        //button9.Visible = false;
                         button2.Visible = false;
                     }
                     else
@@ -333,7 +333,7 @@ namespace TKBOXEDMEAL
         {
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -346,6 +346,8 @@ namespace TKBOXEDMEAL
 
             textBox1.Text = null;
             textBox1.Select();
+
+          
         }
 
         public void SearchEmplyee()
@@ -1241,7 +1243,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -1289,7 +1291,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -1338,7 +1340,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -1386,7 +1388,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -1436,7 +1438,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -1485,7 +1487,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -1540,7 +1542,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
@@ -1590,7 +1592,7 @@ namespace TKBOXEDMEAL
 
             //button1.Visible = true;
             button2.Visible = true;
-            button9.Visible = true;
+            //button9.Visible = true;
 
             button3.Visible = false;
             button4.Visible = false;
