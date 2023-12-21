@@ -197,14 +197,14 @@ namespace TKBOXEDMEAL
                         DataRow[] result = ds.Tables["TEMPds"].Select("tên='bữa ăn trưa'");
                         foreach (DataRow row in result)
                         {
-                            startdt = Convert.ToDateTime(row[2].ToString());
-                            enddt = Convert.ToDateTime(row[3].ToString());
+                            startdt = Convert.ToDateTime(row[1].ToString());
+                            enddt = Convert.ToDateTime(row[2].ToString());
                         }
                         DataRow[] result2 = ds.Tables["TEMPds"].Select("tên='bữa tối'");
                         foreach (DataRow row2 in result2)
                         {
-                            startdinnerdt = Convert.ToDateTime(row2[2].ToString());
-                            enddinnerdt = Convert.ToDateTime(row2[3].ToString());
+                            startdinnerdt = Convert.ToDateTime(row2[1].ToString());
+                            enddinnerdt = Convert.ToDateTime(row2[2].ToString());
                         }
 
                     }
@@ -230,7 +230,7 @@ namespace TKBOXEDMEAL
         public void SetOrderButton()
         {
 
-            if ((DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0 || (DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0)))
+            if (DateTime.Compare(startdt, comdt) < 0 && DateTime.Compare(enddt, comdt) > 0)
             //if(1==1)
             {
                 if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
@@ -242,10 +242,55 @@ namespace TKBOXEDMEAL
 
                     if (!string.IsNullOrEmpty(Name))
                     {
-                        button3.Visible = true;
+                        button3.Visible = true;                     
+                        button6.Visible = true;                      
+
+                        //button1.Visible = false;
+                        //button9.Visible = false;
+                        button2.Visible = false;
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+
+            }
+            else
+            {
+                if (Lang.Equals("CH"))
+                {
+                    //label5.Text = "超過可點餐時間!!";
+                    //AutoClosingMessageBox.Show("超過可點餐時間!!" , "TITLE", messagetime);
+                    //SHOWMESSAGE("超過可點餐時間!!");
+
+                }
+                else if (Lang.Equals("VN"))
+                {
+                    //label5.Text = "Vượt quá thời gian bữa ăn!";
+                    //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);                  
+                    //SHOWMESSAGE("Vượt quá thời gian bữa ăn!!");
+                }
+                PLAYMP3();
+                //label4.Text = "";
+            }
+
+            if ((DateTime.Compare(startdinnerdt, comdt) < 0 && DateTime.Compare(enddinnerdt, comdt) > 0))
+            //if(1==1)
+            {
+                if (!string.IsNullOrEmpty(textBox1.Text.ToString()))
+                {
+                    textBox1.Text = textBox1.Text.TrimStart('0').ToString();
+                    InputID = textBox1.Text.ToString();
+
+                    SearchEmplyee();
+
+                    if (!string.IsNullOrEmpty(Name))
+                    {
+                        
                         button4.Visible = true;
-                        button5.Visible = false;
-                        button6.Visible = true;
+                        button5.Visible = false;                       
                         button7.Visible = true;
                         button8.Visible = false;
                         button14.Visible = true;
@@ -269,20 +314,21 @@ namespace TKBOXEDMEAL
                 {
                     //label5.Text = "超過可點餐時間!!";
                     //AutoClosingMessageBox.Show("超過可點餐時間!!" , "TITLE", messagetime);
-                    SHOWMESSAGE("超過可點餐時間!!");
+                    //SHOWMESSAGE("超過可點餐時間!!");
 
                 }
                 else if (Lang.Equals("VN"))
                 {
                     //label5.Text = "Vượt quá thời gian bữa ăn!";
                     //AutoClosingMessageBox.Show("Vượt quá thời gian bữa ăn!!", "TITLE", messagetime);                  
-                    SHOWMESSAGE("Vượt quá thời gian bữa ăn!!");
+                    //SHOWMESSAGE("Vượt quá thời gian bữa ăn!!");
                 }
                 PLAYMP3();
                 //label4.Text = "";
             }
 
         }
+
 
         public void SetCancelButton()
         {
@@ -1136,6 +1182,129 @@ namespace TKBOXEDMEAL
             }
         }
 
+        public void ADD_LOG_LOCALEMPORDER(string KEY)
+        {
+
+            StringBuilder SQLADD = new StringBuilder();
+           
+            try
+            {
+                DataTable DT = SearchEmplyee_ID(KEY);
+
+                if (DT != null && DT.Rows.Count >= 1)
+                {
+                    string ID = DT.Rows[0]["EmployeeID"].ToString();
+                    string NAME = DT.Rows[0]["Name"].ToString();
+                    string CARDNO = DT.Rows[0]["CardNo"].ToString();
+
+                    //20210902密
+                    Class1 TKID = new Class1();//用new 建立類別實體
+                    SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                    //資料庫使用者密碼解密
+                    sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                    sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                    String connectionString;
+                    sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+                    sqlConn.Close();
+                    sqlConn.Open();
+                    tran = sqlConn.BeginTransaction();
+
+                    SQLADD.AppendFormat(@"
+                                    INSERT INTO  [TKBOXEDMEAL].[dbo].[LOG_LOCALEMPORDER]
+                                    (
+                                    [ID]
+                                    ,[NAME]
+                                    ,[CARDNO]
+                                    )
+                                    VALUES
+                                    (
+                                    '{0}'
+                                    ,'{1}'
+                                    ,'{2}'
+                                    )
+                                    ", ID, NAME, CARDNO);
+
+                    cmd.Connection = sqlConn;
+                    cmd.CommandTimeout = 60;
+                    cmd.CommandText = SQLADD.ToString();
+                    cmd.Transaction = tran;
+                    result = cmd.ExecuteNonQuery();
+
+                    if (result == 0)
+                    {
+                        tran.Rollback();    //交易取消
+                    }
+                    else
+                    {
+                        tran.Commit();      //執行交易  
+
+
+                    }
+
+
+
+                    sqlConn.Close();
+                }
+               
+            }
+            catch { }
+            finally { }
+         
+        
+        }
+
+        public DataTable SearchEmplyee_ID(string KEY)
+        {
+            try
+            {
+
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+                sbSql.Clear();
+                sbSqlQuery.Clear();
+
+                sbSql.AppendFormat(@"SELECT TOP 1  [EmployeeID],[CardNo],[Name] FROM [TKBOXEDMEAL].[dbo].[EMPLOYEE] WHERE [EmployeeID]='{1}' OR [CardNo]='{1}'", sqlConn.Database.ToString(), KEY);
+
+                adapter = new SqlDataAdapter(@"" + sbSql, sqlConn);
+                sqlCmdBuilder = new SqlCommandBuilder(adapter);
+
+                sqlConn.Open();
+                ds1.Clear();
+                adapter.Fill(ds1, "TEMPds1");
+                sqlConn.Close();
+
+                if (ds1.Tables["TEMPds1"].Rows.Count >= 1)
+                {
+                    return ds1.Tables["TEMPds1"];
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+
+            }
+
+        }
         public void SHOWMESSAGE(String mess)
         {
             String text = mess;
@@ -1202,6 +1371,8 @@ namespace TKBOXEDMEAL
         {
             comdt = DateTime.Now;
             OrderCancel = "Order";
+
+            ADD_LOG_LOCALEMPORDER(textBox1.Text.Trim());
             SetOrderButton();
         }
 

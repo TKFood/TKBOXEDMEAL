@@ -157,8 +157,8 @@
             this.tableLayoutPanel1.Controls.Add(this.button6, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.button4, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.button14, 6, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button15, 6, 4);
             this.tableLayoutPanel1.Controls.Add(this.button7, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.button15, 6, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // button1
