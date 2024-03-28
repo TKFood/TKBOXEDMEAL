@@ -74,6 +74,10 @@ namespace TKBOXEDMEAL
             timer1.Interval = 1000;
             timer1.Start();
 
+            timer2.Enabled = true;
+            timer2.Interval = 1000*60*5;
+            timer2.Start();
+
             Search();
             textBox1.Select();
             comdt = DateTime.Now;
@@ -103,6 +107,35 @@ namespace TKBOXEDMEAL
         private void timer1_Tick(object sender, EventArgs e)
         {
             label1.Text = DateTime.Now.ToString();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            textBox1.Select();
+
+            // Check if current time is within the specified range (Monday to Friday, 06:00 to 07:00)
+            if (IsWithinTimeRange())
+            {
+                //用check檢查系統是曾否正常執行
+                ADD_LOG_LOCALEMPORDER_TEMP();
+            }
+            
+        }
+
+        private bool IsWithinTimeRange()
+        {
+            DayOfWeek today = DateTime.Now.DayOfWeek;
+            int hour = DateTime.Now.Hour;
+
+            // Check if today is Monday to Friday and if the hour is between 06:00 and 07:00
+            if (today >= DayOfWeek.Monday && today <= DayOfWeek.Friday && hour == 6)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public void PLAYMP3()
         {
@@ -215,7 +248,7 @@ namespace TKBOXEDMEAL
             }
             catch
             {
-
+                textBox1.Select();
             }
             finally
             {
@@ -461,7 +494,7 @@ namespace TKBOXEDMEAL
             }
             catch
             {
-
+                textBox1.Select();
             }
             finally
             {
@@ -650,7 +683,7 @@ namespace TKBOXEDMEAL
             }
             catch
             {
-
+                textBox1.Select();
             }
             finally
             {
@@ -742,7 +775,7 @@ namespace TKBOXEDMEAL
             }
             catch
             {
-
+                textBox1.Select();
             }
             finally
             {
@@ -918,6 +951,8 @@ namespace TKBOXEDMEAL
             }
             catch
             {
+                textBox1.Select();
+
                 return null;
             }
             finally
@@ -1017,7 +1052,7 @@ namespace TKBOXEDMEAL
             }
             catch
             {
-
+                textBox1.Select();
             }
             finally
             {
@@ -1174,7 +1209,7 @@ namespace TKBOXEDMEAL
             }
             catch
             {
-
+                textBox1.Select();
             }
             finally
             {
@@ -1250,7 +1285,9 @@ namespace TKBOXEDMEAL
                 }
                
             }
-            catch { }
+            catch {
+                textBox1.Select();
+            }
             finally { }
          
         
@@ -1297,6 +1334,8 @@ namespace TKBOXEDMEAL
             }
             catch
             {
+                textBox1.Select();
+
                 return null;
             }
             finally
@@ -1311,7 +1350,79 @@ namespace TKBOXEDMEAL
             Message message = new Message(text);
             message.Show();
         }
+        public void ADD_LOG_LOCALEMPORDER_TEMP()
+        {
 
+            StringBuilder SQLADD = new StringBuilder();
+
+            try
+            {
+
+                string ID = "CHECK";
+                string NAME = "CHECK";
+                string CARDNO = "OK";
+
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconnlocal"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                SQLADD.AppendFormat(@"
+                                INSERT INTO  [TKBOXEDMEAL].[dbo].[LOG_LOCALEMPORDER]
+                                (
+                                [ID]
+                                ,[NAME]
+                                ,[CARDNO]
+                                )
+                                VALUES
+                                (
+                                '{0}'
+                                ,'{1}'
+                                ,'{2}'
+                                )
+                                ", ID, NAME, CARDNO);
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = SQLADD.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+
+                }
+
+
+
+                sqlConn.Close();
+               
+
+            }
+            catch
+            {
+                textBox1.Select();
+            }
+            finally { }
+
+
+        }
         #endregion
 
 
@@ -1782,8 +1893,9 @@ namespace TKBOXEDMEAL
 
             SetCancel();
         }
+
         #endregion
 
-
+       
     }
 }
