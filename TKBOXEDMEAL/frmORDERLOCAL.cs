@@ -128,7 +128,7 @@ namespace TKBOXEDMEAL
             int hour = DateTime.Now.Hour;
 
             // Check if today is Monday to Friday and if the hour is between 06:00 and 07:00
-            if (today >= DayOfWeek.Monday && today <= DayOfWeek.Friday && hour == 6)
+            if (today >= DayOfWeek.Monday && today <= DayOfWeek.Friday && hour >= 6 && hour <= 7)
             {
                 return true;
             }
